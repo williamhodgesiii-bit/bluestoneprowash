@@ -21,14 +21,13 @@ export function Transformations() {
       <Container className="relative">
         <div className="max-w-2xl">
           <span className="eyebrow text-spray">
-            <span className="h-px w-7 bg-spray/60" /> Real Results
+            <span className="h-px w-7 bg-spray/60" /> Before &amp; After
           </span>
-          <h2 className="mt-4 text-[clamp(2rem,4.4vw,3.25rem)] font-extrabold uppercase leading-[0.98] text-white">
-            See The Difference,<br className="hidden sm:block" /> Drag To Believe It
+          <h2 className="mt-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] text-white">
+            See the Before &amp; After
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-white/70">
-            These are real Birmingham homes — no stock photos. Grab the slider and watch years of buildup
-            disappear.
+            Real homes around Birmingham. Drag the slider to compare the before and after for yourself.
           </p>
         </div>
 
@@ -78,10 +77,10 @@ export function Transformations() {
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-spray">
                   <Icon name="Sparkles" className="h-3.5 w-3.5" /> {current.label}
                 </div>
-                <h3 className="mt-4 text-2xl font-extrabold uppercase tracking-tight text-white">{current.title}</h3>
+                <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-white">{current.title}</h3>
                 <p className="mt-3 leading-relaxed text-white/70">{current.caption}</p>
                 <Button href="#quote" className="mt-6" arrow>
-                  Get This Result
+                  Get a Free Quote
                 </Button>
               </motion.div>
             </AnimatePresence>

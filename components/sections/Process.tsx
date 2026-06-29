@@ -11,8 +11,8 @@ export function Process() {
         <SectionHeading
           align="center"
           eyebrow="How It Works"
-          title="Effortless From Hello To Spotless"
-          intro="No drawn-out sales process, no guesswork. Four simple steps between you and a property that looks brand new."
+          title="A Simple Process, Start to Finish"
+          intro="No drawn-out sales pitch. Four straightforward steps from your first call to a property that looks its best."
         />
 
         <div className="relative mt-16">
@@ -30,7 +30,7 @@ export function Process() {
                     </span>
                   </span>
                 </div>
-                <h3 className="text-xl font-extrabold uppercase tracking-tight text-ink">{s.title}</h3>
+                <h3 className="text-xl font-extrabold tracking-tight text-ink">{s.title}</h3>
                 <p className="mt-2.5 leading-relaxed text-ink-soft">{s.body}</p>
               </StaggerItem>
             ))}

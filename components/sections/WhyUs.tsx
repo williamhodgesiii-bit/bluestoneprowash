@@ -46,12 +46,12 @@ export function WhyUs() {
             <span className="eyebrow text-brand-600">
               <span className="h-px w-7 bg-brand-600/50" /> Why Bluestone
             </span>
-            <h2 className="mt-4 text-[clamp(2rem,4.4vw,3.25rem)] font-extrabold uppercase leading-[0.98] text-ink">
-              The Pro Difference,<br className="hidden sm:block" /> In Every Detail
+            <h2 className="mt-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] text-ink">
+              Why Homeowners<br className="hidden sm:block" /> Choose Bluestone
             </h2>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
-              We treat your biggest investment like it&apos;s our own — with the right equipment, the right
-              methods, and the kind of care a big franchise can&apos;t fake.
+              We bring the right equipment, careful methods, and genuine respect for your property to
+              every job — whether it&apos;s a single driveway or a whole-home wash.
             </p>
 
             <Stagger className="mt-10 grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2">
@@ -61,7 +61,7 @@ export function WhyUs() {
                     <Icon name={d.icon} className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="text-base font-extrabold uppercase tracking-tight text-ink">{d.title}</h3>
+                    <h3 className="text-base font-extrabold tracking-tight text-ink">{d.title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{d.body}</p>
                   </div>
                 </StaggerItem>

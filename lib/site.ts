@@ -6,15 +6,17 @@
 export const site = {
   name: "Bluestone Pro Wash",
   shortName: "Bluestone",
-  tagline: "Birmingham's Pressure Washing & Exterior Cleaning Pros",
+  tagline: "Pressure Washing & Exterior Cleaning in Greater Birmingham",
   description:
-    "Professional pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned, fully insured, satisfaction guaranteed.",
+    "Pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned, fully insured, and careful with every surface.",
   // TODO(client): confirm public email + finalize domain before .com launch
   url: "https://bluestoneprowash.com",
   email: "info@bluestoneprowash.com",
   phoneDisplay: "(205) 547-1941",
   phoneHref: "tel:+12055471941",
   smsHref: "sms:+12055471941",
+  // TODO(client): paste your Google Business reviews link to enable the "Read reviews" button
+  googleReviewsUrl: "",
   region: "Greater Birmingham, Alabama",
   established: 2022,
   hours: "Mon–Sat · 7am – 7pm",
@@ -213,37 +215,13 @@ export type Testimonial = {
   service: string;
 };
 
-/* TODO(client): swap for verified Google reviews. These reflect real review themes. */
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Our driveway and patio look brand new — I genuinely can't believe it's the same concrete. They even did our neighbor's after she saw the difference.",
-    name: "Sarah M.",
-    location: "Hoover",
-    service: "Pressure Washing",
-  },
-  {
-    quote:
-      "The black streaks on our roof are completely gone and they never got on the roof or near the landscaping. Professional, careful, and on time.",
-    name: "David R.",
-    location: "Vestavia Hills",
-    service: "Roof Washing",
-  },
-  {
-    quote:
-      "Every window dried perfectly clear — no streaks, no spots. Polite, hardworking crew. We've already booked them again for the spring.",
-    name: "Jennifer L.",
-    location: "Mountain Brook",
-    service: "Window Cleaning",
-  },
-  {
-    quote:
-      "Quick quote, fair price, and the house siding looks years younger. This is how a local business should be run.",
-    name: "Mark T.",
-    location: "Pelham",
-    service: "Soft Washing",
-  },
-];
+/*
+ * Real Google reviews go here. Until this array has entries, the Reviews section
+ * shows an honest "read our reviews on Google" call-to-action instead of any quotes.
+ * Paste real reviews in this shape and the testimonial grid appears automatically:
+ *   { quote: "…", name: "Jane S.", location: "Hoover", service: "Pressure Washing" }
+ */
+export const testimonials: Testimonial[] = [];
 
 export const serviceAreas: string[] = [
   "Birmingham",
@@ -289,7 +267,7 @@ export const faqs: Faq[] = [
 
 export const stats = [
   { value: 2022, label: "Locally owned since", suffix: "" },
-  { value: 5, label: "Star-rated service", suffix: "★", decimals: 1, display: "5.0" },
+  { value: 5, label: "Specialized services", suffix: "" },
   { value: 100, label: "Satisfaction guaranteed", suffix: "%" },
-  { value: 5, label: "Exterior services", suffix: "" },
+  { value: 14, label: "Communities served", suffix: "+" },
 ] as const;

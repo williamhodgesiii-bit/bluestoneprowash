@@ -57,15 +57,15 @@ export function QuoteCTA() {
           {/* Left: pitch + contact */}
           <div>
             <span className="eyebrow text-spray">
-              <span className="h-px w-7 bg-spray/60" /> Free, No-Pressure Quote
+              <span className="h-px w-7 bg-spray/60" /> Free Quote
             </span>
-            <h2 className="mt-4 text-[clamp(2.1rem,5vw,3.6rem)] font-extrabold uppercase leading-[0.95]">
-              Let&apos;s Make It<br />
-              <span className="text-gradient">Look New Again</span>
+            <h2 className="mt-4 text-[clamp(2rem,4.6vw,3.4rem)] font-extrabold leading-[1.02]">
+              Request Your<br />
+              <span className="text-gradient">Free Quote</span>
             </h2>
             <p className="mt-5 max-w-md text-lg leading-relaxed text-white/70">
-              Tell us what needs cleaning and we&apos;ll get you a clear, upfront price — usually same day.
-              No deposits, no pressure, no surprises.
+              Tell us what needs cleaning and we&apos;ll send a clear, upfront price — often the same day.
+              No deposit required, no obligation.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -99,9 +99,9 @@ export function QuoteCTA() {
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
                   <Icon name="BadgeCheck" className="h-8 w-8" />
                 </span>
-                <h3 className="mt-5 text-2xl font-extrabold uppercase text-ink">Request Sent!</h3>
+                <h3 className="mt-5 text-2xl font-extrabold text-ink">Thanks — request sent</h3>
                 <p className="mt-3 max-w-sm text-ink-soft">
-                  Thanks for reaching out. We&apos;ll be in touch shortly with your free quote. Need us fast?
+                  We&apos;ll be in touch shortly with your free quote. Need us sooner?
                 </p>
                 <Button href={site.phoneHref} className="mt-6" iconLeft="Phone">
                   Call {site.phoneDisplay}
@@ -109,7 +109,7 @@ export function QuoteCTA() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <h3 className="text-xl font-extrabold uppercase tracking-tight text-ink">Request Your Quote</h3>
+                <h3 className="text-xl font-extrabold tracking-tight text-ink">Request your quote</h3>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Field label="Full name" name="name" required placeholder="Jane Smith" />
                   <Field label="Phone" name="phone" type="tel" required placeholder="(205) 555-0199" />

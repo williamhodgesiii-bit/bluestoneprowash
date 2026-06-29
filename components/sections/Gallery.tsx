@@ -18,8 +18,8 @@ export function Gallery() {
       <Container>
         <SectionHeading
           eyebrow="Our Work"
-          title="Proof In Every Pass"
-          intro="A look at recent jobs across Greater Birmingham — siding, roofs, glass and concrete brought back to life."
+          title="Recent Work"
+          intro="A look at recent jobs around Greater Birmingham — siding, roofs, glass, and concrete."
         />
 
         <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">

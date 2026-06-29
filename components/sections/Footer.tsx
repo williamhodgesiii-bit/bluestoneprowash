@@ -24,8 +24,8 @@ export function Footer() {
               className="h-auto w-[150px]"
             />
             <p className="mt-5 max-w-xs leading-relaxed text-white/60">
-              Birmingham&apos;s pressure washing &amp; exterior cleaning pros. Locally owned, fully insured,
-              and obsessed with results.
+              Pressure washing and exterior cleaning across Greater Birmingham. Locally owned, fully
+              insured, and careful with every surface.
             </p>
             <Button href="#quote" className="mt-6" arrow>
               Get a Free Quote

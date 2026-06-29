@@ -24,12 +24,11 @@ export function ServiceArea() {
           <span className="eyebrow justify-center text-brand-600">
             <Icon name="MapPin" className="h-4 w-4" /> Where We Work
           </span>
-          <h2 className="mt-4 text-[clamp(2rem,4.4vw,3.25rem)] font-extrabold uppercase leading-[0.98] text-ink">
-            Proudly Cleaning Greater Birmingham
+          <h2 className="mt-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] text-ink">
+            Serving Greater Birmingham
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-            From Over the Mountain to Shelby County, we bring the same pro-grade results to every driveway,
-            roof and storefront we touch.
+            From Over the Mountain to Shelby County, here are some of the areas we serve.
           </p>
         </div>
       </Container>

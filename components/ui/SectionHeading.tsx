@@ -35,7 +35,7 @@ export function SectionHeading({
       <Reveal delay={0.05}>
         <h2
           className={cn(
-            "mt-4 text-[clamp(2rem,4.4vw,3.25rem)] font-extrabold uppercase leading-[0.98]",
+            "mt-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05]",
             onDark ? "text-white" : "text-ink"
           )}
         >

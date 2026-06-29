@@ -1,144 +1,193 @@
 "use client";
 
-import Image from "next/image";
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Button } from "../ui/Button";
 import { Container } from "../ui/Container";
 import { Icon } from "../ui/Icon";
-import { site } from "@/lib/site";
+import { services, site } from "@/lib/site";
 
-const headline = [
-  { t: "Make" },
-  { t: "Your" },
-  { t: "Home" },
-  { t: "Look" },
-  { t: "Brand", accent: true },
-  { t: "New", accent: true },
-  { t: "Again." },
-];
-
-const chips = ["Fully Insured", "Safe Soft-Wash Methods", "Locally Owned", "100% Satisfaction"];
+const chips = ["Fully insured", "Soft-wash safe", "Free quotes", "Locally owned"];
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const overlayY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const ease = [0.16, 1, 0.3, 1] as const;
 
   return (
-    <section ref={ref} id="top" className="relative isolate min-h-[100svh] overflow-hidden bg-night-950 text-white">
-      {/* Background image with parallax */}
-      <motion.div style={{ y: reduce ? 0 : y }} className="absolute inset-0 -z-10 will-change-transform">
-        <Image
-          src="/images/hero-roof-softwash.jpg"
-          alt="Bluestone Pro Wash technician soft washing a Birmingham roof"
-          fill
-          priority
-          sizes="100vw"
-          className="scale-110 object-cover"
-        />
-      </motion.div>
+    <section
+      id="top"
+      className="relative isolate overflow-hidden bg-gradient-to-b from-white via-fog-50 to-brand-50/40 pt-[72px]"
+    >
+      {/* soft brand glow + dot texture */}
+      <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-brand-300/25 blur-[120px]" />
+      <div className="pointer-events-none absolute -left-32 bottom-0 -z-10 h-[26rem] w-[26rem] rounded-full bg-brand-200/30 blur-[120px]" />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.6]"
+        style={{
+          backgroundImage: "radial-gradient(rgba(5,97,187,0.10) 1.3px, transparent 1.3px)",
+          backgroundSize: "30px 30px",
+          maskImage: "radial-gradient(120% 80% at 70% 10%, black, transparent 70%)",
+          WebkitMaskImage: "radial-gradient(120% 80% at 70% 10%, black, transparent 70%)",
+        }}
+      />
 
-      {/* Overlays for legibility + brand depth */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-night-950 via-night-950/88 to-night-900/45" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night-950 via-transparent to-night-950/70" />
-      <div className="absolute inset-0 -z-10 spotlight opacity-80" />
-      {/* Brand diagonal accent (echoes the truck wrap) */}
-      <div className="absolute -right-24 top-0 -z-10 hidden h-full w-[42%] skew-x-[-12deg] bg-gradient-to-b from-brand-600/20 to-transparent md:block" />
-
-      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-24 pt-28">
-        <motion.div style={{ y: reduce ? 0 : overlayY, opacity: reduce ? 1 : fade }} className="max-w-3xl">
-          {/* Eyebrow */}
+      <Container className="relative grid min-h-[calc(100svh-72px)] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-20">
+        {/* Left: message */}
+        <div className="lg:col-span-6 xl:col-span-7">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 py-1.5 pl-2 pr-4 backdrop-blur-md"
+            transition={{ duration: 0.6, ease }}
+            className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold text-ink-soft shadow-sm"
           >
-            <span className="flex items-center gap-0.5 rounded-full bg-brand-600 px-2 py-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Icon key={i} name="Star" className="h-3 w-3 fill-white text-white" />
-              ))}
-            </span>
-            <span className="text-xs font-semibold tracking-wide text-white/90">Five-Star Rated · Birmingham, AL</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
+            Greater Birmingham · Locally Owned · Fully Insured
           </motion.div>
 
-          {/* Headline */}
-          <h1 className="font-display text-[clamp(2.7rem,7vw,5.4rem)] font-extrabold uppercase leading-[0.92] tracking-[-0.02em]">
-            {headline.map((w, i) => (
-              <span key={i} className="mr-[0.25em] inline-block overflow-hidden align-bottom">
-                <motion.span
-                  className={`inline-block ${w.accent ? "text-gradient" : ""}`}
-                  initial={reduce ? false : { y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.15 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {w.t}
-                </motion.span>
-              </span>
-            ))}
+          <h1 className="mt-6 text-[clamp(2.4rem,5.2vw,4.2rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
+            <Word reduce={reduce} delay={0.12}>Professional Pressure Washing</Word>{" "}
+            <Word reduce={reduce} delay={0.22}>
+              &amp; <span className="text-gradient">Exterior Cleaning</span>
+            </Word>
           </h1>
 
-          {/* Subcopy */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-white/80"
+            transition={{ duration: 0.6, delay: 0.34, ease }}
+            className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft"
           >
-            Professional pressure washing, soft washing &amp; exterior cleaning that safely lifts years of
-            dirt, mold and algae — so your property shows its very best.
+            From driveways and siding to roofs, windows, and gutters, we match the right method to
+            every surface — cleaning your property safely, thoroughly, and on schedule.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.85 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            transition={{ duration: 0.6, delay: 0.44, ease }}
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Button href="#quote" size="lg" arrow>
-              Get My Free Quote
+              Request a Free Quote
             </Button>
-            <Button href={site.phoneHref} size="lg" variant="outlineDark" iconLeft="Phone">
+            <Button href={site.phoneHref} size="lg" variant="outline" iconLeft="Phone">
               {site.phoneDisplay}
             </Button>
           </motion.div>
 
-          {/* Trust chips */}
           <motion.ul
-            initial={{ opacity: 0 }}
+            initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-10 flex flex-wrap gap-x-6 gap-y-2"
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="mt-9 flex flex-wrap gap-x-6 gap-y-2.5"
           >
             {chips.map((c) => (
-              <li key={c} className="flex items-center gap-2 text-sm font-medium text-white/75">
-                <Icon name="Check" className="h-4 w-4 text-spray" strokeWidth={3} />
+              <li key={c} className="flex items-center gap-2 text-sm font-medium text-ink-soft">
+                <Icon name="Check" className="h-4 w-4 text-brand-600" strokeWidth={3} />
                 {c}
               </li>
             ))}
           </motion.ul>
-        </motion.div>
-      </Container>
+        </div>
 
-      {/* Scroll cue */}
-      <motion.div
-        style={{ opacity: reduce ? 1 : fade }}
-        className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/55 md:flex"
-      >
-        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.25em]">Scroll</span>
-        <span className="flex h-9 w-5 items-start justify-center rounded-full border border-white/30 p-1">
-          <motion.span
-            animate={reduce ? {} : { y: [0, 10, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="h-1.5 w-1.5 rounded-full bg-spray"
-          />
-        </span>
-      </motion.div>
+        {/* Right: services-at-a-glance card */}
+        <div className="lg:col-span-6 xl:col-span-5">
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease }}
+            className="relative"
+          >
+            {/* decorative panel glow */}
+            <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-200/40 to-spray/10 blur-xl" />
+
+            <div className="rounded-[1.5rem] border border-fog-200 bg-white/90 p-6 shadow-lift backdrop-blur-sm sm:p-7">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft/70">
+                  What We Clean
+                </span>
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-50 text-brand-600">
+                  <Icon name="Droplets" className="h-5 w-5" />
+                </span>
+              </div>
+
+              <ul className="mt-5 flex flex-col divide-y divide-fog-200">
+                {services.map((s, i) => (
+                  <motion.li
+                    key={s.id}
+                    initial={reduce ? false : { opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 + i * 0.08, ease }}
+                  >
+                    <a
+                      href="#services"
+                      className="group flex items-center gap-4 py-3.5 transition-colors"
+                    >
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white">
+                        <Icon name={s.icon} className="h-5 w-5" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-bold text-ink">{s.name}</span>
+                        <span className="block truncate text-xs text-ink-soft/80">{s.surfaces}</span>
+                      </span>
+                      <Icon
+                        name="ArrowRight"
+                        className="h-4 w-4 shrink-0 text-fog-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-brand-500"
+                      />
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <a
+                href="#quote"
+                className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-fog-100 py-3 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-50"
+              >
+                Get a free quote
+                <Icon name="ArrowRight" className="h-4 w-4" />
+              </a>
+            </div>
+
+            {/* floating trust badge */}
+            <motion.div
+              initial={reduce ? false : { opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.9, ease }}
+              className="absolute -bottom-5 -left-4 flex items-center gap-3 rounded-2xl border border-fog-200 bg-white px-4 py-3 shadow-lift sm:-left-6"
+            >
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-600 text-white">
+                <Icon name="ShieldCheck" className="h-5 w-5" />
+              </span>
+              <div className="leading-tight">
+                <div className="text-sm font-extrabold text-ink">Insured &amp; Local</div>
+                <div className="text-xs text-ink-soft">Serving Birmingham since 2022</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </Container>
     </section>
+  );
+}
+
+function Word({
+  children,
+  delay,
+  reduce,
+}: {
+  children: React.ReactNode;
+  delay: number;
+  reduce: boolean | null;
+}) {
+  return (
+    <span className="inline-block">
+      <motion.span
+        className="inline-block"
+        initial={reduce ? false : { opacity: 0, y: "0.4em" }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {children}
+      </motion.span>
+    </span>
   );
 }

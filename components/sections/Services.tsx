@@ -27,7 +27,7 @@ function ServiceCard({ service, large }: { service: Service; large?: boolean }) 
         />
       </div>
 
-      <h3 className="relative mt-6 text-2xl font-extrabold uppercase tracking-tight text-ink">
+      <h3 className="relative mt-6 text-2xl font-extrabold tracking-tight text-ink">
         {service.name}
       </h3>
       <p className="relative mt-3 text-[0.97rem] leading-relaxed text-ink-soft">{service.blurb}</p>
@@ -58,9 +58,9 @@ export function Services() {
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
-            eyebrow="What We Do"
-            title={<>Exterior Cleaning,<br className="hidden sm:block" /> Done The Right Way</>}
-            intro="Five specialized services and the experience to know exactly which one your property needs — never a one-size-fits-all blast."
+            eyebrow="Our Services"
+            title={<>Cleaning Services<br className="hidden sm:block" /> for Every Surface</>}
+            intro="Five specialized services, each matched to the surface it's cleaning — so your home gets the care it needs, not a one-size-fits-all approach."
           />
         </div>
 
