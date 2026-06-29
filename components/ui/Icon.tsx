@@ -1,0 +1,78 @@
+import {
+  Droplets,
+  Waves,
+  Home,
+  PanelsTopLeft,
+  Shovel,
+  PhoneCall,
+  ClipboardCheck,
+  Truck,
+  Sparkles,
+  MapPin,
+  ShieldCheck,
+  FileCheck,
+  BadgeCheck,
+  Clock,
+  Tag,
+  Phone,
+  Star,
+  Check,
+  ArrowRight,
+  ArrowUpRight,
+  Menu,
+  X,
+  ChevronDown,
+  Quote,
+  Send,
+  MessageSquare,
+  Mail,
+  MoveHorizontal,
+  ChevronUp,
+  CircleHelp,
+  type LucideIcon,
+} from "lucide-react";
+
+const registry: Record<string, LucideIcon> = {
+  Droplets,
+  Waves,
+  Home,
+  PanelsTopLeft,
+  Shovel,
+  PhoneCall,
+  ClipboardCheck,
+  Truck,
+  Sparkles,
+  MapPin,
+  ShieldCheck,
+  FileCheck,
+  BadgeCheck,
+  Clock,
+  Tag,
+  Phone,
+  Star,
+  Check,
+  ArrowRight,
+  ArrowUpRight,
+  Menu,
+  X,
+  ChevronDown,
+  Quote,
+  Send,
+  MessageSquare,
+  Mail,
+  MoveHorizontal,
+  ChevronUp,
+};
+
+export function Icon({
+  name,
+  className,
+  strokeWidth = 2,
+}: {
+  name: string;
+  className?: string;
+  strokeWidth?: number;
+}) {
+  const Cmp = registry[name] ?? CircleHelp;
+  return <Cmp className={className} strokeWidth={strokeWidth} aria-hidden="true" />;
+}

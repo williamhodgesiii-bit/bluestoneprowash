@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Bluestone Pro Wash — design tokens                                 */
+/*  Brand blue sampled from logo (#0561BB). Deep "bluestone" navy for  */
+/*  power/credibility. Stone-cool neutrals. Electric spray accent.     */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Brand cobalt (logo) */
+  --color-brand-50: #eef5ff;
+  --color-brand-100: #d9e8ff;
+  --color-brand-200: #bcd7ff;
+  --color-brand-300: #8ebdff;
+  --color-brand-400: #589bfb;
+  --color-brand-500: #2f7bf0;
+  --color-brand-600: #0561bb; /* exact logo blue */
+  --color-brand-700: #074f99;
+  --color-brand-800: #0a417c;
+  --color-brand-900: #0d3866;
+  --color-brand-950: #082042;
+
+  /* Deep bluestone night (dark sections) */
+  --color-night-700: #13243d;
+  --color-night-800: #0d1a2e;
+  --color-night-900: #091322;
+  --color-night-950: #050c17;
+
+  /* Cool stone neutrals (light surfaces) */
+  --color-fog-50: #f8fafc;
+  --color-fog-100: #f1f5fa;
+  --color-fog-200: #e4ebf3;
+  --color-fog-300: #d2dceb;
+
+  /* Ink (charcoal text — from logo wordmark) */
+  --color-ink: #161a22;
+  --color-ink-soft: #3a414d;
+
+  /* Electric spray accent (water / power) */
+  --color-spray: #36b6ff;
+  --color-spray-soft: #8fd6ff;
+
+  /* Radii */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(8, 32, 66, 0.06), 0 12px 32px -12px rgba(8, 32, 66, 0.18);
+  --shadow-lift: 0 2px 4px rgba(8, 32, 66, 0.08), 0 28px 60px -20px rgba(8, 32, 66, 0.35);
+  --shadow-glow: 0 0 0 1px rgba(54, 182, 255, 0.25), 0 16px 50px -12px rgba(5, 97, 187, 0.55);
+
+  /* Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fonts wired from next/font (set on <html>) */
+@theme inline {
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --header-h: 5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-fog-50);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  /* Accessible focus ring */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-spray);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+
+/* Display eyebrow label */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Gradient text */
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--color-brand-500), var(--color-spray));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hairline grid texture for dark sections */
+@utility grid-texture {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Soft radial spotlight */
+@utility spotlight {
+  background:
+    radial-gradient(60% 60% at 50% 0%, rgba(54, 182, 255, 0.12), transparent 70%),
+    radial-gradient(50% 50% at 85% 30%, rgba(5, 97, 187, 0.18), transparent 70%);
+}
+
+/* Fine top hairline */
+@utility hairline-t {
+  border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+@keyframes sheen {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes drip {
+  0% { transform: translateY(-6px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(16px); opacity: 0; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
