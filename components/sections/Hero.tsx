@@ -17,9 +17,9 @@ export function Hero() {
       id="top"
       className="relative isolate overflow-hidden bg-gradient-to-b from-white via-fog-50 to-brand-50/40 pt-[72px]"
     >
-      {/* soft brand glow + dot texture */}
-      <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-brand-300/25 blur-[120px]" />
-      <div className="pointer-events-none absolute -left-32 bottom-0 -z-10 h-[26rem] w-[26rem] rounded-full bg-brand-200/30 blur-[120px]" />
+      {/* soft brand glow + dot texture (glows desktop-only — large blur is costly on mobile) */}
+      <div className="pointer-events-none absolute -right-40 -top-40 -z-10 hidden h-[34rem] w-[34rem] rounded-full bg-brand-300/25 blur-[100px] sm:block" />
+      <div className="pointer-events-none absolute -left-32 bottom-0 -z-10 hidden h-[26rem] w-[26rem] rounded-full bg-brand-200/30 blur-[100px] sm:block" />
       <div
         className="pointer-events-none absolute inset-0 -z-10 opacity-[0.6]"
         style={{

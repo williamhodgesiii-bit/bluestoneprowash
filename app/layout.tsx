@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
-import { site } from "@/lib/site";
+import { site, testimonials } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
 import "./globals.css";
 
@@ -88,6 +88,19 @@ const jsonLd = {
   makesOffer: ["Pressure Washing", "Soft Washing", "Roof Cleaning", "Window Cleaning", "Gutter Cleaning"].map(
     (s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })
   ),
+  ...(testimonials.length > 0 && {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: String(testimonials.length),
+    },
+    review: testimonials.map((t) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: t.name },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: t.quote,
+    })),
+  }),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

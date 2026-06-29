@@ -15,8 +15,7 @@ export const site = {
   phoneDisplay: "(205) 547-1941",
   phoneHref: "tel:+12055471941",
   smsHref: "sms:+12055471941",
-  // TODO(client): paste your Google Business reviews link to enable the "Read reviews" button
-  googleReviewsUrl: "",
+  googleReviewsUrl: "https://www.google.com/search?q=birmingham+pro+wash",
   region: "Greater Birmingham, Alabama",
   established: 2022,
   hours: "Mon–Sat · 7am – 7pm",
@@ -211,17 +210,40 @@ export const whyUs: Differentiator[] = [
 export type Testimonial = {
   quote: string;
   name: string;
-  location: string;
-  service: string;
+  tag?: string; // optional service label, only when the review names it
 };
 
-/*
- * Real Google reviews go here. Until this array has entries, the Reviews section
- * shows an honest "read our reviews on Google" call-to-action instead of any quotes.
- * Paste real reviews in this shape and the testimonial grid appears automatically:
- *   { quote: "…", name: "Jane S.", location: "Hoover", service: "Pressure Washing" }
- */
-export const testimonials: Testimonial[] = [];
+/* Real 5-star Google reviews. Add more in this same shape any time. */
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "We have used this company several times to pressure wash our driveway, sidewalk, and patio with great results. Last summer we decided to use their roof cleaning service. Our roof is nearly 20 years old and it was looking pretty bad. The results were stunning. The roof looked almost new.",
+    name: "Patty Sisk",
+    tag: "Roof Cleaning",
+  },
+  {
+    quote:
+      "I had a wonderful experience with Anderson at Birmingham Pro Wash. His team pressure washed my driveway, sidewalks, and back patio. They were prompt and worked diligently. I will continue to use him for all my pressure washing needs and will refer him to clients in my real estate business.",
+    name: "Audrey Brewer",
+    tag: "Pressure Washing",
+  },
+  {
+    quote:
+      "This crew of young men did a great job. They were courteous and polite. They did a great job with helping me move furniture etc. out of the way and back in place. I would and will recommend them to others.",
+    name: "Jack Hampton",
+  },
+  {
+    quote:
+      "I would highly recommend these young men! They pressured washed my driveway and pool deck! They did an amazing job! Thank you guys!!! Want to hire them for the roof next!",
+    name: "Michele Hawkins",
+    tag: "Pressure Washing",
+  },
+  {
+    quote:
+      "Was very pleased with my experience with Pro Wash. Everything was done in an excellent way. The owners were very pleasant and wanted to please. Would definitely use them again and would recommend them to my friends.",
+    name: "Dorothy Lewis",
+  },
+];
 
 export const serviceAreas: string[] = [
   "Birmingham",

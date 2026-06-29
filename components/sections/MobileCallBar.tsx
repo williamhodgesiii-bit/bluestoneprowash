@@ -26,7 +26,7 @@ export function MobileCallBar() {
           className="fixed inset-x-0 bottom-0 z-40 lg:hidden"
           style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         >
-          <div className="m-3 flex gap-2 rounded-2xl border border-white/10 bg-night-950/90 p-2 shadow-lift backdrop-blur-xl">
+          <div className="m-3 flex gap-2 rounded-2xl border border-white/10 bg-night-950 p-2 shadow-lift">
             <a
               href={site.phoneHref}
               className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white/10 py-3 font-bold text-white transition-colors active:bg-white/20"

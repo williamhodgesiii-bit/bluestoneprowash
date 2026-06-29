@@ -35,7 +35,7 @@ export function ServiceArea() {
 
       {/* City marquee */}
       <div className="relative mt-12 flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="flex shrink-0 items-center gap-4 pr-4 [animation:marquee_38s_linear_infinite] hover:[animation-play-state:paused]">
+        <div className="flex shrink-0 items-center gap-4 pr-4 [animation:marquee_38s_linear_infinite] [will-change:transform] motion-reduce:[animation:none]">
           {marquee.map((city, i) => (
             <span
               key={i}

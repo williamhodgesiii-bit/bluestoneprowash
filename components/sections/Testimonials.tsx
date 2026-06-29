@@ -6,6 +6,16 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal, Stagger, StaggerItem } from "../motion/Reveal";
 import { site, testimonials } from "@/lib/site";
 
+function Stars({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex gap-0.5 text-amber-400 ${className}`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Icon key={i} name="Star" className="h-4 w-4 fill-amber-400" />
+      ))}
+    </div>
+  );
+}
+
 export function Testimonials() {
   const hasReviews = testimonials.length > 0;
 
@@ -18,48 +28,53 @@ export function Testimonials() {
           title="What Our Customers Say"
           intro={
             hasReviews
-              ? "A few words from homeowners who trusted us with their property."
-              : "We let our work — and our customers — speak for us. Our reviews live on Google, and we're glad to share references right in your neighborhood."
+              ? "Real, verified reviews from homeowners who trusted us with their property."
+              : "We let our work — and our customers — speak for us. Our reviews live on Google, and we're glad to share references in your neighborhood."
           }
         />
 
         {hasReviews ? (
           <>
-            <Stagger className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+            <Reveal className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Stars className="scale-110" />
+              <p className="text-sm font-semibold text-ink-soft">
+                <span className="font-display text-base font-extrabold text-ink">5.0</span> · Verified
+                Google reviews
+              </p>
+            </Reveal>
+
+            <Stagger className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((t) => (
-                <StaggerItem key={t.name}>
+                <StaggerItem key={t.name} className="h-full">
                   <figure className="relative flex h-full flex-col rounded-2xl border border-fog-200 bg-fog-50 p-7 transition-shadow duration-500 hover:shadow-card">
-                    <div className="flex gap-0.5 text-brand-500">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Icon key={i} name="Star" className="h-4 w-4 fill-brand-500" />
-                      ))}
+                    <div className="flex items-center justify-between">
+                      <Stars />
+                      <SocialIcon name="google" className="h-5 w-5 text-ink-soft/50" />
                     </div>
-                    <blockquote className="mt-4 flex-1 text-lg leading-relaxed text-ink">“{t.quote}”</blockquote>
-                    <figcaption className="mt-6 flex items-center justify-between border-t border-fog-200 pt-5">
-                      <div className="flex items-center gap-3">
-                        <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-600 font-display text-base font-extrabold text-white">
-                          {t.name.charAt(0)}
-                        </span>
-                        <div>
-                          <div className="font-bold text-ink">{t.name}</div>
-                          <div className="text-sm text-ink-soft">{t.location}, AL</div>
+                    <blockquote className="mt-4 flex-1 text-[0.97rem] leading-relaxed text-ink">
+                      “{t.quote}”
+                    </blockquote>
+                    <figcaption className="mt-6 flex items-center gap-3 border-t border-fog-200 pt-5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-600 font-display text-base font-extrabold text-white">
+                        {t.name.charAt(0)}
+                      </span>
+                      <div className="min-w-0">
+                        <div className="font-bold text-ink">{t.name}</div>
+                        <div className="text-xs text-ink-soft">
+                          {t.tag ? `${t.tag} · ` : ""}Verified Google review
                         </div>
                       </div>
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-700 shadow-card">
-                        {t.service}
-                      </span>
                     </figcaption>
                   </figure>
                 </StaggerItem>
               ))}
             </Stagger>
-            {site.googleReviewsUrl && (
-              <Reveal className="mt-10 flex justify-center">
-                <Button href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" variant="outline" arrow>
-                  Read more reviews on Google
-                </Button>
-              </Reveal>
-            )}
+
+            <Reveal className="mt-10 flex justify-center">
+              <Button href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" variant="outline" arrow>
+                Read more reviews on Google
+              </Button>
+            </Reveal>
           </>
         ) : (
           <Reveal className="mx-auto mt-12 max-w-2xl">
@@ -72,15 +87,9 @@ export function Testimonials() {
                 ours, or just ask and we&apos;ll point you to recent work nearby.
               </p>
               <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-                {site.googleReviewsUrl ? (
-                  <Button href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" arrow>
-                    Read Our Google Reviews
-                  </Button>
-                ) : (
-                  <Button href="#quote" arrow>
-                    Ask Us for References
-                  </Button>
-                )}
+                <Button href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" arrow>
+                  Read Our Google Reviews
+                </Button>
                 <Button href={site.phoneHref} variant="outline" iconLeft="Phone">
                   {site.phoneDisplay}
                 </Button>

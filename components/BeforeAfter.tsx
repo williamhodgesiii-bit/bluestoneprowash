@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 import { Icon } from "./ui/Icon";
 
 /**
- * Draggable before/after comparison slider.
- * - Base layer = AFTER (clean). Top layer = BEFORE, clipped to the right of the handle.
- * - Drag the squeegee handle (pointer/touch) or use arrow keys (focused) to wipe clean.
+ * Draggable before/after slider.
+ * Position is driven through a CSS custom property (`--pos`) updated imperatively
+ * on pointer move — so dragging never triggers a React re-render (smooth on mobile).
  */
 export function BeforeAfter({
   before,
@@ -20,30 +20,44 @@ export function BeforeAfter({
   alt: string;
   priority?: boolean;
 }) {
-  const [pos, setPos] = useState(52);
-  const [active, setActive] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLButtonElement>(null);
+  const dragging = useRef(false);
+  const pos = useRef(52);
 
-  const updateFromClientX = useCallback((clientX: number) => {
+  const setPos = (pct: number) => {
+    const clamped = Math.min(98, Math.max(2, pct));
+    pos.current = clamped;
+    containerRef.current?.style.setProperty("--pos", `${clamped}%`);
+    handleRef.current?.setAttribute("aria-valuenow", String(Math.round(clamped)));
+  };
+
+  const fromClientX = (clientX: number) => {
     const el = containerRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const pct = ((clientX - rect.left) / rect.width) * 100;
-    setPos(Math.min(98, Math.max(2, pct)));
-  }, []);
+    setPos(((clientX - rect.left) / rect.width) * 100);
+  };
 
   return (
     <div
       ref={containerRef}
+      style={{ ["--pos" as string]: "52%" } as React.CSSProperties}
       className="group relative aspect-[1200/820] w-full touch-none select-none overflow-hidden rounded-[1.25rem] bg-night-900 shadow-lift ring-1 ring-black/5"
       onPointerDown={(e) => {
-        (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-        setActive(true);
-        updateFromClientX(e.clientX);
+        dragging.current = true;
+        e.currentTarget.setPointerCapture(e.pointerId);
+        fromClientX(e.clientX);
       }}
-      onPointerMove={(e) => active && updateFromClientX(e.clientX)}
-      onPointerUp={() => setActive(false)}
-      onPointerCancel={() => setActive(false)}
+      onPointerMove={(e) => {
+        if (dragging.current) fromClientX(e.clientX);
+      }}
+      onPointerUp={() => {
+        dragging.current = false;
+      }}
+      onPointerCancel={() => {
+        dragging.current = false;
+      }}
     >
       {/* AFTER (base) */}
       <Image
@@ -52,12 +66,12 @@ export function BeforeAfter({
         fill
         sizes="(max-width: 768px) 100vw, 70vw"
         priority={priority}
-        className="object-cover"
+        className="pointer-events-none object-cover"
         draggable={false}
       />
 
       {/* BEFORE (clipped to the right of the handle) */}
-      <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+      <div className="pointer-events-none absolute inset-0" style={{ clipPath: "inset(0 0 0 var(--pos))" }}>
         <Image
           src={before}
           alt={`${alt} — before cleaning`}
@@ -74,35 +88,35 @@ export function BeforeAfter({
       <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-brand-600 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white shadow-md">
         After
       </span>
-      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-night-950/70 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/90 backdrop-blur-sm">
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-night-950/70 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/90">
         Before
       </span>
 
       {/* Divider + handle */}
-      <div className="absolute inset-y-0 z-10" style={{ left: `${pos}%`, transform: "translateX(-50%)" }}>
-        <div className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white/90 shadow-[0_0_18px_rgba(54,182,255,0.7)]" />
+      <div className="pointer-events-none absolute inset-y-0 z-10" style={{ left: "var(--pos)", transform: "translateX(-50%)" }}>
+        <div className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white/90 shadow-[0_0_14px_rgba(54,182,255,0.6)]" />
         <button
+          ref={handleRef}
           type="button"
           role="slider"
           aria-label={`${alt}: reveal before and after`}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-valuenow={Math.round(pos)}
+          aria-valuenow={52}
           onKeyDown={(e) => {
-            if (e.key === "ArrowLeft") setPos((p) => Math.max(2, p - 4));
-            if (e.key === "ArrowRight") setPos((p) => Math.min(98, p + 4));
+            if (e.key === "ArrowLeft") setPos(pos.current - 4);
+            if (e.key === "ArrowRight") setPos(pos.current + 4);
             if (e.key === "Home") setPos(2);
             if (e.key === "End") setPos(98);
           }}
-          className="absolute top-1/2 left-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-brand-700 shadow-[0_8px_24px_rgba(8,32,66,0.45)] ring-1 ring-black/5 transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-spray active:scale-95"
+          className="pointer-events-auto absolute top-1/2 left-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-brand-700 shadow-[0_8px_24px_rgba(8,32,66,0.45)] ring-1 ring-black/5 transition-transform duration-150 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-spray active:scale-95"
         >
           <Icon name="MoveHorizontal" className="h-5 w-5" />
-          <span className="absolute -inset-2 -z-10 rounded-full bg-spray/30 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </button>
       </div>
 
       {/* Hint */}
-      <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-night-950/55 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-white/80 opacity-100 backdrop-blur-sm transition-opacity duration-500 group-hover:opacity-0">
+      <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-night-950/55 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-white/80 transition-opacity duration-500 group-hover:opacity-0">
         Drag to compare
       </span>
     </div>

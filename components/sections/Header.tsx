@@ -29,7 +29,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b bg-white/85 backdrop-blur-xl transition-all duration-300",
+        // Solid on mobile (cheap to paint while scrolling); frosted only on desktop.
+        "fixed inset-x-0 top-0 z-50 border-b bg-white transition-all duration-300 lg:bg-white/85 lg:backdrop-blur-xl",
         scrolled || open
           ? "border-fog-200 shadow-[0_4px_30px_-14px_rgba(8,32,66,0.3)]"
           : "border-transparent"
