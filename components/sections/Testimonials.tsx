@@ -20,7 +20,7 @@ export function Testimonials() {
   const hasReviews = testimonials.length > 0;
 
   return (
-    <section className="relative bg-white py-20 sm:py-28">
+    <section className="cv relative bg-white py-20 sm:py-28">
       <Container>
         <SectionHeading
           align="center"

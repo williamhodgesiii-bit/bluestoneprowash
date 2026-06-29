@@ -48,7 +48,7 @@ export function QuoteCTA() {
   }
 
   return (
-    <section id="quote" className="relative scroll-mt-24 overflow-hidden bg-night-950 py-20 text-white sm:py-28">
+    <section id="quote" className="cv relative scroll-mt-24 overflow-hidden bg-night-950 py-20 text-white sm:py-28">
       <div className="absolute inset-0 spotlight opacity-80" />
       <div className="absolute inset-0 grid-texture opacity-25" />
 

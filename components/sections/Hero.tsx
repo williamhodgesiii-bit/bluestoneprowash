@@ -97,10 +97,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease }}
             className="relative"
           >
-            {/* decorative panel glow */}
-            <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-200/40 to-spray/10 blur-xl" />
+            {/* decorative panel tint (no blur filter — keeps mobile compositing cheap) */}
+            <div className="absolute -inset-2 -z-10 hidden rounded-[2rem] bg-gradient-to-br from-brand-100/60 to-transparent sm:block" />
 
-            <div className="rounded-[1.5rem] border border-fog-200 bg-white/90 p-6 shadow-lift backdrop-blur-sm sm:p-7">
+            <div className="rounded-[1.5rem] border border-fog-200 bg-white p-6 shadow-lift sm:p-7">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft/70">
                   What We Clean

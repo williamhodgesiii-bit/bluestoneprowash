@@ -6,7 +6,7 @@ import { stats } from "@/lib/site";
 
 export function TrustBar() {
   return (
-    <section className="relative z-10 bg-night-900 text-white">
+    <section className="cv relative z-10 bg-night-900 text-white">
       <div className="absolute inset-0 grid-texture opacity-40" />
       <Container className="relative py-10 sm:py-12">
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">

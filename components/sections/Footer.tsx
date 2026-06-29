@@ -10,7 +10,7 @@ export function Footer() {
   const activeSocials = socials.filter((s) => s.href);
 
   return (
-    <footer className="relative overflow-hidden bg-night-950 text-white">
+    <footer className="cv relative overflow-hidden bg-night-950 text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
       <Container className="relative py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">

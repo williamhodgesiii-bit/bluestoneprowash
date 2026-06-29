@@ -14,7 +14,7 @@ const shots = [
 
 export function Gallery() {
   return (
-    <section className="relative bg-fog-50 py-20 sm:py-28">
+    <section className="cv relative bg-fog-50 py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Our Work"

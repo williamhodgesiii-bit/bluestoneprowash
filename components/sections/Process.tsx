@@ -6,7 +6,7 @@ import { processSteps } from "@/lib/site";
 
 export function Process() {
   return (
-    <section id="process" className="relative scroll-mt-24 bg-white py-20 sm:py-28">
+    <section id="process" className="cv relative scroll-mt-24 bg-white py-20 sm:py-28">
       <Container>
         <SectionHeading
           align="center"

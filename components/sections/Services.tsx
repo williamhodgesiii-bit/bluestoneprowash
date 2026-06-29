@@ -14,8 +14,8 @@ function ServiceCard({ service, large }: { service: Service; large?: boolean }) 
         large ? "sm:p-8" : ""
       )}
     >
-      {/* hover spray glow */}
-      <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-400/0 blur-2xl transition-all duration-500 group-hover:bg-brand-400/20" />
+      {/* hover spray glow (desktop only — blur layers are costly on mobile) */}
+      <div className="pointer-events-none absolute -right-10 -top-10 hidden h-40 w-40 rounded-full bg-brand-400/0 blur-2xl transition-all duration-500 group-hover:bg-brand-400/20 lg:block" />
 
       <div className="relative flex items-start justify-between">
         <span className="grid h-14 w-14 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors duration-500 group-hover:bg-brand-600 group-hover:text-white">
@@ -54,7 +54,7 @@ export function Services() {
   const rest = services.filter((s) => !s.featured);
 
   return (
-    <section id="services" className="relative scroll-mt-24 bg-fog-50 py-20 sm:py-28">
+    <section id="services" className="cv relative scroll-mt-24 bg-fog-50 py-20 sm:py-28">
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading

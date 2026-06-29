@@ -6,7 +6,7 @@ import { faqs } from "@/lib/site";
 
 export function Faq() {
   return (
-    <section className="relative bg-fog-100 py-20 sm:py-28">
+    <section className="cv relative bg-fog-100 py-20 sm:py-28">
       <Container className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <SectionHeading

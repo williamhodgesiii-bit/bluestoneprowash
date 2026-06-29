@@ -99,14 +99,22 @@
     border-radius: 4px;
   }
 
+  /* Respect reduced-motion for transitions, but leave looping decorative
+     animations (the location ticker) running. Framer Motion entrances are
+     handled per-component via useReducedMotion(). */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
+      transition-duration: 0.01ms !important;
     }
   }
+}
+
+/* Skip rendering of off-screen sections — big scroll win on long pages.
+   `auto` lets the browser remember each section's real height after first paint. */
+@utility cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
 }
 
 /* ------------------------------------------------------------------ */

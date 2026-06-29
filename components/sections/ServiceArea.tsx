@@ -8,7 +8,7 @@ export function ServiceArea() {
   const marquee = [...serviceAreas, ...serviceAreas];
 
   return (
-    <section id="area" className="relative scroll-mt-24 overflow-hidden bg-brand-50 py-20 sm:py-28">
+    <section id="area" className="cv relative scroll-mt-24 overflow-hidden bg-brand-50 py-20 sm:py-28">
       {/* dotted map texture */}
       <div
         className="absolute inset-0 opacity-[0.5]"
@@ -35,7 +35,7 @@ export function ServiceArea() {
 
       {/* City marquee */}
       <div className="relative mt-12 flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="flex shrink-0 items-center gap-4 pr-4 [animation:marquee_38s_linear_infinite] [will-change:transform] motion-reduce:[animation:none]">
+        <div className="flex shrink-0 items-center gap-4 pr-4 [animation:marquee_38s_linear_infinite] [will-change:transform]">
           {marquee.map((city, i) => (
             <span
               key={i}
@@ -49,7 +49,7 @@ export function ServiceArea() {
       </div>
 
       <Container className="relative">
-        <Reveal className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-4 rounded-2xl border border-brand-200 bg-white/70 p-7 text-center shadow-card backdrop-blur-sm sm:flex-row sm:text-left">
+        <Reveal className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-4 rounded-2xl border border-brand-200 bg-white p-7 text-center shadow-card sm:flex-row sm:text-left">
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand-600 text-white">
             <Icon name="MessageSquare" className="h-6 w-6" />
           </span>

@@ -14,7 +14,7 @@ export function Transformations() {
   const current = transformations[active];
 
   return (
-    <section id="transformations" className="relative scroll-mt-24 overflow-hidden bg-night-950 py-20 text-white sm:py-28">
+    <section id="transformations" className="cv relative scroll-mt-24 overflow-hidden bg-night-950 py-20 text-white sm:py-28">
       <div className="absolute inset-0 grid-texture opacity-30" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
 
