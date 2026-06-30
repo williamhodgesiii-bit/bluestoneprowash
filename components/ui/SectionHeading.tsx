@@ -2,14 +2,14 @@ import { cn } from "@/lib/utils";
 import { Reveal } from "../motion/Reveal";
 
 export function SectionHeading({
-  eyebrow,
+  kicker,
   title,
   intro,
   align = "left",
   onDark = false,
   className,
 }: {
-  eyebrow?: string;
+  kicker?: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   align?: "left" | "center";
@@ -17,38 +17,28 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-        className
-      )}
+    <Reveal
+      className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}
     >
-      {eyebrow && (
-        <Reveal>
-          <span className={cn("eyebrow", onDark ? "text-spray" : "text-brand-600")}>
-            <span className={cn("h-px w-7", onDark ? "bg-spray/60" : "bg-brand-600/50")} />
-            {eyebrow}
-          </span>
-        </Reveal>
+      {kicker && (
+        <span className={cn("kicker", onDark ? "text-brand-300" : "text-brand-600")}>
+          {kicker}
+        </span>
       )}
-      <Reveal delay={0.05}>
-        <h2
-          className={cn(
-            "mt-4 text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05]",
-            onDark ? "text-white" : "text-ink"
-          )}
-        >
-          {title}
-        </h2>
-      </Reveal>
+      <h2
+        className={cn(
+          "mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06]",
+          onDark ? "text-white" : "text-ink"
+        )}
+      >
+        {title}
+      </h2>
+      <div className={cn("rule-blue mt-5", align === "center" && "mx-auto", onDark && "bg-brand-400")} />
       {intro && (
-        <Reveal delay={0.1}>
-          <p className={cn("mt-5 text-lg leading-relaxed", onDark ? "text-white/70" : "text-ink-soft")}>
-            {intro}
-          </p>
-        </Reveal>
+        <p className={cn("mt-5 text-[1.05rem] leading-relaxed", onDark ? "text-white/70" : "text-ink-soft")}>
+          {intro}
+        </p>
       )}
-    </div>
+    </Reveal>
   );
 }

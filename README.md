@@ -2,7 +2,19 @@
 
 Marketing website for **Bluestone Pro Wash** — pressure washing & exterior cleaning in Greater Birmingham, Alabama.
 
-Built with **Next.js (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion**. Fully static, image-optimized, SEO-ready, and tuned for deployment on Vercel.
+Built with **Next.js (App Router) · TypeScript · Tailwind CSS v4 · Motion**. Fully static, image-optimized, SEO-ready, and tuned for deployment on Vercel.
+
+Multi-page layout so visitors aren't stuck scrolling one endless homepage:
+
+| Route | What's there |
+| --- | --- |
+| `/` | Short, quote-forward home: hero, services teaser, before/after slider, reviews, service-area ticker |
+| `/services` | The five services in detail, how-it-works steps, and FAQs |
+| `/work` | Draggable before/after slider + recent-work gallery |
+| `/about` | The local-crew story, why-us, and service area |
+| `/contact` | The free-quote form + call/text/email |
+
+The colors come straight off the logo and truck wrap — cobalt blue, charcoal, heather gray, white. No neon, gradients, or stock "tech" textures.
 
 ---
 
@@ -95,10 +107,15 @@ Add the custom domain in **Vercel → Project → Settings → Domains**, then s
 ## Project structure
 
 ```
-app/                 layout, page, globals.css, sitemap, robots, favicons
+app/                 layout + globals.css + sitemap/robots/favicons
+  page.tsx           home
+  services/          /services
+  work/              /work
+  about/             /about
+  contact/           /contact
 components/
   sections/          Header, Hero, Services, Transformations, … Footer
-  ui/                Button, Container, Icon, Brandmark, CountUp, …
+  ui/                Button, Container, Icon, Brandmark, PageHero, …
   motion/            Reveal / Stagger animation primitives
   BeforeAfter.tsx    draggable before/after slider
 lib/                 site.ts (content), url.ts, utils.ts

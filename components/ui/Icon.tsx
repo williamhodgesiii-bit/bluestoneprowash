@@ -29,6 +29,7 @@ import {
   MoveHorizontal,
   ChevronUp,
   CircleHelp,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -62,6 +63,7 @@ const registry: Record<string, LucideIcon> = {
   Mail,
   MoveHorizontal,
   ChevronUp,
+  Users,
 };
 
 export function Icon({

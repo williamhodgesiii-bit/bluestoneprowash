@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { site, testimonials } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
+import { Header } from "@/components/sections/Header";
+import { Footer } from "@/components/sections/Footer";
+import { MobileCallBar } from "@/components/sections/MobileCallBar";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -107,7 +110,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${archivo.variable} ${inter.variable}`}>
       <body className="antialiased">
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <MobileCallBar />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

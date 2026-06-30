@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
@@ -10,9 +11,8 @@ export function Footer() {
   const activeSocials = socials.filter((s) => s.href);
 
   return (
-    <footer className="cv relative overflow-hidden bg-night-950 text-white">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
-      <Container className="relative py-16">
+    <footer className="bg-night-950 text-white">
+      <Container className="py-14">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
           <div className="lg:col-span-4">
@@ -21,13 +21,13 @@ export function Footer() {
               alt="Bluestone Pro Wash"
               width={200}
               height={167}
-              className="h-auto w-[150px]"
+              className="h-auto w-[140px]"
             />
             <p className="mt-5 max-w-xs leading-relaxed text-white/60">
               Pressure washing and exterior cleaning across Greater Birmingham. Locally owned, fully
               insured, and careful with every surface.
             </p>
-            <Button href="#quote" className="mt-6" arrow>
+            <Button href="/contact" className="mt-6" arrow>
               Get a Free Quote
             </Button>
 
@@ -40,7 +40,7 @@ export function Footer() {
                     aria-label={s.label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-white/40 hover:text-white"
+                    className="grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-white/70 transition-colors hover:border-white/40 hover:text-white"
                   >
                     <SocialIcon name={s.icon} className="h-5 w-5" />
                   </a>
@@ -51,13 +51,13 @@ export function Footer() {
 
           {/* Services */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-white/40">Services</h3>
+            <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-white/40">Services</h3>
             <ul className="mt-5 flex flex-col gap-3">
               {services.map((s) => (
                 <li key={s.id}>
-                  <a href="#services" className="text-white/75 transition-colors hover:text-brand-300">
+                  <Link href="/services" className="text-white/75 transition-colors hover:text-brand-300">
                     {s.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -65,26 +65,26 @@ export function Footer() {
 
           {/* Explore */}
           <div className="lg:col-span-2">
-            <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-white/40">Explore</h3>
+            <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-white/40">Explore</h3>
             <ul className="mt-5 flex flex-col gap-3">
+              <li>
+                <Link href="/" className="text-white/75 transition-colors hover:text-brand-300">
+                  Home
+                </Link>
+              </li>
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-white/75 transition-colors hover:text-brand-300">
+                  <Link href={l.href} className="text-white/75 transition-colors hover:text-brand-300">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
-              <li>
-                <a href="#quote" className="text-white/75 transition-colors hover:text-brand-300">
-                  Free Quote
-                </a>
-              </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-white/40">Get In Touch</h3>
+            <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-white/40">Get in touch</h3>
             <ul className="mt-5 flex flex-col gap-4 text-white/75">
               <li>
                 <a href={site.phoneHref} className="flex items-center gap-3 transition-colors hover:text-brand-300">
@@ -119,11 +119,8 @@ export function Footer() {
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/50 sm:flex-row">
           <p>© {year} {site.name}. All rights reserved.</p>
           <p className="flex items-center gap-2">
-            <Icon name="ShieldCheck" className="h-4 w-4 text-brand-400" /> Licensed &amp; Insured · Locally Owned
+            <Icon name="ShieldCheck" className="h-4 w-4 text-brand-400" /> Licensed &amp; insured · Locally owned
           </p>
-          <a href="#top" className="flex items-center gap-1.5 font-semibold text-white/70 transition-colors hover:text-white">
-            Back to top <Icon name="ChevronUp" className="h-4 w-4" />
-          </a>
         </div>
       </Container>
     </footer>

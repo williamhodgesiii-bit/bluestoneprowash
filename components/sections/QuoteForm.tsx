@@ -17,7 +17,7 @@ const contactMethods = [
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-export function QuoteCTA() {
+export function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -48,35 +48,29 @@ export function QuoteCTA() {
   }
 
   return (
-    <section id="quote" className="cv relative scroll-mt-24 overflow-hidden bg-night-950 py-20 text-white sm:py-28">
-      <div className="absolute inset-0 spotlight opacity-80" />
-      <div className="absolute inset-0 grid-texture opacity-25" />
-
-      <Container className="relative">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left: pitch + contact */}
-          <div>
-            <span className="eyebrow text-spray">
-              <span className="h-px w-7 bg-spray/60" /> Free Quote
-            </span>
-            <h2 className="mt-4 text-[clamp(2rem,4.6vw,3.4rem)] font-extrabold leading-[1.02]">
-              Request Your<br />
-              <span className="text-gradient">Free Quote</span>
+    <section id="quote" className="bg-steel-50 py-14 sm:py-20">
+      <Container>
+        <div className="overflow-hidden rounded-2xl border border-steel-200 shadow-lift lg:grid lg:grid-cols-12">
+          {/* Left: pitch + contact, in wrap blue */}
+          <div className="bg-brand-600 p-8 text-white sm:p-10 lg:col-span-5">
+            <span className="kicker text-brand-100">Free quote</span>
+            <h2 className="mt-3 text-[clamp(1.9rem,3.4vw,2.6rem)] font-extrabold leading-[1.04] text-white">
+              Tell us what needs cleaning.
             </h2>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-white/70">
-              Tell us what needs cleaning and we&apos;ll send a clear, upfront price — often the same day.
-              No deposit required, no obligation.
+            <p className="mt-4 max-w-md leading-relaxed text-white/85">
+              We&apos;ll send a clear, upfront price — usually the same day. No deposit, no obligation,
+              no hard sell.
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="mt-8 flex flex-col gap-3">
               {contactMethods.map((m) => {
                 const inner = (
-                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-colors duration-300 hover:border-white/25 hover:bg-white/10">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-600 text-white">
+                  <div className="flex items-center gap-3 rounded-lg bg-white/10 p-3.5 transition-colors hover:bg-white/15">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white text-brand-700">
                       <Icon name={m.icon} className="h-5 w-5" />
                     </span>
                     <div className="min-w-0">
-                      <div className="text-xs font-semibold uppercase tracking-wide text-white/50">{m.label}</div>
+                      <div className="text-xs font-semibold uppercase tracking-wide text-white/60">{m.label}</div>
                       <div className="truncate font-bold text-white">{m.value}</div>
                     </div>
                   </div>
@@ -92,14 +86,14 @@ export function QuoteCTA() {
             </div>
           </div>
 
-          {/* Right: form */}
-          <div className="rounded-[1.5rem] border border-white/10 bg-white p-6 text-ink shadow-lift sm:p-8">
+          {/* Right: the form */}
+          <div className="bg-white p-8 text-ink sm:p-10 lg:col-span-7">
             {status === "sent" ? (
               <div className="flex h-full min-h-[420px] flex-col items-center justify-center text-center">
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
                   <Icon name="BadgeCheck" className="h-8 w-8" />
                 </span>
-                <h3 className="mt-5 text-2xl font-extrabold text-ink">Thanks — request sent</h3>
+                <h3 className="mt-5 text-2xl font-extrabold text-ink">Got it — thanks!</h3>
                 <p className="mt-3 max-w-sm text-ink-soft">
                   We&apos;ll be in touch shortly with your free quote. Need us sooner?
                 </p>
@@ -124,7 +118,7 @@ export function QuoteCTA() {
                       id="service"
                       name="service"
                       defaultValue=""
-                      className="rounded-xl border border-fog-300 bg-fog-50 px-4 py-3 text-ink outline-none transition-colors focus:border-brand-500 focus:bg-white"
+                      className="rounded-lg border border-steel-300 bg-steel-50 px-4 py-3 text-ink outline-none transition-colors focus:border-brand-500 focus:bg-white"
                     >
                       <option value="" disabled>
                         Select a service…
@@ -148,7 +142,7 @@ export function QuoteCTA() {
                     name="message"
                     rows={3}
                     placeholder="Tell us about the job — driveway size, roof type, etc."
-                    className="resize-none rounded-xl border border-fog-300 bg-fog-50 px-4 py-3 text-ink outline-none transition-colors focus:border-brand-500 focus:bg-white"
+                    className="resize-none rounded-lg border border-steel-300 bg-steel-50 px-4 py-3 text-ink outline-none transition-colors focus:border-brand-500 focus:bg-white"
                   />
                 </div>
 
@@ -162,7 +156,7 @@ export function QuoteCTA() {
                   {status === "sending" ? "Sending…" : "Get My Free Quote"}
                 </Button>
                 <p className="text-center text-xs text-ink-soft">
-                  We respect your inbox — your details are only used to prepare your quote.
+                  We only use your details to prepare your quote. No spam, ever.
                 </p>
               </form>
             )}
@@ -197,7 +191,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="rounded-xl border border-fog-300 bg-fog-50 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-soft/50 focus:border-brand-500 focus:bg-white"
+        className="rounded-lg border border-steel-300 bg-steel-50 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-soft/50 focus:border-brand-500 focus:bg-white"
       />
     </div>
   );

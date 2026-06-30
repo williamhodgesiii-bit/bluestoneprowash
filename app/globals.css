@@ -1,55 +1,53 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  Bluestone Pro Wash — design tokens                                 */
-/*  Brand blue sampled from logo (#0561BB). Deep "bluestone" navy for  */
-/*  power/credibility. Stone-cool neutrals. Electric spray accent.     */
+/*  Bluestone Pro Wash                                                 */
+/*  Colors pulled straight off the logo + truck wrap: cobalt blue,     */
+/*  charcoal lettering, heather-gray shirts, clean white. No neon, no  */
+/*  gradients — just the blue we actually paint on the trailer.        */
 /* ------------------------------------------------------------------ */
 @theme {
-  /* Brand cobalt (logo) */
+  /* Cobalt — sampled from the logo / wrap */
   --color-brand-50: #eef5ff;
   --color-brand-100: #d9e8ff;
   --color-brand-200: #bcd7ff;
   --color-brand-300: #8ebdff;
   --color-brand-400: #589bfb;
   --color-brand-500: #2f7bf0;
-  --color-brand-600: #0561bb; /* exact logo blue */
+  --color-brand-600: #0561bb; /* the wrap blue */
   --color-brand-700: #074f99;
   --color-brand-800: #0a417c;
   --color-brand-900: #0d3866;
   --color-brand-950: #082042;
 
-  /* Deep bluestone night (dark sections) */
-  --color-night-700: #13243d;
-  --color-night-800: #0d1a2e;
-  --color-night-900: #091322;
-  --color-night-950: #050c17;
+  /* Charcoal — the wordmark + dark panels */
+  --color-night-700: #283139;
+  --color-night-800: #1c242b;
+  --color-night-900: #141a20;
+  --color-night-950: #0d1116;
 
-  /* Cool stone neutrals (light surfaces) */
-  --color-fog-50: #f8fafc;
-  --color-fog-100: #f1f5fa;
-  --color-fog-200: #e4ebf3;
-  --color-fog-300: #d2dceb;
+  /* Heather gray — the crew shirts + galvanized trailer */
+  --color-steel-50: #f6f7f9;
+  --color-steel-100: #eceef2;
+  --color-steel-200: #dce0e6;
+  --color-steel-300: #c5ccd5;
+  --color-steel-400: #9aa3b0;
+  --color-steel-500: #6f7884;
+  --color-steel-600: #515862;
 
   /* Ink (charcoal text — from logo wordmark) */
-  --color-ink: #161a22;
-  --color-ink-soft: #3a414d;
+  --color-ink: #15191e;
+  --color-ink-soft: #444b54;
 
-  /* Electric spray accent (water / power) */
-  --color-spray: #36b6ff;
-  --color-spray-soft: #8fd6ff;
+  /* Radii — kept a touch squarer; rounded-pill everything reads "app" */
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
 
-  /* Radii */
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
-  --radius-3xl: 1.75rem;
+  /* Shadows — crisp and grounded, like a printed sign, not a floating glow */
+  --shadow-card: 0 1px 1px rgba(13, 26, 46, 0.04), 0 6px 18px -10px rgba(13, 26, 46, 0.22);
+  --shadow-lift: 0 2px 4px rgba(13, 26, 46, 0.06), 0 20px 44px -22px rgba(13, 26, 46, 0.4);
 
-  /* Shadows */
-  --shadow-card: 0 1px 2px rgba(8, 32, 66, 0.06), 0 12px 32px -12px rgba(8, 32, 66, 0.18);
-  --shadow-lift: 0 2px 4px rgba(8, 32, 66, 0.08), 0 28px 60px -20px rgba(8, 32, 66, 0.35);
-  --shadow-glow: 0 0 0 1px rgba(54, 182, 255, 0.25), 0 16px 50px -12px rgba(5, 97, 187, 0.55);
-
-  /* Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -61,7 +59,7 @@
 
 @layer base {
   :root {
-    --header-h: 5rem;
+    --header-h: 4.5rem;
   }
 
   html {
@@ -71,7 +69,7 @@
   }
 
   body {
-    background: var(--color-fog-50);
+    background: #ffffff;
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -87,21 +85,18 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 0.98;
+    letter-spacing: -0.015em;
+    line-height: 1.04;
     text-wrap: balance;
   }
 
   /* Accessible focus ring */
   :where(a, button, input, textarea, select, [tabindex]):focus-visible {
-    outline: 3px solid var(--color-spray);
+    outline: 3px solid var(--color-brand-500);
     outline-offset: 2px;
     border-radius: 4px;
   }
 
-  /* Respect reduced-motion for transitions, but leave looping decorative
-     animations (the location ticker) running. Framer Motion entrances are
-     handled per-component via useReducedMotion(). */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -110,72 +105,50 @@
   }
 }
 
-/* Skip rendering of off-screen sections — big scroll win on long pages.
-   `auto` lets the browser remember each section's real height after first paint. */
+/* Skip rendering of off-screen sections — scroll win on longer pages. */
 @utility cv {
   content-visibility: auto;
-  contain-intrinsic-size: auto 1100px;
+  contain-intrinsic-size: auto 900px;
 }
 
 /* ------------------------------------------------------------------ */
 /*  Utilities                                                          */
 /* ------------------------------------------------------------------ */
 
-/* Display eyebrow label */
-@utility eyebrow {
+/* Small all-caps label. Used sparingly — not on every section. */
+@utility kicker {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-/* Gradient text */
-@utility text-gradient {
-  background: linear-gradient(100deg, var(--color-brand-500), var(--color-spray));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Highlighter swipe behind a word — a hand-marked, human touch. */
+@utility marker {
+  background: linear-gradient(transparent 62%, var(--color-brand-200) 62%, var(--color-brand-200) 92%, transparent 92%);
+  padding-inline: 0.05em;
 }
 
-/* Hairline grid texture for dark sections */
-@utility grid-texture {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
+/* Rubber-stamp seal for "EST. 2022" style badges. */
+@utility stamp {
+  border: 2px solid currentColor;
+  border-radius: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* Soft radial spotlight */
-@utility spotlight {
-  background:
-    radial-gradient(60% 60% at 50% 0%, rgba(54, 182, 255, 0.12), transparent 70%),
-    radial-gradient(50% 50% at 85% 30%, rgba(5, 97, 187, 0.18), transparent 70%);
-}
-
-/* Fine top hairline */
-@utility hairline-t {
-  border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
-}
-
-@keyframes sheen {
-  0% { transform: translateX(-120%); }
-  100% { transform: translateX(220%); }
-}
-
-@keyframes float-y {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes drip {
-  0% { transform: translateY(-6px); opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translateY(16px); opacity: 0; }
+/* A diagonal "wet drip" hairline used as a section divider accent. */
+@utility rule-blue {
+  height: 4px;
+  width: 3.5rem;
+  background: var(--color-brand-600);
+  border-radius: 2px;
 }
 
 @keyframes marquee {

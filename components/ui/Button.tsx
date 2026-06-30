@@ -5,24 +5,20 @@ type Variant = "primary" | "light" | "outline" | "outlineDark" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none disabled:opacity-60";
+  "group inline-flex items-center justify-center gap-2 rounded-lg font-bold whitespace-nowrap transition-colors duration-200 focus-visible:outline-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-brand-600 text-white shadow-[0_12px_34px_-10px_rgba(5,97,187,0.65)] hover:bg-brand-500 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-10px_rgba(5,97,187,0.75)]",
-  light:
-    "bg-white text-ink shadow-[0_12px_30px_-12px_rgba(8,32,66,0.4)] hover:-translate-y-0.5 hover:bg-fog-100",
-  outline:
-    "border-2 border-brand-600/25 text-brand-700 hover:border-brand-600 hover:bg-brand-50",
-  outlineDark:
-    "border border-white/25 text-white backdrop-blur-sm hover:bg-white/10 hover:border-white/55",
-  ghost: "text-ink hover:text-brand-600",
+  primary: "bg-brand-600 text-white shadow-card hover:bg-brand-700",
+  light: "bg-white text-ink shadow-card hover:bg-steel-100",
+  outline: "border-2 border-brand-600 text-brand-700 hover:bg-brand-50",
+  outlineDark: "border-2 border-white/30 text-white hover:border-white/70 hover:bg-white/10",
+  ghost: "text-ink hover:text-brand-700",
 };
 
 const sizes: Record<Size, string> = {
   sm: "px-4 py-2 text-sm",
   md: "px-5 py-2.5 text-[0.95rem]",
-  lg: "px-7 py-3.5 text-base",
+  lg: "px-6 py-3.5 text-base",
 };
 
 type ButtonProps = {

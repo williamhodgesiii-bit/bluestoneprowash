@@ -94,7 +94,7 @@ export function BeforeAfter({
 
       {/* Divider + handle */}
       <div className="pointer-events-none absolute inset-y-0 z-10" style={{ left: "var(--pos)", transform: "translateX(-50%)" }}>
-        <div className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white/90 shadow-[0_0_14px_rgba(54,182,255,0.6)]" />
+        <div className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-white shadow-[0_0_0_1px_rgba(13,26,46,0.15)]" />
         <button
           ref={handleRef}
           type="button"
@@ -109,7 +109,7 @@ export function BeforeAfter({
             if (e.key === "Home") setPos(2);
             if (e.key === "End") setPos(98);
           }}
-          className="pointer-events-auto absolute top-1/2 left-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-brand-700 shadow-[0_8px_24px_rgba(8,32,66,0.45)] ring-1 ring-black/5 transition-transform duration-150 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-spray active:scale-95"
+          className="pointer-events-auto absolute top-1/2 left-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-brand-700 shadow-[0_8px_24px_rgba(13,26,46,0.45)] ring-1 ring-black/5 transition-transform duration-150 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 active:scale-95"
         >
           <Icon name="MoveHorizontal" className="h-5 w-5" />
         </button>

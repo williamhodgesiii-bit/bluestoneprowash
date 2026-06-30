@@ -14,29 +14,28 @@ const shots = [
 
 export function Gallery() {
   return (
-    <section className="cv relative bg-fog-50 py-20 sm:py-28">
+    <section className="cv bg-white py-14 sm:py-20">
       <Container>
         <SectionHeading
-          eyebrow="Our Work"
-          title="Recent Work"
-          intro="A look at recent jobs around Greater Birmingham — siding, roofs, glass, and concrete."
+          kicker="Our work"
+          title="Recent jobs around town"
+          intro="A look at recent work across Greater Birmingham — siding, roofs, glass, and concrete."
         />
 
-        <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
+        <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
           {shots.map((s, i) => (
-            <Reveal key={s.src} delay={(i % 3) * 0.08} className="break-inside-avoid">
-              <figure className={`group relative overflow-hidden rounded-2xl shadow-card ${s.ratio}`}>
+            <Reveal key={s.src} delay={(i % 3) * 0.06} className="break-inside-avoid">
+              <figure className={`group relative overflow-hidden rounded-xl ${s.ratio}`}>
                 <Image
                   src={s.src}
                   alt={s.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
+                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-night-950/75 via-night-950/0 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
-                <figcaption className="absolute inset-x-0 bottom-0 flex translate-y-1 items-center gap-2 p-5 text-white opacity-90 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <span className="h-1.5 w-1.5 rounded-full bg-spray" />
-                  <span className="text-sm font-bold uppercase tracking-wide">{s.tag}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-night-950/75 via-night-950/0 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 text-sm font-bold uppercase tracking-wide text-white">
+                  {s.tag}
                 </figcaption>
               </figure>
             </Reveal>

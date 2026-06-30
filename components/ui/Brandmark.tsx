@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
@@ -8,14 +9,14 @@ import { cn } from "@/lib/utils";
  */
 export function Brandmark({ onDark = false, className }: { onDark?: boolean; className?: string }) {
   return (
-    <a href="#top" aria-label="Bluestone Pro Wash — home" className={cn("group flex items-center gap-2.5", className)}>
+    <Link href="/" aria-label="Bluestone Pro Wash — home" className={cn("group flex items-center gap-2.5", className)}>
       <Image
         src={onDark ? "/brand/icon-light.png" : "/brand/icon.png"}
         alt=""
         width={48}
         height={48}
         priority
-        className="h-9 w-9 shrink-0 transition-transform duration-500 group-hover:rotate-[-6deg] sm:h-10 sm:w-10"
+        className="h-9 w-9 shrink-0 sm:h-10 sm:w-10"
       />
       <span className="flex flex-col leading-none">
         <span
@@ -35,6 +36,6 @@ export function Brandmark({ onDark = false, className }: { onDark?: boolean; cla
           Pro Wash
         </span>
       </span>
-    </a>
+    </Link>
   );
 }

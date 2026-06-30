@@ -31,11 +31,10 @@ export const socials: { label: string; icon: string; href: string }[] = [
 export type NavLink = { label: string; href: string };
 
 export const navLinks: NavLink[] = [
-  { label: "Services", href: "#services" },
-  { label: "Transformations", href: "#transformations" },
-  { label: "Our Process", href: "#process" },
-  { label: "Why Us", href: "#why" },
-  { label: "Service Area", href: "#area" },
+  { label: "Services", href: "/services" },
+  { label: "Our Work", href: "/work" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export type Service = {
@@ -287,9 +286,16 @@ export const faqs: Faq[] = [
   },
 ];
 
-export const stats = [
-  { value: 2022, label: "Locally owned since", suffix: "" },
-  { value: 5, label: "Specialized services", suffix: "" },
-  { value: 100, label: "Satisfaction guaranteed", suffix: "%" },
-  { value: 14, label: "Communities served", suffix: "+" },
-] as const;
+/* Plain-spoken promises for the trust strip — no animated counters. */
+export const trustPoints: { label: string; icon: string }[] = [
+  { label: "Locally owned in Birmingham", icon: "MapPin" },
+  { label: "Fully insured crews", icon: "ShieldCheck" },
+  { label: "Free, no-pressure quotes", icon: "Tag" },
+  { label: "The right wash for every surface", icon: "Droplets" },
+];
+
+/* A short, human story we reuse on the home + about pages. */
+export const story = {
+  lead: "We started Bluestone Pro Wash right here in Birmingham with a trailer, a soft-wash setup, and a simple idea: show up when we say we will and leave the place looking better than the neighbors'.",
+  body: "We're a small, locally owned crew — not a franchise running a call center two states away. When you call, you talk to the people who'll actually be doing the work. We treat your driveway, roof, and landscaping the way we'd treat our own, and we don't pack up until you've walked it with us.",
+};
