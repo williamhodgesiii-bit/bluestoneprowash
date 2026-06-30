@@ -43,20 +43,19 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Photo */}
-        <div className="lg:col-span-6">
-          <Reveal delay={0.08} className="relative lg:h-full">
-            <figure className="relative overflow-hidden rounded-2xl bg-night-900 shadow-lift lg:h-full">
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[340px]">
-                <Image
-                  src="/brand/logo-light.png"
-                  alt="Bluestone Pro Wash logo"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                  className="object-contain p-6 sm:p-10"
-                />
-              </div>
+        {/* Logo */}
+        <div className="lg:col-span-6 lg:flex lg:items-center">
+          <Reveal delay={0.08} className="relative w-full">
+            <figure className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-night-900 shadow-lift lg:aspect-[6/5]">
+              <Image
+                src="/brand/logo-light.png"
+                alt="Bluestone Pro Wash logo"
+                width={900}
+                height={754}
+                sizes="(max-width: 1024px) 84vw, 42vw"
+                priority
+                className="h-auto w-[82%] max-w-[460px]"
+              />
             </figure>
 
             {/* Honest little proof badge — solid, not glowing */}

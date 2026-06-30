@@ -7,9 +7,17 @@ import { cn } from "@/lib/utils";
  * Keeps the wordmark crisp & legible at small sizes (the stacked logo art
  * is used full-size in the footer instead).
  */
-export function Brandmark({ onDark = false, className }: { onDark?: boolean; className?: string }) {
+export function Brandmark({
+  onDark = false,
+  className,
+  onClick,
+}: {
+  onDark?: boolean;
+  className?: string;
+  onClick?: () => void;
+}) {
   return (
-    <Link href="/" aria-label="Bluestone Pro Wash home" className={cn("group flex items-center gap-2.5", className)}>
+    <Link href="/" onClick={onClick} aria-label="Bluestone Pro Wash home" className={cn("group flex items-center gap-2.5", className)}>
       <Image
         src={onDark ? "/brand/icon-light.png" : "/brand/icon.png"}
         alt=""

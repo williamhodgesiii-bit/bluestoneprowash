@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
 import { Brandmark } from "../ui/Brandmark";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
@@ -22,14 +21,23 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // While the menu is open: lock the page behind it and let Escape close it.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
   const isActive = (href: string) => pathname === href;
+  const closeMenu = () => setOpen(false);
 
   return (
     <header className="sticky top-0 z-50">
@@ -53,12 +61,12 @@ export function Header() {
 
       <div
         className={cn(
-          "border-b bg-white transition-shadow duration-300",
+          "relative z-20 border-b bg-white transition-shadow duration-300",
           scrolled || open ? "border-steel-200 shadow-[0_6px_24px_-18px_rgba(13,26,46,0.5)]" : "border-steel-100"
         )}
       >
         <div className="mx-auto flex h-[var(--header-h)] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
-          <Brandmark />
+          <Brandmark onClick={closeMenu} />
 
           <nav className="hidden items-center gap-1 lg:flex">
             {navLinks.map((l) => (
@@ -98,8 +106,9 @@ export function Header() {
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
+              aria-controls="mobile-menu"
               onClick={() => setOpen((v) => !v)}
-              className="grid h-10 w-10 place-items-center rounded-lg border border-steel-200 text-ink"
+              className="grid h-10 w-10 touch-manipulation place-items-center rounded-lg border border-steel-200 text-ink transition-colors active:bg-steel-100"
             >
               <Icon name={open ? "X" : "Menu"} className="h-5 w-5" />
             </button>
@@ -107,43 +116,51 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="border-b border-steel-200 bg-white lg:hidden"
-          >
-            <nav className="mx-auto flex max-w-7xl flex-col px-5 py-2 sm:px-8">
-              {navLinks.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "flex items-center justify-between border-b border-steel-100 py-3.5 text-base font-semibold last:border-0",
-                    isActive(l.href) ? "text-brand-700" : "text-ink"
-                  )}
-                >
-                  {l.label}
-                  <Icon name="ArrowRight" className="h-4 w-4 text-steel-400" />
-                </Link>
-              ))}
-              <div className="grid grid-cols-2 gap-2 py-3">
-                <Button href={site.phoneHref} variant="outline" iconLeft="Phone" onClick={() => setOpen(false)}>
-                  Call now
-                </Button>
-                <Button href="/contact" onClick={() => setOpen(false)}>
-                  Free quote
-                </Button>
-              </div>
-            </nav>
-          </motion.div>
+      {/* Tap-away catcher — first tap outside the panel just closes the menu. */}
+      {open && (
+        <button
+          type="button"
+          aria-hidden
+          tabIndex={-1}
+          onClick={closeMenu}
+          className="fixed inset-0 z-0 cursor-default lg:hidden"
+        />
+      )}
+
+      {/* Mobile menu — an overlay (no page reflow) animated with transform + opacity only. */}
+      <div
+        id="mobile-menu"
+        inert={!open}
+        className={cn(
+          "absolute inset-x-0 top-full z-10 origin-top border-b border-steel-200 bg-white shadow-[0_18px_30px_-22px_rgba(13,26,46,0.55)] transition duration-200 ease-out lg:hidden",
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-3 opacity-0"
         )}
-      </AnimatePresence>
+      >
+        <nav className="mx-auto flex max-w-7xl flex-col px-5 py-2 sm:px-8">
+          {navLinks.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={closeMenu}
+              className={cn(
+                "flex touch-manipulation items-center justify-between border-b border-steel-100 py-3.5 text-base font-semibold last:border-0",
+                isActive(l.href) ? "text-brand-700" : "text-ink"
+              )}
+            >
+              {l.label}
+              <Icon name="ArrowRight" className="h-4 w-4 text-steel-400" />
+            </Link>
+          ))}
+          <div className="grid grid-cols-2 gap-2 py-3">
+            <Button href={site.phoneHref} variant="outline" iconLeft="Phone" onClick={closeMenu}>
+              Call now
+            </Button>
+            <Button href="/contact" onClick={closeMenu}>
+              Free quote
+            </Button>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }
