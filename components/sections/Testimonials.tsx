@@ -3,7 +3,7 @@ import { Icon } from "../ui/Icon";
 import { Button } from "../ui/Button";
 import { SocialIcon } from "../ui/SocialIcon";
 import { SectionHeading } from "../ui/SectionHeading";
-import { Reveal, Stagger, StaggerItem } from "../motion/Reveal";
+import { Stagger, StaggerItem } from "../motion/Reveal";
 import { site, testimonials } from "@/lib/site";
 
 function Stars({ className = "" }: { className?: string }) {
@@ -20,12 +20,31 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
   const list = limit ? testimonials.slice(0, limit) : testimonials;
 
   return (
-    <section className={`cv py-12 sm:py-16 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
+    <section className={`cv py-10 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
       <Container>
         <SectionHeading
           kicker="Reviews"
           title="What the neighbors say"
           intro="Real, verified five-star reviews from Birmingham homeowners who trusted us with their property."
+          aside={
+            <div className="flex flex-col gap-3 md:items-end">
+              <div className="flex items-center gap-2">
+                <Stars />
+                <span className="font-display text-lg font-extrabold text-ink">5.0</span>
+                <span className="text-sm text-ink-soft">on Google</span>
+              </div>
+              <Button
+                href={site.googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                size="sm"
+                arrow
+              >
+                Read more reviews
+              </Button>
+            </div>
+          }
         />
 
         <Stagger className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -54,12 +73,6 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
             </StaggerItem>
           ))}
         </Stagger>
-
-        <Reveal className="mt-9 flex justify-center">
-          <Button href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" variant="outline" arrow>
-            Read more reviews on Google
-          </Button>
-        </Reveal>
       </Container>
     </section>
   );

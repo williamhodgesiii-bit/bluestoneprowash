@@ -8,6 +8,7 @@ export function SectionHeading({
   align = "left",
   onDark = false,
   className,
+  aside,
 }: {
   kicker?: string;
   title: React.ReactNode;
@@ -15,15 +16,12 @@ export function SectionHeading({
   align?: "left" | "center";
   onDark?: boolean;
   className?: string;
+  aside?: React.ReactNode;
 }) {
-  return (
-    <Reveal
-      className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}
-    >
+  const body = (
+    <>
       {kicker && (
-        <span className={cn("kicker", onDark ? "text-brand-300" : "text-brand-600")}>
-          {kicker}
-        </span>
+        <span className={cn("kicker", onDark ? "text-brand-300" : "text-brand-600")}>{kicker}</span>
       )}
       <h2
         className={cn(
@@ -39,6 +37,23 @@ export function SectionHeading({
           {intro}
         </p>
       )}
+    </>
+  );
+
+  // When an aside is supplied, lay the heading out left with the aside pinned
+  // to the right so wide sections don't leave a big empty void.
+  if (aside) {
+    return (
+      <Reveal className={cn("flex flex-col gap-6 md:flex-row md:items-end md:justify-between", className)}>
+        <div className="max-w-2xl">{body}</div>
+        <div className="shrink-0">{aside}</div>
+      </Reveal>
+    );
+  }
+
+  return (
+    <Reveal className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
+      {body}
     </Reveal>
   );
 }

@@ -40,12 +40,23 @@ export function ServiceCard({ service }: { service: Service }) {
 
 export function Services() {
   return (
-    <section className="cv bg-white py-12 sm:py-16">
+    <section className="cv bg-white py-10 sm:py-14">
       <Container>
         <SectionHeading
           kicker="What we clean"
           title="The right wash for every surface"
           intro="High pressure where it belongs, gentle soft-washing where it counts. We never blast a roof or split your siding — we match the method to the material."
+          aside={
+            <div className="md:text-right">
+              <div className="text-sm font-semibold text-ink-soft">Free estimates — just ask</div>
+              <a
+                href={site.phoneHref}
+                className="mt-1 inline-flex items-center gap-2 text-xl font-extrabold text-brand-700 hover:text-brand-600"
+              >
+                <Icon name="Phone" className="h-5 w-5" /> {site.phoneDisplay}
+              </a>
+            </div>
+          }
         />
 
         <Stagger className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

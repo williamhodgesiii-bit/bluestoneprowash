@@ -6,7 +6,7 @@ import { whyUs } from "@/lib/site";
 
 export function WhyUs() {
   return (
-    <section id="why" className="cv bg-white py-12 sm:py-16">
+    <section id="why" className="cv bg-white py-10 sm:py-14">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Visual */}

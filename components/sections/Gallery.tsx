@@ -14,7 +14,7 @@ const shots = [
 
 export function Gallery() {
   return (
-    <section className="cv bg-white py-12 sm:py-16">
+    <section className="cv bg-white py-10 sm:py-14">
       <Container>
         <SectionHeading
           kicker="Our work"

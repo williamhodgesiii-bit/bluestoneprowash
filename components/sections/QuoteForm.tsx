@@ -48,7 +48,7 @@ export function QuoteForm() {
   }
 
   return (
-    <section id="quote" className="bg-steel-50 py-12 sm:py-16">
+    <section id="quote" className="bg-steel-50 py-10 sm:py-14">
       <Container>
         <div className="overflow-hidden rounded-2xl border border-steel-200 shadow-lift lg:grid lg:grid-cols-12">
           {/* Left: pitch + contact, in wrap blue */}
