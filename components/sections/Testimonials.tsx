@@ -20,7 +20,7 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
   const list = limit ? testimonials.slice(0, limit) : testimonials;
 
   return (
-    <section className={`cv py-14 sm:py-20 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
+    <section className={`cv py-12 sm:py-16 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
       <Container>
         <SectionHeading
           kicker="Reviews"
@@ -28,7 +28,7 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
           intro="Real, verified five-star reviews from Birmingham homeowners who trusted us with their property."
         />
 
-        <Stagger className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {list.map((t) => (
             <StaggerItem key={t.name} className="h-full">
               <figure className="flex h-full flex-col rounded-xl border border-steel-200 bg-white p-6">

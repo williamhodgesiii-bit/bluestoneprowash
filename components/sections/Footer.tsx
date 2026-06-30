@@ -12,7 +12,7 @@ export function Footer() {
 
   return (
     <footer className="bg-night-950 text-white">
-      <Container className="py-14">
+      <Container className="py-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
           <div className="lg:col-span-4">
@@ -108,7 +108,7 @@ export function Footer() {
         </div>
 
         {/* Areas strip */}
-        <div className="mt-12 border-t border-white/10 pt-8">
+        <div className="mt-9 border-t border-white/10 pt-8">
           <p className="text-sm leading-relaxed text-white/45">
             <span className="font-semibold text-white/70">Service area: </span>
             {serviceAreas.join(" · ")} &amp; surrounding communities.

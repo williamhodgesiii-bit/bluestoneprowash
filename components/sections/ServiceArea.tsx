@@ -28,7 +28,7 @@ function Track({ reverse = false }: { reverse?: boolean }) {
 
 export function ServiceArea() {
   return (
-    <section id="area" className="cv bg-steel-50 py-14 sm:py-20">
+    <section id="area" className="cv bg-steel-50 py-12 sm:py-16">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <span className="kicker text-brand-600">Where we work</span>
@@ -43,13 +43,13 @@ export function ServiceArea() {
       </Container>
 
       {/* Two ticker rows scrolling opposite ways */}
-      <div className="mt-10 flex flex-col gap-3">
+      <div className="mt-8 flex flex-col gap-3">
         <Track />
         <Track reverse />
       </div>
 
       <Container>
-        <Reveal className="mx-auto mt-10 flex max-w-xl flex-col items-center gap-4 rounded-xl border border-steel-200 bg-white p-6 text-center shadow-card sm:flex-row sm:text-left">
+        <Reveal className="mx-auto mt-8 flex max-w-xl flex-col items-center gap-4 rounded-xl border border-steel-200 bg-white p-6 text-center shadow-card sm:flex-row sm:text-left">
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-brand-600 text-white">
             <Icon name="MessageSquare" className="h-6 w-6" />
           </span>

@@ -17,7 +17,7 @@ export function QuoteBand({
 }) {
   return (
     <section className="bg-night-950 text-white">
-      <Container className="flex flex-col items-center gap-6 py-12 text-center sm:py-14 lg:flex-row lg:justify-between lg:text-left">
+      <Container className="flex flex-col items-center gap-6 py-10 text-center sm:py-12 lg:flex-row lg:justify-between lg:text-left">
         <div className="max-w-2xl">
           <h2 className="text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold leading-[1.08]">{title}</h2>
           <p className="mt-3 leading-relaxed text-white/70">{blurb}</p>

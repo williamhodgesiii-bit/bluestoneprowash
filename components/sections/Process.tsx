@@ -6,7 +6,7 @@ import { processSteps } from "@/lib/site";
 
 export function Process() {
   return (
-    <section id="process" className="cv bg-steel-50 py-14 sm:py-20">
+    <section id="process" className="cv bg-steel-50 py-12 sm:py-16">
       <Container>
         <SectionHeading
           align="center"
@@ -15,7 +15,7 @@ export function Process() {
           intro="No drawn-out sales pitch and no surprise charges — just a straight line from your first call to a property that looks its best."
         />
 
-        <div className="relative mt-12">
+        <div className="relative mt-9">
           {/* connector line */}
           <div className="absolute left-0 right-0 top-7 hidden h-px bg-steel-200 lg:block" />
 

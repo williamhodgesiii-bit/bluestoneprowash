@@ -57,10 +57,6 @@ export function Hero() {
                   className="object-cover"
                 />
               </div>
-              <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-night-950/85 to-transparent px-5 pb-4 pt-10 text-sm font-medium text-white/90">
-                <Icon name="MapPin" className="h-4 w-4 text-brand-300" />
-                Soft-washing a roof the safe way — no high pressure on shingles.
-              </figcaption>
             </figure>
 
             {/* Honest little proof badge — solid, not glowing */}

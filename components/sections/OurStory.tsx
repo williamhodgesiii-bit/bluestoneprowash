@@ -12,7 +12,7 @@ const highlights = [
 
 export function OurStory() {
   return (
-    <section className="cv bg-white py-14 sm:py-20">
+    <section className="cv bg-white py-12 sm:py-16">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Photo + stamp */}
@@ -40,7 +40,7 @@ export function OurStory() {
             <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
               A local crew, not a call center
             </h2>
-            <div className="rule-blue mt-5" />
+            <div className="rule-blue mt-4" />
             <p className="mt-6 text-[1.15rem] font-semibold leading-relaxed text-ink">{story.lead}</p>
             <p className="mt-4 leading-relaxed text-ink-soft">{story.body}</p>
 

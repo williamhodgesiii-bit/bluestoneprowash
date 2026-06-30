@@ -21,7 +21,7 @@ export function Transformations() {
             <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06]">
               Grab the slider. See for yourself.
             </h2>
-            <div className="rule-blue mt-5 bg-brand-400" />
+            <div className="rule-blue mt-4 bg-brand-400" />
             <p className="mt-5 text-[1.05rem] leading-relaxed text-white/70">
               Real homes around Birmingham — no stock photos. Drag the handle across to watch the
               grime come off.

@@ -40,7 +40,7 @@ export function ServiceCard({ service }: { service: Service }) {
 
 export function Services() {
   return (
-    <section className="cv bg-white py-14 sm:py-20">
+    <section className="cv bg-white py-12 sm:py-16">
       <Container>
         <SectionHeading
           kicker="What we clean"
@@ -48,7 +48,7 @@ export function Services() {
           intro="High pressure where it belongs, gentle soft-washing where it counts. We never blast a roof or split your siding — we match the method to the material."
         />
 
-        <Stagger className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <StaggerItem key={s.id} className="h-full">
               <ServiceCard service={s} />

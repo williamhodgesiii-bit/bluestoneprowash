@@ -14,7 +14,7 @@ const shots = [
 
 export function Gallery() {
   return (
-    <section className="cv bg-white py-14 sm:py-20">
+    <section className="cv bg-white py-12 sm:py-16">
       <Container>
         <SectionHeading
           kicker="Our work"
@@ -22,7 +22,7 @@ export function Gallery() {
           intro="A look at recent work across Greater Birmingham — siding, roofs, glass, and concrete."
         />
 
-        <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+        <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
           {shots.map((s, i) => (
             <Reveal key={s.src} delay={(i % 3) * 0.06} className="break-inside-avoid">
               <figure className={`group relative overflow-hidden rounded-xl ${s.ratio}`}>

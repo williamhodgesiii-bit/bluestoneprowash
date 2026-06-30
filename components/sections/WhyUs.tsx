@@ -6,7 +6,7 @@ import { whyUs } from "@/lib/site";
 
 export function WhyUs() {
   return (
-    <section id="why" className="cv bg-white py-14 sm:py-20">
+    <section id="why" className="cv bg-white py-12 sm:py-16">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Visual */}
@@ -45,7 +45,7 @@ export function WhyUs() {
             <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
               Neighbors hire us back
             </h2>
-            <div className="rule-blue mt-5" />
+            <div className="rule-blue mt-4" />
             <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">
               We bring the right gear, careful methods, and a real respect for your property to every
               job — whether it&apos;s a single driveway or a whole-home wash.

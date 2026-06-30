@@ -33,9 +33,9 @@ export function SectionHeading({
       >
         {title}
       </h2>
-      <div className={cn("rule-blue mt-5", align === "center" && "mx-auto", onDark && "bg-brand-400")} />
+      <div className={cn("rule-blue mt-4", align === "center" && "mx-auto", onDark && "bg-brand-400")} />
       {intro && (
-        <p className={cn("mt-5 text-[1.05rem] leading-relaxed", onDark ? "text-white/70" : "text-ink-soft")}>
+        <p className={cn("mt-4 text-[1.05rem] leading-relaxed", onDark ? "text-white/70" : "text-ink-soft")}>
           {intro}
         </p>
       )}
