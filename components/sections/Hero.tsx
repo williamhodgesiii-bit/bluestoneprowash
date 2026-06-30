@@ -46,15 +46,15 @@ export function Hero() {
         {/* Logo */}
         <div className="lg:col-span-6 lg:flex lg:items-center">
           <Reveal delay={0.08} className="relative w-full">
-            <figure className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-night-900 shadow-lift lg:aspect-[6/5]">
+            <figure className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-steel-200 bg-white shadow-lift">
               <Image
-                src="/brand/logo-light.png"
+                src="/brand/logo.png"
                 alt="Bluestone Pro Wash logo"
-                width={900}
-                height={754}
+                width={948}
+                height={959}
                 sizes="(max-width: 1024px) 84vw, 42vw"
                 priority
-                className="h-auto w-[82%] max-w-[460px]"
+                className="h-auto w-[84%] max-w-[480px]"
               />
             </figure>
 
