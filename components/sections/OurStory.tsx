@@ -12,9 +12,9 @@ const highlights = [
 
 export function OurStory() {
   return (
-    <section className="cv bg-white py-10 sm:py-14">
+    <section className="cv bg-white py-8 sm:py-14">
       <Container>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
           {/* Photo + stamp */}
           <div className="lg:col-span-5">
             <Reveal className="relative">
@@ -37,7 +37,7 @@ export function OurStory() {
           {/* Story */}
           <div className="lg:col-span-7">
             <span className="kicker text-brand-600">Our story</span>
-            <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
+            <h2 className="mt-3 text-[clamp(1.5rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
               A small local crew
             </h2>
             <div className="rule-blue mt-4" />

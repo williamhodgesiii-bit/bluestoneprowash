@@ -49,12 +49,12 @@ export function Hero() {
             <figure className="relative overflow-hidden rounded-2xl bg-night-900 shadow-lift lg:h-full">
               <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[340px]">
                 <Image
-                  src="/images/hero-roof-softwash.jpg"
-                  alt="A Bluestone Pro Wash technician soft-washing algae off a shingle roof"
+                  src="/brand/logo-light.png"
+                  alt="Bluestone Pro Wash logo"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
-                  className="object-cover"
+                  className="object-contain p-6 sm:p-10"
                 />
               </div>
             </figure>

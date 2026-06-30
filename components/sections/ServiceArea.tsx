@@ -28,11 +28,11 @@ function Track({ reverse = false }: { reverse?: boolean }) {
 
 export function ServiceArea() {
   return (
-    <section id="area" className="cv bg-steel-50 py-10 sm:py-14">
+    <section id="area" className="cv bg-steel-50 py-8 sm:py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <span className="kicker text-brand-600">Where we work</span>
-          <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
+          <h2 className="mt-3 text-[clamp(1.5rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
             All over Greater Birmingham
           </h2>
           <div className="rule-blue mx-auto mt-5" />

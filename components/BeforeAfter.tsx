@@ -23,6 +23,8 @@ export function BeforeAfter({
   const containerRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLButtonElement>(null);
   const dragging = useRef(false);
+  const maybeDrag = useRef(false);
+  const startX = useRef(0);
   const pos = useRef(52);
 
   const setPos = (pct: number) => {
@@ -43,20 +45,40 @@ export function BeforeAfter({
     <div
       ref={containerRef}
       style={{ ["--pos" as string]: "52%" } as React.CSSProperties}
-      className="group relative aspect-[1200/820] w-full touch-none select-none overflow-hidden rounded-[1.25rem] bg-night-900 shadow-lift ring-1 ring-black/5"
+      className="group relative aspect-[1200/820] w-full touch-pan-y select-none overflow-hidden rounded-[1.25rem] bg-night-900 shadow-lift ring-1 ring-black/5"
       onPointerDown={(e) => {
-        dragging.current = true;
-        e.currentTarget.setPointerCapture(e.pointerId);
-        fromClientX(e.clientX);
+        startX.current = e.clientX;
+        if (e.pointerType === "mouse") {
+          dragging.current = true;
+          e.currentTarget.setPointerCapture(e.pointerId);
+          fromClientX(e.clientX);
+        } else {
+          // Touch/pen: wait for a clear horizontal drag so a vertical swipe
+          // over the slider still scrolls the page instead of jumping it.
+          maybeDrag.current = true;
+        }
       }}
       onPointerMove={(e) => {
-        if (dragging.current) fromClientX(e.clientX);
+        if (dragging.current) {
+          fromClientX(e.clientX);
+          return;
+        }
+        if (maybeDrag.current && Math.abs(e.clientX - startX.current) > 6) {
+          dragging.current = true;
+          maybeDrag.current = false;
+          try {
+            e.currentTarget.setPointerCapture(e.pointerId);
+          } catch {}
+          fromClientX(e.clientX);
+        }
       }}
       onPointerUp={() => {
         dragging.current = false;
+        maybeDrag.current = false;
       }}
       onPointerCancel={() => {
         dragging.current = false;
+        maybeDrag.current = false;
       }}
     >
       {/* AFTER (base) */}

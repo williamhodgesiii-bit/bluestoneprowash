@@ -48,13 +48,13 @@ export function QuoteForm() {
   }
 
   return (
-    <section id="quote" className="bg-steel-50 py-10 sm:py-14">
+    <section id="quote" className="bg-steel-50 py-8 sm:py-14">
       <Container>
         <div className="overflow-hidden rounded-2xl border border-steel-200 shadow-lift lg:grid lg:grid-cols-12">
           {/* Left: pitch + contact, in wrap blue */}
           <div className="bg-brand-600 p-8 text-white sm:p-10 lg:col-span-5">
             <span className="kicker text-brand-100">Free quote</span>
-            <h2 className="mt-3 text-[clamp(1.9rem,3.4vw,2.6rem)] font-extrabold leading-[1.04] text-white">
+            <h2 className="mt-3 text-[clamp(1.6rem,3.4vw,2.6rem)] font-extrabold leading-[1.04] text-white">
               Tell us what needs cleaning.
             </h2>
             <p className="mt-4 max-w-md leading-relaxed text-white/85">

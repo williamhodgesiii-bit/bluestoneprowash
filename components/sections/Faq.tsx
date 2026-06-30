@@ -6,8 +6,8 @@ import { site, faqs } from "@/lib/site";
 
 export function Faq({ bg = "white" }: { bg?: "white" | "steel" }) {
   return (
-    <section className={`cv py-10 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
-      <Container className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+    <section className={`cv py-8 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
+      <Container className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <SectionHeading
             kicker="Good to know"

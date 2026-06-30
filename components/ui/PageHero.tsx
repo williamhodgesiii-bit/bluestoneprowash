@@ -14,10 +14,10 @@ export function PageHero({
 }) {
   return (
     <section className="border-b border-steel-100 bg-steel-50">
-      <Container className="py-10 sm:py-14">
+      <Container className="py-8 sm:py-14">
         <Reveal className="max-w-3xl">
           <span className="kicker text-brand-600">{kicker}</span>
-          <h1 className="mt-3 text-[clamp(2.1rem,4.8vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
+          <h1 className="mt-3 text-[clamp(1.8rem,4.8vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
             {title}
           </h1>
           <div className="rule-blue mt-4" />

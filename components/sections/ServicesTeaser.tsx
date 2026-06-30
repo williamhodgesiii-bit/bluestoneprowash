@@ -8,12 +8,12 @@ import { services } from "@/lib/site";
 /** Compact services row for the home page — full detail lives on /services. */
 export function ServicesTeaser() {
   return (
-    <section className="cv bg-white py-10 sm:py-14">
+    <section className="cv bg-white py-8 sm:py-14">
       <Container>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">
             <span className="kicker text-brand-600">What we clean</span>
-            <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
+            <h2 className="mt-3 text-[clamp(1.5rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
               One crew for the whole exterior
             </h2>
             <div className="rule-blue mt-4" />
