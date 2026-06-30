@@ -296,6 +296,6 @@ export const trustPoints: { label: string; icon: string }[] = [
 
 /* A short, human story we reuse on the home + about pages. */
 export const story = {
-  lead: "Anderson O'Neal started Bluestone Pro Wash in 2022, and it's still run the same way: small, hands-on, and local.",
-  body: "Call the number and you reach the same person who'll be at your house. Every driveway, roof, and patch of landscaping gets treated with care, and the job isn't done until you've looked it over and you're happy.",
+  lead: "Bluestone Pro Wash started in 2022 as a one-man operation. Today it's a small crew of local college students — three at Auburn, one at Troy, all studying accounting and finance — owned and run by Anderson O'Neal.",
+  body: "We grew up here and graduated from Oak Mountain High School, so we take pride in serving the community we call home. A few years and a lot of jobs in, there's not much we haven't run into — and people like working with a team that's young, hardworking, and easy to reach, while still delivering professional results every time.",
 };

@@ -12,18 +12,18 @@ const highlights = [
 
 export function OurStory() {
   return (
-    <section className="cv bg-white py-10 sm:py-12">
+    <section className="cv bg-white py-8 sm:py-10">
       <Container>
-        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-10">
           {/* Photo + stamp */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <Reveal className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-lift">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-lift">
                 <Image
-                  src="/images/action-waterfed-pole.jpg"
-                  alt="A Bluestone Pro Wash technician cleaning second-story windows with a water-fed pole"
+                  src="/images/team-trailer.jpg"
+                  alt="The Bluestone Pro Wash crew in front of the company trailer in Birmingham"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  sizes="(max-width: 1024px) 100vw, 48vw"
                   className="object-cover"
                 />
               </div>
@@ -35,16 +35,16 @@ export function OurStory() {
           </div>
 
           {/* Story */}
-          <div className="lg:col-span-7">
-            <span className="kicker text-brand-600">Our story</span>
-            <h2 className="mt-3 text-[clamp(1.5rem,3.6vw,2.5rem)] font-extrabold leading-[1.08] text-ink">
+          <div className="lg:col-span-6">
+            <span className="kicker text-brand-600">Who we are</span>
+            <h2 className="mt-2 text-[clamp(1.5rem,3.6vw,2.5rem)] font-extrabold leading-[1.08] text-ink">
               The people who show up
             </h2>
-            <div className="rule-blue mt-4" />
-            <p className="mt-5 text-[1.05rem] leading-relaxed text-ink">{story.lead}</p>
+            <div className="rule-blue mt-3" />
+            <p className="mt-4 text-[1.05rem] leading-relaxed text-ink">{story.lead}</p>
             <p className="mt-3 leading-relaxed text-ink-soft">{story.body}</p>
 
-            <dl className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <dl className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
               {highlights.map((h) => (
                 <div key={h.label} className="rounded-xl border border-steel-200 bg-steel-50 p-3.5">
                   <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-brand-600 shadow-card">
@@ -58,7 +58,7 @@ export function OurStory() {
 
             <a
               href={site.phoneHref}
-              className="mt-6 inline-flex items-center gap-2 text-lg font-bold text-brand-700 hover:text-brand-600"
+              className="mt-5 inline-flex items-center gap-2 text-lg font-bold text-brand-700 hover:text-brand-600"
             >
               <Icon name="Phone" className="h-5 w-5" /> Call {site.phoneDisplay}
             </a>
