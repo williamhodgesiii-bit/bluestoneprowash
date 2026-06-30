@@ -19,7 +19,7 @@ export function Gallery() {
         <SectionHeading
           kicker="Our work"
           title="Recent jobs around town"
-          intro="A look at recent work across Greater Birmingham — siding, roofs, glass, and concrete."
+          intro="A look at recent work across Greater Birmingham: siding, roofs, glass, and concrete."
         />
 
         <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">

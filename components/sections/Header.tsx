@@ -42,7 +42,7 @@ export function Header() {
           </span>
           <span className="flex items-center gap-5">
             <span className="flex items-center gap-1.5">
-              <Icon name="ShieldCheck" className="h-3.5 w-3.5 text-brand-300" /> Licensed &amp; insured
+              <Icon name="BadgeCheck" className="h-3.5 w-3.5 text-brand-300" /> Satisfaction guaranteed
             </span>
             <a href={site.phoneHref} className="flex items-center gap-1.5 font-semibold text-white transition-colors hover:text-brand-300">
               <Icon name="Phone" className="h-3.5 w-3.5 text-brand-300" /> {site.phoneDisplay}
@@ -85,7 +85,7 @@ export function Header() {
               {site.phoneDisplay}
             </a>
             <Button href="/contact" size="sm">
-              Get a Free Quote
+              Get a free quote
             </Button>
           </div>
 
@@ -134,10 +134,10 @@ export function Header() {
               ))}
               <div className="grid grid-cols-2 gap-2 py-3">
                 <Button href={site.phoneHref} variant="outline" iconLeft="Phone" onClick={() => setOpen(false)}>
-                  Call Now
+                  Call now
                 </Button>
                 <Button href="/contact" onClick={() => setOpen(false)}>
-                  Free Quote
+                  Free quote
                 </Button>
               </div>
             </nav>

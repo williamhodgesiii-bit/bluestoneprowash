@@ -33,7 +33,7 @@ export function WhyUs() {
                   </div>
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-ink-soft">
-                  If a spot isn&apos;t right when we finish, we come back and fix it — no charge.
+                  If a spot isn&apos;t right when we finish, we come back and fix it, no charge.
                 </p>
               </div>
             </Reveal>
@@ -48,7 +48,7 @@ export function WhyUs() {
             <div className="rule-blue mt-4" />
             <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">
               We bring the right gear, careful methods, and a real respect for your property to every
-              job — whether it&apos;s a single driveway or a whole-home wash.
+              job, whether it&apos;s a single driveway or a whole-home wash.
             </p>
 
             <Stagger className="mt-9 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">

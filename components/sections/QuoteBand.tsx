@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
  */
 export function QuoteBand({
   title = "Ready for a free quote?",
-  blurb = "Tell us what needs cleaning and we'll send a clear, upfront price — usually the same day.",
+  blurb = "Tell us what needs cleaning and we'll send a clear, upfront price, usually the same day.",
 }: {
   title?: string;
   blurb?: string;
@@ -24,7 +24,7 @@ export function QuoteBand({
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
           <Button href="/contact" size="lg" arrow>
-            Get a Free Quote
+            Get a free quote
           </Button>
           <a
             href={site.phoneHref}

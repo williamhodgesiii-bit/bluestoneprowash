@@ -5,9 +5,9 @@ import { Reveal } from "../motion/Reveal";
 import { site, story } from "@/lib/site";
 
 const highlights = [
-  { icon: "MapPin", label: "Born and raised", value: "Greater Birmingham" },
-  { icon: "Users", label: "Who shows up", value: "The owners, not a crew of strangers" },
-  { icon: "ShieldCheck", label: "Peace of mind", value: "Fully insured, every job" },
+  { icon: "MapPin", label: "Based in", value: "Greater Birmingham" },
+  { icon: "Users", label: "Who shows up", value: "Anderson and the crew" },
+  { icon: "BadgeCheck", label: "Our promise", value: "You're happy or we fix it" },
 ];
 
 export function OurStory() {
@@ -38,10 +38,10 @@ export function OurStory() {
           <div className="lg:col-span-7">
             <span className="kicker text-brand-600">Our story</span>
             <h2 className="mt-3 text-[clamp(1.75rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
-              A local crew, not a call center
+              A small local crew
             </h2>
             <div className="rule-blue mt-4" />
-            <p className="mt-6 text-[1.15rem] font-semibold leading-relaxed text-ink">{story.lead}</p>
+            <p className="mt-6 text-[1.15rem] leading-relaxed text-ink">{story.lead}</p>
             <p className="mt-4 leading-relaxed text-ink-soft">{story.body}</p>
 
             <dl className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -60,7 +60,7 @@ export function OurStory() {
               href={site.phoneHref}
               className="mt-8 inline-flex items-center gap-2 text-lg font-bold text-brand-700 hover:text-brand-600"
             >
-              <Icon name="Phone" className="h-5 w-5" /> Talk to us — {site.phoneDisplay}
+              <Icon name="Phone" className="h-5 w-5" /> Give us a call at {site.phoneDisplay}
             </a>
           </div>
         </div>

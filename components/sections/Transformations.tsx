@@ -26,7 +26,7 @@ export function Transformations() {
           </div>
           <div>
             <p className="text-[1.05rem] leading-relaxed text-white/70">
-              Real homes around Birmingham — no stock photos. Drag the handle across to watch the
+              Real homes around Birmingham. No stock photos. Drag the handle across to watch the
               grime come off.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -77,7 +77,7 @@ export function Transformations() {
                 <h3 className="text-2xl font-extrabold tracking-tight text-white">{current.title}</h3>
                 <p className="mt-3 leading-relaxed text-white/70">{current.caption}</p>
                 <Button href="/contact" className="mt-6" arrow>
-                  Get a Free Quote
+                  Get a free quote
                 </Button>
               </motion.div>
             </AnimatePresence>

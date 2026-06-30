@@ -5,7 +5,7 @@ import { Icon } from "../ui/Icon";
 import { Reveal } from "../motion/Reveal";
 import { site } from "@/lib/site";
 
-const chips = ["Fully insured", "Free quotes", "Locally owned", "Soft-wash safe"];
+const chips = ["Satisfaction guaranteed", "Free quotes", "Locally owned", "Soft-wash safe"];
 
 export function Hero() {
   return (
@@ -19,13 +19,13 @@ export function Hero() {
               Make it look <span className="marker">new</span> again.
             </h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
-              Driveways, roofs, siding, windows, and gutters — washed the right way by a local crew
+              Driveways, roofs, siding, windows, and gutters, washed the right way by a local crew
               that shows up on time, picks the safe method for every surface, and cleans up before we leave.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href="/contact" size="lg" arrow>
-                Get a Free Quote
+                Get a free quote
               </Button>
               <Button href={site.phoneHref} size="lg" variant="outline" iconLeft="Phone">
                 {site.phoneDisplay}
@@ -65,7 +65,7 @@ export function Hero() {
                 <Icon name="ShieldCheck" className="h-5 w-5" />
               </span>
               <div className="leading-tight">
-                <div className="text-sm font-extrabold text-ink">Insured &amp; local</div>
+                <div className="text-sm font-extrabold text-ink">Locally owned</div>
                 <div className="text-xs text-ink-soft">Birmingham since 2022</div>
               </div>
             </div>

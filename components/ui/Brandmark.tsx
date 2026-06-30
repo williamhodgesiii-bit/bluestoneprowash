@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  */
 export function Brandmark({ onDark = false, className }: { onDark?: boolean; className?: string }) {
   return (
-    <Link href="/" aria-label="Bluestone Pro Wash — home" className={cn("group flex items-center gap-2.5", className)}>
+    <Link href="/" aria-label="Bluestone Pro Wash home" className={cn("group flex items-center gap-2.5", className)}>
       <Image
         src={onDark ? "/brand/icon-light.png" : "/brand/icon.png"}
         alt=""

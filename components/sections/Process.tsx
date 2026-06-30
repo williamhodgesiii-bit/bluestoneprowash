@@ -12,7 +12,7 @@ export function Process() {
           align="center"
           kicker="How it works"
           title="Four steps, no runaround"
-          intro="No drawn-out sales pitch and no surprise charges — just a straight line from your first call to a property that looks its best."
+          intro="No drawn-out sales pitch and no surprise charges, just a straight line from your first call to a property that looks its best."
         />
 
         <div className="relative mt-9">

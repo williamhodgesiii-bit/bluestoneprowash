@@ -38,7 +38,7 @@ export function MobileCallBar() {
               href="/contact"
               className="flex flex-[1.4] items-center justify-center gap-2 rounded-lg bg-brand-600 py-3 font-bold text-white active:bg-brand-500"
             >
-              <Icon name="MessageSquare" className="h-4 w-4" /> Free Quote
+              <Icon name="MessageSquare" className="h-4 w-4" /> Free quote
             </Link>
           </div>
         </motion.div>

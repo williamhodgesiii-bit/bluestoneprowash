@@ -36,8 +36,8 @@ export function QuoteForm() {
         if (!res.ok) throw new Error("Request failed");
       } else {
         // Zero-backend fallback: open a prefilled email.
-        const body = `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService: ${data.service}\nAddress: ${data.address || "—"}\n\n${data.message || ""}`;
-        const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Quote request — ${data.name}`)}&body=${encodeURIComponent(body)}`;
+        const body = `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService: ${data.service}\nAddress: ${data.address || "(not provided)"}\n\n${data.message || ""}`;
+        const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Quote request from ${data.name}`)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;
       }
       setStatus("sent");
@@ -58,7 +58,7 @@ export function QuoteForm() {
               Tell us what needs cleaning.
             </h2>
             <p className="mt-4 max-w-md leading-relaxed text-white/85">
-              We&apos;ll send a clear, upfront price — usually the same day. No deposit, no obligation,
+              We&apos;ll send a clear, upfront price, usually the same day. No deposit, no obligation,
               no hard sell.
             </p>
 
@@ -93,7 +93,7 @@ export function QuoteForm() {
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
                   <Icon name="BadgeCheck" className="h-8 w-8" />
                 </span>
-                <h3 className="mt-5 text-2xl font-extrabold text-ink">Got it — thanks!</h3>
+                <h3 className="mt-5 text-2xl font-extrabold text-ink">Got it, thanks!</h3>
                 <p className="mt-3 max-w-sm text-ink-soft">
                   We&apos;ll be in touch shortly with your free quote. Need us sooner?
                 </p>
@@ -141,7 +141,7 @@ export function QuoteForm() {
                     id="message"
                     name="message"
                     rows={3}
-                    placeholder="Tell us about the job — driveway size, roof type, etc."
+                    placeholder="Tell us about the job: driveway size, roof type, etc."
                     className="resize-none rounded-lg border border-steel-300 bg-steel-50 px-4 py-3 text-ink outline-none transition-colors focus:border-brand-500 focus:bg-white"
                   />
                 </div>
@@ -153,7 +153,7 @@ export function QuoteForm() {
                 )}
 
                 <Button size="lg" className="mt-1 w-full" arrow>
-                  {status === "sending" ? "Sending…" : "Get My Free Quote"}
+                  {status === "sending" ? "Sending…" : "Get my free quote"}
                 </Button>
                 <p className="text-center text-xs text-ink-soft">
                   We only use your details to prepare your quote. No spam, ever.

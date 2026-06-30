@@ -8,7 +8,7 @@ import { QuoteBand } from "@/components/sections/QuoteBand";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Bluestone Pro Wash is a locally owned, fully insured pressure washing crew serving Greater Birmingham since 2022 — the people who answer the phone are the ones who do the work.",
+    "Bluestone Pro Wash is a small, locally owned pressure washing crew serving Greater Birmingham since 2022. The people who answer the phone are the ones who do the work.",
   alternates: { canonical: "/about" },
 };
 
@@ -17,8 +17,8 @@ export default function AboutPage() {
     <>
       <PageHero
         kicker="About us"
-        title="The crew behind the wash"
-        intro="We're a small, locally owned Birmingham outfit that treats your driveway, roof, and landscaping the way we'd treat our own."
+        title="Who we are"
+        intro="We're a small, locally owned cleaning company in Birmingham. Anderson O'Neal and his crew do the work themselves."
       />
       <OurStory />
       <WhyUs />

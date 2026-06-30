@@ -62,7 +62,7 @@ export function BeforeAfter({
       {/* AFTER (base) */}
       <Image
         src={after}
-        alt={`${alt} — after cleaning`}
+        alt={`${alt}, after cleaning`}
         fill
         sizes="(max-width: 768px) 100vw, 70vw"
         priority={priority}
@@ -74,7 +74,7 @@ export function BeforeAfter({
       <div className="pointer-events-none absolute inset-0" style={{ clipPath: "inset(0 0 0 var(--pos))" }}>
         <Image
           src={before}
-          alt={`${alt} — before cleaning`}
+          alt={`${alt}, before cleaning`}
           fill
           sizes="(max-width: 768px) 100vw, 70vw"
           priority={priority}

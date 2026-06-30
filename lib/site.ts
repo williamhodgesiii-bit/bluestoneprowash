@@ -8,7 +8,7 @@ export const site = {
   shortName: "Bluestone",
   tagline: "Pressure Washing & Exterior Cleaning in Greater Birmingham",
   description:
-    "Pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned, fully insured, and careful with every surface.",
+    "Pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned and careful with every surface.",
   // TODO(client): confirm public email + finalize domain before .com launch
   url: "https://bluestoneprowash.com",
   email: "info@bluestoneprowash.com",
@@ -18,7 +18,7 @@ export const site = {
   googleReviewsUrl: "https://www.google.com/search?q=birmingham+pro+wash",
   region: "Greater Birmingham, Alabama",
   established: 2022,
-  hours: "Mon–Sat · 7am – 7pm",
+  hours: "Mon to Sat · 7am to 7pm",
 } as const;
 
 // TODO(client): paste real profile URLs — empty entries are hidden automatically.
@@ -111,15 +111,15 @@ export const transformations: Transformation[] = [
   {
     id: "driveway",
     label: "Driveway",
-    title: "Concrete Driveway Restoration",
-    caption: "Years of embedded dirt, tire marks and organic staining — lifted in a single visit.",
+    title: "Concrete driveway restoration",
+    caption: "Years of embedded dirt, tire marks, and organic staining, lifted in a single visit.",
     before: "/images/ba/driveway-before.jpg",
     after: "/images/ba/driveway-after.jpg",
   },
   {
     id: "roof",
     label: "Roof",
-    title: "Soft-Wash Roof Cleaning",
+    title: "Soft-wash roof cleaning",
     caption: "Black algae streaks safely removed without ever stepping on a brittle shingle.",
     before: "/images/ba/roof-before.jpg",
     after: "/images/ba/roof-after.jpg",
@@ -127,7 +127,7 @@ export const transformations: Transformation[] = [
   {
     id: "aerial",
     label: "Rooftop",
-    title: "Full Roof Algae Treatment",
+    title: "Full roof algae treatment",
     caption: "An overhead look at a complete Gloeocapsa algae treatment, edge to edge.",
     before: "/images/ba/aerial-before.jpg",
     after: "/images/ba/aerial-after.jpg",
@@ -135,7 +135,7 @@ export const transformations: Transformation[] = [
   {
     id: "sunroom",
     label: "Glass",
-    title: "Sunroom & Glass Detailing",
+    title: "Sunroom and glass detailing",
     caption: "Hard-water film and grime cleared for true spot-free clarity.",
     before: "/images/ba/sunroom-before.jpg",
     after: "/images/ba/sunroom-after.jpg",
@@ -147,26 +147,26 @@ export type Step = { n: string; title: string; body: string; icon: string };
 export const processSteps: Step[] = [
   {
     n: "01",
-    title: "Reach Out",
-    body: "Call, text, or send the quick form. Tell us what needs cleaning — that's it.",
+    title: "Reach out",
+    body: "Call, text, or send the quick form. Tell us what needs cleaning. That's it.",
     icon: "PhoneCall",
   },
   {
     n: "02",
-    title: "Fast Free Quote",
+    title: "Fast, free quote",
     body: "We assess and send a clear, upfront price. No pressure, no hidden fees, no surprises.",
     icon: "ClipboardCheck",
   },
   {
     n: "03",
-    title: "We Get To Work",
+    title: "We get to work",
     body: "Our team shows up on time with pro-grade gear and the right method for every surface.",
     icon: "Truck",
   },
   {
     n: "04",
-    title: "Spotless Results",
-    body: "We walk it with you. If it's not right, we make it right — guaranteed.",
+    title: "Spotless results",
+    body: "We walk it with you. If it's not right, we make it right. Guaranteed.",
     icon: "Sparkles",
   },
 ];
@@ -175,32 +175,32 @@ export type Differentiator = { title: string; body: string; icon: string };
 
 export const whyUs: Differentiator[] = [
   {
-    title: "Locally Owned",
+    title: "Locally owned",
     body: "Born and raised in Birmingham. You're hiring neighbors who take real pride in this community.",
     icon: "MapPin",
   },
   {
-    title: "Right Method, Every Surface",
+    title: "Right method, every surface",
     body: "High pressure where it belongs, gentle soft-wash where it counts. We never blast a roof.",
     icon: "ShieldCheck",
   },
   {
-    title: "Fully Insured",
-    body: "Comprehensive coverage on every job, so your property and our team are always protected.",
-    icon: "FileCheck",
+    title: "We answer the phone",
+    body: "Call or text and you reach the people doing the work, not a call center.",
+    icon: "PhoneCall",
   },
   {
-    title: "Satisfaction Guaranteed",
+    title: "Satisfaction guaranteed",
     body: "If a spot isn't right when we finish, we come back and fix it. Simple as that.",
     icon: "BadgeCheck",
   },
   {
-    title: "On-Time & Tidy",
-    body: "We respect your schedule and your landscaping — and we clean up before we leave.",
+    title: "On time and tidy",
+    body: "We respect your schedule and your landscaping, and we clean up before we leave.",
     icon: "Clock",
   },
   {
-    title: "Upfront Pricing",
+    title: "Upfront pricing",
     body: "Clear quotes before we start. The number we say is the number you pay.",
     icon: "Tag",
   },
@@ -266,15 +266,15 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "What's the difference between pressure washing and soft washing?",
-    a: "Pressure washing uses high-pressure water for hard surfaces like concrete and brick. Soft washing uses low pressure with specialized cleaning solutions to safely treat delicate surfaces like roofs and siding — killing mold and algae at the root without causing damage. We choose the right method for every surface.",
+    a: "Pressure washing uses high-pressure water for hard surfaces like concrete and brick. Soft washing uses low pressure with specialized cleaning solutions to safely treat delicate surfaces like roofs and siding, killing mold and algae at the root without causing damage. We choose the right method for every surface.",
   },
   {
     q: "Will soft washing damage my roof or plants?",
-    a: "No. Soft washing is the method shingle manufacturers actually recommend. We use low pressure and biodegradable solutions, pre-wet and rinse surrounding landscaping, and never walk on brittle shingles — protecting both your roof and your yard.",
+    a: "No. Soft washing is the method shingle manufacturers actually recommend. We use low pressure and biodegradable solutions, pre-wet and rinse surrounding landscaping, and never walk on brittle shingles, so we protect both your roof and your yard.",
   },
   {
     q: "How much does it cost?",
-    a: "Every property is different, so we give clear, upfront quotes with no hidden fees. Most quotes are fast and free — just reach out with what you need cleaned and we'll take it from there.",
+    a: "Every property is different, so we give clear, upfront quotes with no hidden fees. Most quotes are fast and free. Just reach out with what you need cleaned and we'll take it from there.",
   },
   {
     q: "Do I need to be home?",
@@ -282,20 +282,20 @@ export const faqs: Faq[] = [
   },
   {
     q: "How often should I have my home cleaned?",
-    a: "For most Birmingham homes, an annual exterior soft wash keeps mold and algae in check, and driveways benefit from a wash every 1–2 years. Roofs typically need treatment every 2–4 years depending on tree cover and shade.",
+    a: "For most Birmingham homes, an annual exterior soft wash keeps mold and algae in check, and driveways benefit from a wash every 1 to 2 years. Roofs typically need treatment every 2 to 4 years depending on tree cover and shade.",
   },
 ];
 
 /* Plain-spoken promises for the trust strip — no animated counters. */
 export const trustPoints: { label: string; icon: string }[] = [
   { label: "Locally owned in Birmingham", icon: "MapPin" },
-  { label: "Fully insured crews", icon: "ShieldCheck" },
+  { label: "Satisfaction guaranteed", icon: "BadgeCheck" },
   { label: "Free, no-pressure quotes", icon: "Tag" },
   { label: "The right wash for every surface", icon: "Droplets" },
 ];
 
 /* A short, human story we reuse on the home + about pages. */
 export const story = {
-  lead: "We started Bluestone Pro Wash right here in Birmingham with a trailer, a soft-wash setup, and a simple idea: show up when we say we will and leave the place looking better than the neighbors'.",
-  body: "We're a small, locally owned crew — not a franchise running a call center two states away. When you call, you talk to the people who'll actually be doing the work. We treat your driveway, roof, and landscaping the way we'd treat our own, and we don't pack up until you've walked it with us.",
+  lead: "Bluestone Pro Wash is a small, locally owned cleaning company here in Birmingham, run by Anderson O'Neal.",
+  body: "We started in 2022, and we still do the work ourselves. When you call, you reach the people who'll be at your house. We take care of your driveway, roof, and landscaping the way we'd want someone to treat ours, and we don't pack up until you've looked things over and you're happy.",
 };

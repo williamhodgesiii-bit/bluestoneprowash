@@ -24,11 +24,11 @@ export function Footer() {
               className="h-auto w-[140px]"
             />
             <p className="mt-5 max-w-xs leading-relaxed text-white/60">
-              Pressure washing and exterior cleaning across Greater Birmingham. Locally owned, fully
-              insured, and careful with every surface.
+              Pressure washing and exterior cleaning across Greater Birmingham. Locally owned and
+              careful with every surface.
             </p>
             <Button href="/contact" className="mt-6" arrow>
-              Get a Free Quote
+              Get a free quote
             </Button>
 
             {activeSocials.length > 0 && (
@@ -119,7 +119,7 @@ export function Footer() {
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/50 sm:flex-row">
           <p>© {year} {site.name}. All rights reserved.</p>
           <p className="flex items-center gap-2">
-            <Icon name="ShieldCheck" className="h-4 w-4 text-brand-400" /> Licensed &amp; insured · Locally owned
+            <Icon name="MapPin" className="h-4 w-4 text-brand-400" /> Locally owned in Birmingham
           </p>
         </div>
       </Container>

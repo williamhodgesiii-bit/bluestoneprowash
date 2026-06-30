@@ -7,7 +7,7 @@ import { QuoteBand } from "@/components/sections/QuoteBand";
 export const metadata: Metadata = {
   title: "Our Work",
   description:
-    "Before-and-after pressure washing and soft washing results from real homes around Greater Birmingham — driveways, roofs, siding, and glass.",
+    "Before-and-after pressure washing and soft washing results from real homes around Greater Birmingham: driveways, roofs, siding, and glass.",
   alternates: { canonical: "/work" },
 };
 
@@ -17,7 +17,7 @@ export default function WorkPage() {
       <PageHero
         kicker="Our work"
         title="Before, after, and the proof in between"
-        intro="These are real Birmingham homes — no stock photos, no filters. Drag the slider to see the difference, then scroll through recent jobs."
+        intro="These are real Birmingham homes. No stock photos, no filters. Drag the slider to see the difference, then scroll through recent jobs."
       />
       <Transformations />
       <Gallery />
