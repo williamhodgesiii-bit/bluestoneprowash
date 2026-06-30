@@ -59,7 +59,7 @@ export function Hero() {
             </figure>
 
             {/* Honest little proof badge — solid, not glowing */}
-            <div className="absolute -bottom-4 -left-3 flex items-center gap-2.5 rounded-xl border border-steel-200 bg-white px-4 py-3 shadow-card sm:-left-5">
+            <div className="absolute -bottom-4 -left-3 hidden items-center gap-2.5 rounded-xl border border-steel-200 bg-white px-4 py-3 shadow-card sm:-left-5 sm:flex">
               <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 text-white">
                 <Icon name="ShieldCheck" className="h-5 w-5" />
               </span>
