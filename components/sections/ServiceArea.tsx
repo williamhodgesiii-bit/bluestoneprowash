@@ -28,7 +28,7 @@ function Track({ reverse = false }: { reverse?: boolean }) {
 
 export function ServiceArea() {
   return (
-    <section id="area" className="cv bg-steel-50 py-8 sm:py-14">
+    <section id="area" className="bg-steel-50 py-8 sm:py-14">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <span className="kicker text-brand-600">Where we work</span>

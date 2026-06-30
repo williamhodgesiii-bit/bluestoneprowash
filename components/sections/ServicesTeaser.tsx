@@ -8,7 +8,7 @@ import { services } from "@/lib/site";
 /** Compact services row for the home page — full detail lives on /services. */
 export function ServicesTeaser() {
   return (
-    <section className="cv bg-white py-8 sm:py-14">
+    <section className="bg-white py-8 sm:py-14">
       <Container>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">

@@ -20,7 +20,7 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
   const list = limit ? testimonials.slice(0, limit) : testimonials;
 
   return (
-    <section className={`cv py-8 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
+    <section className={`py-8 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
       <Container>
         <SectionHeading
           kicker="Reviews"

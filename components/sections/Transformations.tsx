@@ -13,7 +13,7 @@ export function Transformations() {
   const current = transformations[active];
 
   return (
-    <section id="transformations" className="cv bg-night-950 py-8 text-white sm:py-14">
+    <section id="transformations" className="bg-night-950 py-8 text-white sm:py-14">
       <Container>
         {/* Title left, intro + tabs right so the band isn't half-empty */}
         <div className="grid gap-6 lg:grid-cols-2 lg:items-end">

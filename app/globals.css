@@ -105,12 +105,6 @@
   }
 }
 
-/* Skip rendering of off-screen sections — scroll win on longer pages. */
-@utility cv {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 900px;
-}
-
 /* ------------------------------------------------------------------ */
 /*  Utilities                                                          */
 /* ------------------------------------------------------------------ */

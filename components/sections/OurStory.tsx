@@ -12,7 +12,7 @@ const highlights = [
 
 export function OurStory() {
   return (
-    <section className="cv bg-white py-8 sm:py-10">
+    <section className="bg-white py-8 sm:py-10">
       <Container>
         <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-10">
           {/* Photo + stamp */}

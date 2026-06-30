@@ -40,7 +40,7 @@ export function ServiceCard({ service }: { service: Service }) {
 
 export function Services() {
   return (
-    <section className="cv bg-white py-8 sm:py-14">
+    <section className="bg-white py-8 sm:py-14">
       <Container>
         <SectionHeading
           kicker="What we clean"
