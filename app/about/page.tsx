@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { OurStory } from "@/components/sections/OurStory";
-import { WhyUs } from "@/components/sections/WhyUs";
-import { ServiceArea } from "@/components/sections/ServiceArea";
 import { QuoteBand } from "@/components/sections/QuoteBand";
 
 export const metadata: Metadata = {
@@ -17,12 +15,10 @@ export default function AboutPage() {
     <>
       <PageHero
         kicker="About us"
-        title="Who we are"
-        intro="We're a small, locally owned cleaning company in Birmingham. Anderson O'Neal and his crew do the work themselves."
+        title="Meet the crew"
+        intro="A small, locally owned cleaning company in Greater Birmingham. Anderson O'Neal and his crew do every job themselves."
       />
       <OurStory />
-      <WhyUs />
-      <ServiceArea />
       <QuoteBand />
     </>
   );

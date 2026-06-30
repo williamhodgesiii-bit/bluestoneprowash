@@ -296,6 +296,6 @@ export const trustPoints: { label: string; icon: string }[] = [
 
 /* A short, human story we reuse on the home + about pages. */
 export const story = {
-  lead: "Bluestone Pro Wash is a small, locally owned cleaning company here in Birmingham, run by Anderson O'Neal.",
-  body: "We started in 2022, and we still do the work ourselves. When you call, you reach the people who'll be at your house. We take care of your driveway, roof, and landscaping the way we'd want someone to treat ours, and we don't pack up until you've looked things over and you're happy.",
+  lead: "Anderson O'Neal started Bluestone Pro Wash in 2022, and it's still run the same way: small, hands-on, and local.",
+  body: "Call the number and you reach the same person who'll be at your house. Every driveway, roof, and patch of landscaping gets treated with care, and the job isn't done until you've looked it over and you're happy.",
 };
