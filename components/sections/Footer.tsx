@@ -19,8 +19,8 @@ export function Footer() {
             <Image
               src="/brand/logo-light.png"
               alt="Bluestone Pro Wash"
-              width={200}
-              height={167}
+              width={763}
+              height={640}
               className="h-auto w-[132px]"
             />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">

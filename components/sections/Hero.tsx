@@ -10,7 +10,7 @@ const chips = ["Satisfaction guaranteed", "Free quotes", "Locally owned", "Soft-
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-steel-50">
-      <Container className="grid items-stretch gap-8 py-12 lg:grid-cols-12 lg:gap-12 lg:py-16">
+      <Container className="grid items-stretch gap-6 py-8 lg:grid-cols-12 lg:gap-10 lg:py-10">
         {/* Message */}
         <div className="lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
           <Reveal>
@@ -46,15 +46,15 @@ export function Hero() {
         {/* Logo */}
         <div className="lg:col-span-6 lg:flex lg:items-center">
           <Reveal delay={0.08} className="relative w-full">
-            <figure className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-steel-200 bg-white shadow-lift">
+            <figure className="relative flex aspect-[6/5] w-full items-center justify-center overflow-hidden rounded-2xl border border-steel-200 bg-white shadow-lift">
               <Image
                 src="/brand/logo.png"
                 alt="Bluestone Pro Wash logo"
-                width={948}
-                height={959}
-                sizes="(max-width: 1024px) 84vw, 42vw"
+                width={763}
+                height={640}
+                sizes="(max-width: 1024px) 84vw, 40vw"
                 priority
-                className="h-auto w-[84%] max-w-[480px]"
+                className="h-auto w-[82%] max-w-[430px]"
               />
             </figure>
 
