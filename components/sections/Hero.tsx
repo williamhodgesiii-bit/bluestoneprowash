@@ -10,20 +10,20 @@ const chips = ["Fully insured", "Free quotes", "Locally owned", "Soft-wash safe"
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-steel-50">
-      <Container className="grid items-center gap-10 py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
+      <Container className="grid items-stretch gap-8 py-12 lg:grid-cols-12 lg:gap-12 lg:py-16">
         {/* Message */}
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
           <Reveal>
             <span className="kicker text-brand-600">Pressure &amp; soft washing · Birmingham, AL</span>
-            <h1 className="mt-4 text-[clamp(2.5rem,5.4vw,4rem)] font-extrabold leading-[1.0] tracking-[-0.02em] text-ink">
+            <h1 className="mt-3 text-[clamp(2.4rem,4.8vw,3.6rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
               Make it look <span className="marker">new</span> again.
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
               Driveways, roofs, siding, windows, and gutters — washed the right way by a local crew
               that shows up on time, picks the safe method for every surface, and cleans up before we leave.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href="/contact" size="lg" arrow>
                 Get a Free Quote
               </Button>
@@ -32,7 +32,7 @@ export function Hero() {
               </Button>
             </div>
 
-            <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-2.5">
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               {chips.map((c) => (
                 <li key={c} className="flex items-center gap-2 text-sm font-semibold text-ink-soft">
                   <Icon name="Check" className="h-4 w-4 text-brand-600" strokeWidth={3} />
@@ -45,9 +45,9 @@ export function Hero() {
 
         {/* Photo */}
         <div className="lg:col-span-6">
-          <Reveal delay={0.08} className="relative">
-            <figure className="relative overflow-hidden rounded-2xl bg-night-900 shadow-lift">
-              <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
+          <Reveal delay={0.08} className="relative lg:h-full">
+            <figure className="relative overflow-hidden rounded-2xl bg-night-900 shadow-lift lg:h-full">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[340px]">
                 <Image
                   src="/images/hero-roof-softwash.jpg"
                   alt="A Bluestone Pro Wash technician soft-washing algae off a shingle roof"
