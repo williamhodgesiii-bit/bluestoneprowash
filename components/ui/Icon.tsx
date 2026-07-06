@@ -10,7 +10,6 @@ import {
   Sparkles,
   MapPin,
   ShieldCheck,
-  FileCheck,
   BadgeCheck,
   Clock,
   Tag,
@@ -18,22 +17,17 @@ import {
   Star,
   Check,
   ArrowRight,
-  ArrowUpRight,
   Menu,
   X,
   ChevronDown,
-  Quote,
-  Send,
   MessageSquare,
   Mail,
   MoveHorizontal,
-  ChevronUp,
-  CircleHelp,
   Users,
   type LucideIcon,
 } from "lucide-react";
 
-const registry: Record<string, LucideIcon> = {
+const registry = {
   Droplets,
   Waves,
   Home,
@@ -45,7 +39,6 @@ const registry: Record<string, LucideIcon> = {
   Sparkles,
   MapPin,
   ShieldCheck,
-  FileCheck,
   BadgeCheck,
   Clock,
   Tag,
@@ -53,28 +46,26 @@ const registry: Record<string, LucideIcon> = {
   Star,
   Check,
   ArrowRight,
-  ArrowUpRight,
   Menu,
   X,
   ChevronDown,
-  Quote,
-  Send,
   MessageSquare,
   Mail,
   MoveHorizontal,
-  ChevronUp,
   Users,
-};
+} satisfies Record<string, LucideIcon>;
+
+export type IconName = keyof typeof registry;
 
 export function Icon({
   name,
   className,
   strokeWidth = 2,
 }: {
-  name: string;
+  name: IconName;
   className?: string;
   strokeWidth?: number;
 }) {
-  const Cmp = registry[name] ?? CircleHelp;
+  const Cmp = registry[name];
   return <Cmp className={className} strokeWidth={strokeWidth} aria-hidden="true" />;
 }

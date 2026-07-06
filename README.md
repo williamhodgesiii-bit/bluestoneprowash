@@ -45,10 +45,10 @@ Almost everything lives in **`lib/site.ts`** — one file:
 | Service-area towns | `serviceAreas` |
 | FAQs | `faqs` |
 
-> **Reviews:** the testimonials are written from real review themes as placeholders.
-> Replace them with verified Google reviews before launch. For the same reason, the
-> structured-data block in `app/layout.tsx` intentionally ships **without** a star rating —
-> add `aggregateRating` only once it reflects real, verifiable numbers.
+> **Reviews:** the testimonials are real five-star Google reviews. The structured-data
+> block in `app/layout.tsx` derives its `aggregateRating` and `review` entries from this
+> same list, so keep it in sync with the live Google profile when adding or removing
+> reviews.
 
 ---
 
@@ -72,10 +72,11 @@ Optimized assets live in `public/images` and `public/brand`. They were generated
 with **`scripts/process-images.mjs`** (logo background removed via flood-fill, before/after composites
 split into aligned pairs, photos auto-rotated and compressed).
 
-> **Re-shoot note:** `public/images/truck-*.jpg` and `team-trailer.jpg` still show the **old
+> **Re-shoot note:** `public/images/truck-1.jpg` and `truck-2.jpg` still show the **old
 > "Birmingham Pro Wash"** branding, so they are **not used on the live site**. Swap in
-> re-branded truck/team photos after the wrap is updated, then reference them in
-> `components/sections/Gallery.tsx`.
+> re-branded truck photos after the wrap is updated, then reference them in
+> `components/sections/Gallery.tsx`. (`team-trailer.jpg` is already used on the About
+> page — swap it there too once a re-branded crew photo exists.)
 
 To regenerate from a folder of source images:
 

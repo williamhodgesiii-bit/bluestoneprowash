@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import { Container } from "../ui/Container";
-import { Icon } from "../ui/Icon";
+import { Icon, type IconName } from "../ui/Icon";
 import { Button } from "../ui/Button";
 import { services, site } from "@/lib/site";
 
 const QUOTE_ENDPOINT = process.env.NEXT_PUBLIC_QUOTE_ENDPOINT; // optional Formspree/own URL
 
-const contactMethods = [
+const contactMethods: { icon: IconName; label: string; value: string; href?: string }[] = [
   { icon: "Phone", label: "Call us", value: site.phoneDisplay, href: site.phoneHref },
   { icon: "MessageSquare", label: "Text us", value: site.phoneDisplay, href: site.smsHref },
   { icon: "Mail", label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: "Clock", label: "Hours", value: site.hours, href: undefined },
+  { icon: "Clock", label: "Hours", value: site.hours },
 ];
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -152,7 +152,7 @@ export function QuoteForm() {
                   </p>
                 )}
 
-                <Button size="lg" className="mt-1 w-full" arrow>
+                <Button size="lg" className="mt-1 w-full" arrow disabled={status === "sending"}>
                   {status === "sending" ? "Sending…" : "Get my free quote"}
                 </Button>
                 <p className="text-center text-xs text-ink-soft">

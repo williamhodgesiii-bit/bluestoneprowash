@@ -1,7 +1,12 @@
+import type { IconName } from "@/components/ui/Icon";
+
 /**
  * Single source of truth for Bluestone Pro Wash content.
  * Edit phone / email / areas / reviews here — everything updates site-wide.
  */
+
+// E.164 form of the business number — keep phoneDisplay below in sync.
+const phone = "+12055471941";
 
 export const site = {
   name: "Bluestone Pro Wash",
@@ -13,8 +18,9 @@ export const site = {
   url: "https://bluestoneprowash.com",
   email: "info@bluestoneprowash.com",
   phoneDisplay: "(205) 547-1941",
-  phoneHref: "tel:+12055471941",
-  smsHref: "sms:+12055471941",
+  phoneE164: phone,
+  phoneHref: `tel:${phone}`,
+  smsHref: `sms:${phone}`,
   googleReviewsUrl: "https://www.google.com/search?q=birmingham+pro+wash",
   region: "Greater Birmingham, Alabama",
   established: 2022,
@@ -22,6 +28,7 @@ export const site = {
 } as const;
 
 // TODO(client): paste real profile URLs — empty entries are hidden automatically.
+// `icon` keys come from components/ui/SocialIcon.tsx, not the lucide registry.
 export const socials: { label: string; icon: string; href: string }[] = [
   { label: "Facebook", icon: "facebook", href: "" },
   { label: "Instagram", icon: "instagram", href: "" },
@@ -40,7 +47,7 @@ export const navLinks: NavLink[] = [
 export type Service = {
   id: string;
   name: string;
-  icon: string; // lucide icon name
+  icon: IconName;
   blurb: string;
   points: string[];
   surfaces: string;
@@ -142,7 +149,7 @@ export const transformations: Transformation[] = [
   },
 ];
 
-export type Step = { n: string; title: string; body: string; icon: string };
+export type Step = { n: string; title: string; body: string; icon: IconName };
 
 export const processSteps: Step[] = [
   {
@@ -171,7 +178,7 @@ export const processSteps: Step[] = [
   },
 ];
 
-export type Differentiator = { title: string; body: string; icon: string };
+export type Differentiator = { title: string; body: string; icon: IconName };
 
 export const whyUs: Differentiator[] = [
   {
@@ -287,7 +294,7 @@ export const faqs: Faq[] = [
 ];
 
 /* Plain-spoken promises for the trust strip — no animated counters. */
-export const trustPoints: { label: string; icon: string }[] = [
+export const trustPoints: { label: string; icon: IconName }[] = [
   { label: "Locally owned in Birmingham", icon: "MapPin" },
   { label: "Satisfaction guaranteed", icon: "BadgeCheck" },
   { label: "Free, no-pressure quotes", icon: "Tag" },

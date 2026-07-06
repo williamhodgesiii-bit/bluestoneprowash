@@ -69,8 +69,6 @@ export function Reveal({
   className?: string;
   delay?: number;
   y?: number;
-  /** Accepted for API compatibility; reveals are one-shot. */
-  once?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -101,8 +99,6 @@ export function Stagger({
 }: {
   children: React.ReactNode;
   className?: string;
-  /** Accepted for API compatibility; reveals are one-shot. */
-  once?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 

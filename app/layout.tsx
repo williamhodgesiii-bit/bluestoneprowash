@@ -64,7 +64,9 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-// LocalBusiness structured data. Ratings intentionally omitted until verified.
+// LocalBusiness structured data. The rating block below is derived from the
+// verified Google reviews in lib/site.ts — keep that list in sync with the
+// live profile so these numbers stay honest.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
@@ -72,7 +74,7 @@ const jsonLd = {
   name: site.name,
   image: `${siteUrl}/og.png`,
   url: siteUrl,
-  telephone: site.phoneDisplay,
+  telephone: site.phoneE164,
   email: site.email,
   priceRange: "$$",
   foundingDate: String(site.established),
@@ -114,7 +116,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <MobileCallBar />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script
+          type="application/ld+json"
+          // Escape "<" so review text can never terminate the script tag early.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
       </body>
     </html>
   );

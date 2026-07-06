@@ -29,7 +29,7 @@ export function ServiceCard({ service }: { service: Service }) {
 
       <Link
         href="/contact"
-        className="mt-5 inline-flex items-center gap-1.5 border-t border-steel-100 pt-4 text-sm font-bold text-brand-700 hover:text-brand-600"
+        className="group mt-5 inline-flex items-center gap-1.5 border-t border-steel-100 pt-4 text-sm font-bold text-brand-700 hover:text-brand-600"
       >
         Get a quote for this
         <Icon name="ArrowRight" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

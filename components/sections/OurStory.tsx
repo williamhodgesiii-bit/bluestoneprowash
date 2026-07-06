@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Container } from "../ui/Container";
-import { Icon } from "../ui/Icon";
+import { Icon, type IconName } from "../ui/Icon";
 import { Reveal } from "../motion/Reveal";
 import { site, story } from "@/lib/site";
 
-const highlights = [
+const highlights: { icon: IconName; label: string; value: string }[] = [
   { icon: "MapPin", label: "Based in", value: "Greater Birmingham" },
   { icon: "Users", label: "Who shows up", value: "Anderson and the crew" },
   { icon: "BadgeCheck", label: "Our promise", value: "Happy or it's fixed, free" },

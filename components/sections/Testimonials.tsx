@@ -8,7 +8,7 @@ import { site, testimonials } from "@/lib/site";
 
 function Stars({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex gap-0.5 text-amber-400 ${className}`} aria-label="5 out of 5 stars">
+    <div className={`flex gap-0.5 text-amber-400 ${className}`} role="img" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
         <Icon key={i} name="Star" className="h-4 w-4 fill-amber-400" />
       ))}

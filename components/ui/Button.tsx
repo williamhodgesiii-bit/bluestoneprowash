@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Icon } from "./Icon";
+import { Icon, type IconName } from "./Icon";
 
 type Variant = "primary" | "light" | "outline" | "outlineDark" | "ghost";
 type Size = "sm" | "md" | "lg";
@@ -27,10 +28,10 @@ type ButtonProps = {
   size?: Size;
   className?: string;
   children: React.ReactNode;
-  icon?: string;
-  iconLeft?: string;
+  iconLeft?: IconName;
   arrow?: boolean;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "type" | "disabled">;
 
 export function Button({
   href,
@@ -38,7 +39,6 @@ export function Button({
   size = "md",
   className,
   children,
-  icon,
   iconLeft,
   arrow,
   ...props
@@ -54,12 +54,17 @@ export function Button({
           className="h-[1.05em] w-[1.05em] transition-transform duration-300 group-hover:translate-x-1"
         />
       )}
-      {icon && <Icon name={icon} className="h-[1.05em] w-[1.05em]" />}
     </>
   );
 
   if (href) {
-    return (
+    // Internal routes get next/link (prefetch + client-side navigation);
+    // tel:/sms:/mailto:/external URLs need a plain anchor.
+    return href.startsWith("/") ? (
+      <Link href={href} className={classes} {...props}>
+        {content}
+      </Link>
+    ) : (
       <a href={href} className={classes} {...props}>
         {content}
       </a>
