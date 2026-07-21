@@ -6,8 +6,6 @@ import { Icon, type IconName } from "../ui/Icon";
 import { Button } from "../ui/Button";
 import { services, site } from "@/lib/site";
 
-const QUOTE_ENDPOINT = process.env.NEXT_PUBLIC_QUOTE_ENDPOINT; // optional Formspree/own URL
-
 const contactMethods: { icon: IconName; label: string; value: string; href?: string }[] = [
   { icon: "Phone", label: "Call us", value: site.phoneDisplay, href: site.phoneHref },
   { icon: "MessageSquare", label: "Text us", value: site.phoneDisplay, href: site.smsHref },
@@ -27,15 +25,23 @@ export function QuoteForm() {
     setStatus("sending");
 
     try {
-      if (QUOTE_ENDPOINT) {
-        const res = await fetch(QUOTE_ENDPOINT, {
+      if (site.web3formsKey) {
+        // Web3Forms: free, unlimited form→email. The `botcheck` honeypot is only
+        // present when a bot ticks the hidden box, so real leads pass through.
+        const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            access_key: site.web3formsKey,
+            subject: `New quote request${data.service ? ` — ${data.service}` : ""} · ${data.name || "Website"}`,
+            from_name: `${site.name} website`,
+            ...data,
+          }),
         });
-        if (!res.ok) throw new Error("Request failed");
+        const json = await res.json();
+        if (!json.success) throw new Error(json.message || "Submission failed");
       } else {
-        // Zero-backend fallback: open a prefilled email.
+        // No key configured yet → open a prefilled email so a lead is never lost.
         const body = `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nService: ${data.service}\nAddress: ${data.address || "(not provided)"}\n\n${data.message || ""}`;
         const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Quote request from ${data.name}`)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;
@@ -103,6 +109,16 @@ export function QuoteForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {/* Spam honeypot — hidden from people, tempting to bots. */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  className="hidden"
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 <h3 className="text-xl font-extrabold tracking-tight text-ink">Request your quote</h3>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Field label="Full name" name="name" required placeholder="Jane Smith" />
