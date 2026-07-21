@@ -136,9 +136,36 @@ await photo("image-1782506329019.webp", "house-showcase.jpg", { width: 2000, qua
 await photo("IMG_6294.jpeg", "truck-1.jpg", { width: 1800, quality: 80, rotate: true });
 await photo("IMG_6296.jpeg", "truck-2.jpg", { width: 1800, quality: 80, rotate: true });
 
+// ---------- 4. Aligned before/after crops ----------
+// For pairs where the two halves share the same scene, extract windows chosen so
+// the same landmarks land at the same relative spot in both crops — this keeps the
+// site's drag slider continuous at the divider. Windows are in composite coords and
+// were derived by maximizing gradient NCC between the halves:
+//   driveway: after ≈ 1.09 × before + (11, −30)   (halves at x=0 and x=483)
+//   roof:     after ≈ 0.986 × before + (10, 158)  (halves at y=0 and y=352)
+async function alignedBA(srcName, base, beforeRegion, afterRegion, { target = [1200, 820] } = {}) {
+  const [tw, th] = target;
+  const make = async (region, suffix) => {
+    await sharp(f(srcName)).extract(region)
+      .resize(tw, th, { kernel: "lanczos3" })
+      .sharpen({ sigma: 1.1 })
+      .jpeg({ quality: 84, mozjpeg: true })
+      .toFile(path.join(BA, `${base}-${suffix}.jpg`));
+  };
+  await make(beforeRegion, "before");
+  await make(afterRegion, "after");
+  log(`${base}: aligned crops`);
+}
+
 // before / after composites
-await splitBA("image-1782506334584.webp", "driveway", "v", { firstIsBefore: true });   // left dirty | right clean
-await splitBA("image-1782506336391.webp", "roof", "h", { firstIsBefore: true });        // top dirty | bottom clean
+await alignedBA("image-1782506334584.webp", "driveway",
+  { left: 0, top: 85, width: 418, height: 286 },
+  { left: 494, top: 63, width: 456, height: 312 });
+await alignedBA("image-1782506336391.webp", "roof",
+  { left: 310, top: 0, width: 288, height: 197 },
+  { left: 316, top: 510, width: 284, height: 194 });
+// sunroom + aerial: the two halves are different camera angles, so there is nothing
+// to align — keep the plain split with a centred cover crop.
 await splitBA("image-1782506335484.webp", "sunroom", "h", { firstIsBefore: true });     // top dirty | bottom clean
 await splitBA("image-1782506337364.webp", "aerial", "h", { firstIsBefore: true });      // top dirty | bottom clean
 
