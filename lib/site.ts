@@ -14,9 +14,11 @@ export const site = {
   tagline: "Pressure Washing & Exterior Cleaning in Greater Birmingham",
   description:
     "Pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned and careful with every surface.",
-  // TODO(client): confirm public email + finalize domain before .com launch
+  // Production domain — buy + point DNS at the deploy, then (optionally) set
+  // NEXT_PUBLIC_SITE_URL to it. Until purchased this is the intended target.
   url: "https://bluestoneprowash.com",
-  email: "info@bluestoneprowash.com",
+  // Interim inbox during the rebrand; swap to a bluestoneprowash.com address later.
+  email: "birminghamprowash@gmail.com",
   phoneDisplay: "(205) 547-1941",
   phoneE164: phone,
   phoneHref: `tel:${phone}`,
@@ -27,11 +29,12 @@ export const site = {
   hours: "Mon to Sat · 7am to 7pm",
 } as const;
 
-// TODO(client): paste real profile URLs — empty entries are hidden automatically.
+// Empty entries are hidden automatically (footer + schema sameAs).
 // `icon` keys come from components/ui/SocialIcon.tsx, not the lucide registry.
 export const socials: { label: string; icon: string; href: string }[] = [
-  { label: "Facebook", icon: "facebook", href: "" },
-  { label: "Instagram", icon: "instagram", href: "" },
+  { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/BirminghamProWash" },
+  { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/bluestoneprowash" },
+  // TODO(client): paste the Google Business Profile review link when live.
   { label: "Leave a Google review", icon: "google", href: "" },
 ];
 
