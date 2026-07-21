@@ -10,7 +10,7 @@ export function ServicesTeaser() {
   return (
     <section className="bg-white py-8 sm:py-14">
       <Container>
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-5">
           <div className="max-w-xl">
             <span className="kicker text-brand-600">What we clean</span>
             <h2 className="mt-3 text-[clamp(1.5rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
@@ -23,9 +23,12 @@ export function ServicesTeaser() {
           </Button>
         </div>
 
-        <Stagger className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        {/* max-sm:odd:last: — with five cards in a two-column phone grid, the
+            fifth would sit orphaned in half a row; letting it span both
+            columns keeps the block a clean rectangle. */}
+        <Stagger className="mt-6 grid grid-cols-2 gap-3 sm:mt-9 sm:grid-cols-3 lg:grid-cols-5">
           {services.map((s) => (
-            <StaggerItem key={s.id} className="h-full">
+            <StaggerItem key={s.id} className="h-full max-sm:odd:last:col-span-2">
               <Link
                 href="/services"
                 className="group flex h-full flex-col rounded-xl border border-steel-200 bg-white p-5 transition-colors hover:border-brand-300"

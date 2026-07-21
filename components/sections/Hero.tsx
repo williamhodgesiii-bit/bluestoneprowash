@@ -13,15 +13,15 @@ export function Hero() {
         <div className="lg:col-span-6 lg:flex lg:flex-col lg:justify-center">
           <Reveal>
             <span className="kicker text-brand-600">Pressure &amp; soft washing · Birmingham, AL</span>
-            <h1 className="mt-3 text-[clamp(2.4rem,4.8vw,3.6rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
+            <h1 className="mt-3 text-[clamp(2.15rem,4.8vw,3.6rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
               Make it look <span className="marker">new</span> again.
             </h1>
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-ink-soft sm:mt-4 sm:text-lg">
               Driveways, roofs, siding, windows, and gutters, washed the right way by a local crew
               that shows up on time, picks the safe method for every surface, and cleans up before we leave.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:items-center">
               <Button href="/contact" size="lg" arrow>
                 Get a free quote
               </Button>

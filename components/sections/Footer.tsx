@@ -12,8 +12,8 @@ export function Footer() {
 
   return (
     <footer className="bg-night-950 text-white">
-      <Container className="py-10 lg:py-12">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-12 lg:gap-10">
+      <Container className="py-8 lg:py-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-4">
             <Image
@@ -21,18 +21,18 @@ export function Footer() {
               alt="Bluestone Pro Wash"
               width={763}
               height={640}
-              className="h-auto w-[132px]"
+              className="h-auto w-[108px] lg:w-[132px]"
             />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60 lg:mt-4">
               Pressure washing and exterior cleaning across Greater Birmingham. Locally owned and
               careful with every surface.
             </p>
-            <Button href="/contact" className="mt-5" arrow>
+            <Button href="/contact" className="mt-4 lg:mt-5" arrow>
               Get a free quote
             </Button>
 
             {activeSocials.length > 0 && (
-              <div className="mt-5 flex gap-3">
+              <div className="mt-4 flex gap-3 lg:mt-5">
                 {activeSocials.map((s) => (
                   <a
                     key={s.label}
@@ -52,7 +52,7 @@ export function Footer() {
           {/* Services */}
           <div className="lg:col-span-3">
             <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-white/40">Services</h3>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            <ul className="mt-3 flex flex-col gap-2 lg:mt-4 lg:gap-2.5">
               {services.map((s) => (
                 <li key={s.id}>
                   <Link href="/services" className="text-sm text-white/75 transition-colors hover:text-brand-300">
@@ -66,7 +66,7 @@ export function Footer() {
           {/* Explore */}
           <div className="lg:col-span-2">
             <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-white/40">Explore</h3>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            <ul className="mt-3 flex flex-col gap-2 lg:mt-4 lg:gap-2.5">
               <li>
                 <Link href="/" className="text-sm text-white/75 transition-colors hover:text-brand-300">
                   Home
@@ -85,7 +85,7 @@ export function Footer() {
           {/* Contact */}
           <div className="col-span-2 lg:col-span-3">
             <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-white/40">Get in touch</h3>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-white/75">
+            <ul className="mt-3 flex flex-col gap-2.5 text-sm text-white/75 lg:mt-4 lg:gap-3">
               <li>
                 <a href={site.phoneHref} className="flex items-center gap-3 transition-colors hover:text-brand-300">
                   <Icon name="Phone" className="h-4 w-4 text-brand-400" /> {site.phoneDisplay}
@@ -108,15 +108,15 @@ export function Footer() {
         </div>
 
         {/* Areas strip */}
-        <div className="mt-8 border-t border-white/10 pt-6">
-          <p className="text-sm leading-relaxed text-white/45">
+        <div className="mt-7 border-t border-white/10 pt-5 lg:mt-8 lg:pt-6">
+          <p className="text-[0.8rem] leading-relaxed text-white/45 sm:text-sm">
             <span className="font-semibold text-white/70">Service area: </span>
-            {serviceAreas.join(" · ")} &amp; surrounding communities.
+            {`${serviceAreas.join(" · ")} & surrounding communities.`}
           </p>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row">
+        <div className="mt-5 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-5 text-[0.8rem] text-white/50 sm:flex-row sm:gap-3 sm:text-sm lg:mt-6 lg:pt-6">
           <p>© {year} {site.name}. All rights reserved.</p>
           <p className="flex items-center gap-2">
             <Icon name="MapPin" className="h-4 w-4 text-brand-400" /> Locally owned in Birmingham

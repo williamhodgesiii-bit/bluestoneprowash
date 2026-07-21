@@ -35,21 +35,21 @@ export function ServiceArea() {
           <h2 className="mt-3 text-[clamp(1.5rem,3.6vw,2.7rem)] font-extrabold leading-[1.06] text-ink">
             All over Greater Birmingham
           </h2>
-          <div className="rule-blue mx-auto mt-5" />
-          <p className="mt-5 text-[1.05rem] leading-relaxed text-ink-soft">
+          <div className="rule-blue mx-auto mt-3 sm:mt-5" />
+          <p className="mt-3 text-[0.97rem] leading-relaxed text-ink-soft sm:mt-5 sm:text-[1.05rem]">
             From Over the Mountain to Shelby County. Here are some of the towns we&apos;re in every week.
           </p>
         </div>
       </Container>
 
       {/* Two ticker rows scrolling opposite ways */}
-      <div className="mt-8 flex flex-col gap-3">
+      <div className="mt-6 flex flex-col gap-3 sm:mt-8">
         <Track />
         <Track reverse />
       </div>
 
       <Container>
-        <Reveal className="mx-auto mt-8 flex max-w-xl flex-col items-center gap-4 rounded-xl border border-steel-200 bg-white p-6 text-center shadow-card sm:flex-row sm:text-left">
+        <Reveal className="mx-auto mt-6 flex max-w-xl flex-col items-center gap-4 rounded-xl border border-steel-200 bg-white p-5 text-center shadow-card sm:mt-8 sm:flex-row sm:p-6 sm:text-left">
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-brand-600 text-white">
             <Icon name="MessageSquare" className="h-6 w-6" />
           </span>

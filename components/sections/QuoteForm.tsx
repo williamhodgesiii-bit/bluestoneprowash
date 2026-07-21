@@ -56,19 +56,22 @@ export function QuoteForm() {
   return (
     <section id="quote" className="bg-steel-50 py-8 sm:py-14">
       <Container>
-        <div className="overflow-hidden rounded-2xl border border-steel-200 shadow-lift lg:grid lg:grid-cols-12">
+        {/* On phones the form itself comes first (flex-col-reverse) so nobody
+            has to scroll past a full screen of blue panel to start typing;
+            desktop keeps pitch left / form right. */}
+        <div className="flex flex-col-reverse overflow-hidden rounded-2xl border border-steel-200 shadow-lift lg:grid lg:grid-cols-12">
           {/* Left: pitch + contact, in wrap blue */}
-          <div className="bg-brand-600 p-8 text-white sm:p-10 lg:col-span-5">
+          <div className="bg-brand-600 p-6 text-white sm:p-10 lg:col-span-5">
             <span className="kicker text-brand-100">Free quote</span>
             <h2 className="mt-3 text-[clamp(1.6rem,3.4vw,2.6rem)] font-extrabold leading-[1.04] text-white">
               Tell us what needs cleaning.
             </h2>
-            <p className="mt-4 max-w-md leading-relaxed text-white/85">
+            <p className="mt-3 max-w-md leading-relaxed text-white/85 sm:mt-4">
               We&apos;ll send a clear, upfront price, usually the same day. No deposit, no obligation,
               no hard sell.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3">
+            <div className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:gap-3">
               {contactMethods.map((m) => {
                 const inner = (
                   <div className="flex items-center gap-3 rounded-lg bg-white/10 p-3.5 transition-colors hover:bg-white/15">
@@ -93,7 +96,7 @@ export function QuoteForm() {
           </div>
 
           {/* Right: the form */}
-          <div className="bg-white p-8 text-ink sm:p-10 lg:col-span-7">
+          <div className="bg-white p-6 text-ink sm:p-10 lg:col-span-7">
             {status === "sent" ? (
               <div className="flex h-full min-h-[420px] flex-col items-center justify-center text-center">
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">

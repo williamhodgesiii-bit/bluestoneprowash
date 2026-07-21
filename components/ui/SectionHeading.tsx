@@ -31,9 +31,9 @@ export function SectionHeading({
       >
         {title}
       </h2>
-      <div className={cn("rule-blue mt-4", align === "center" && "mx-auto", onDark && "bg-brand-400")} />
+      <div className={cn("rule-blue mt-3 sm:mt-4", align === "center" && "mx-auto", onDark && "bg-brand-400")} />
       {intro && (
-        <p className={cn("mt-4 text-[1.05rem] leading-relaxed", onDark ? "text-white/70" : "text-ink-soft")}>
+        <p className={cn("mt-3 text-[0.97rem] leading-relaxed sm:mt-4 sm:text-[1.05rem]", onDark ? "text-white/70" : "text-ink-soft")}>
           {intro}
         </p>
       )}
@@ -44,7 +44,7 @@ export function SectionHeading({
   // to the right so wide sections don't leave a big empty void.
   if (aside) {
     return (
-      <Reveal className={cn("flex flex-col gap-6 md:flex-row md:items-end md:justify-between", className)}>
+      <Reveal className={cn("flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-6", className)}>
         <div className="max-w-2xl">{body}</div>
         <div className="shrink-0">{aside}</div>
       </Reveal>

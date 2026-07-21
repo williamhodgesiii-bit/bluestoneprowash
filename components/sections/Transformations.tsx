@@ -22,7 +22,7 @@ export function Transformations() {
          * never sits half-empty. On mobile the three blocks simply stack in
          * reading order: heading → slider → caption.
          */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
           {/* Heading + category tabs — top of the right column */}
           <div className="lg:col-start-8 lg:col-span-5 lg:row-start-1 lg:self-start">
             <span className="kicker text-brand-300">Before &amp; after</span>
@@ -30,11 +30,11 @@ export function Transformations() {
               Grab the slider. See for yourself.
             </h2>
             <div className="rule-blue mt-4 bg-brand-400" />
-            <p className="mt-4 text-[1.02rem] leading-relaxed text-white/70">
+            <p className="mt-3 text-[0.97rem] leading-relaxed text-white/70 sm:mt-4 sm:text-[1.02rem]">
               Real homes around Birmingham. No stock photos. Drag the handle across to watch the
               grime come off.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
               {transformations.map((t, i) => (
                 <button
                   key={t.id}

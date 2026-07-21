@@ -20,9 +20,13 @@ export function PageHero({
           <h1 className="mt-3 text-[clamp(1.8rem,4.8vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
             {title}
           </h1>
-          <div className="rule-blue mt-4" />
-          {intro && <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">{intro}</p>}
-          {children && <div className="mt-7">{children}</div>}
+          <div className="rule-blue mt-3 sm:mt-4" />
+          {intro && (
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft sm:mt-4 sm:text-lg">
+              {intro}
+            </p>
+          )}
+          {children && <div className="mt-5 sm:mt-7">{children}</div>}
         </Reveal>
       </Container>
     </section>

@@ -42,21 +42,63 @@ function onScreen(el: HTMLElement) {
   return r.top < vh && r.bottom > 0;
 }
 
+// Nothing stays hidden longer than this, no matter what the observer does.
+const REVEAL_SAFETY_MS = 2500;
+
 function revealWhenSeen(el: HTMLElement, show: () => void) {
+  // Three triggers, first one wins:
+  //   1. IntersectionObserver, with a positive bottom margin so the fade has
+  //      already started by the time the element crosses into view (no flash
+  //      of blank space at the fold).
+  //   2. A passive scroll/resize fallback doing a plain rect check — if the
+  //      observer's callback is dropped mid-flick (it happens on phones), the
+  //      next scroll event still reveals the content.
+  //   3. A safety timer: even if BOTH of the above are throttled away
+  //      (battery saver, in-app webviews), everything is visible within a
+  //      couple of seconds. Text can never stay stuck invisible.
+  let done = false;
+  let raf = 0;
+
+  const finish = () => {
+    if (done) return;
+    done = true;
+    cleanup();
+    show();
+  };
+
   const io = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          show();
-          io.disconnect();
+          finish();
           break;
         }
       }
     },
-    { rootMargin: "0px 0px -10% 0px" }
+    { rootMargin: "0px 0px 12% 0px" }
   );
   io.observe(el);
-  return () => io.disconnect();
+
+  const check = () => {
+    raf = 0;
+    if (onScreen(el)) finish();
+  };
+  const onScrollOrResize = () => {
+    if (!raf) raf = requestAnimationFrame(check);
+  };
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize, { passive: true });
+
+  const timer = setTimeout(finish, REVEAL_SAFETY_MS);
+
+  function cleanup() {
+    io.disconnect();
+    window.removeEventListener("scroll", onScrollOrResize);
+    window.removeEventListener("resize", onScrollOrResize);
+    if (raf) cancelAnimationFrame(raf);
+    clearTimeout(timer);
+  }
+  return cleanup;
 }
 
 export function Reveal({

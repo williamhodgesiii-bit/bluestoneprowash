@@ -27,7 +27,7 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
           title="What the neighbors say"
           intro="Real, verified five-star reviews from Birmingham homeowners who trusted us with their property."
           aside={
-            <div className="flex flex-col gap-3 md:items-end">
+            <div className="flex flex-row flex-wrap items-center gap-3 md:flex-col md:items-end">
               <div className="flex items-center gap-2">
                 <Stars />
                 <span className="font-display text-lg font-extrabold text-ink">5.0</span>
@@ -47,10 +47,10 @@ export function Testimonials({ limit, bg = "steel" }: { limit?: number; bg?: "wh
           }
         />
 
-        <Stagger className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 md:grid-cols-2 lg:grid-cols-3">
           {list.map((t) => (
             <StaggerItem key={t.name} className="h-full">
-              <figure className="flex h-full flex-col rounded-xl border border-steel-200 bg-white p-6">
+              <figure className="flex h-full flex-col rounded-xl border border-steel-200 bg-white p-5 sm:p-6">
                 <div className="flex items-center justify-between">
                   <Stars />
                   <SocialIcon name="google" className="h-5 w-5 text-steel-400" />
