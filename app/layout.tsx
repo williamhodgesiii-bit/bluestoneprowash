@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
-import { site, testimonials } from "@/lib/site";
+import { site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
+import { businessNode, graph, webSiteNode } from "@/lib/schema";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { MobileCallBar } from "@/components/sections/MobileCallBar";
@@ -64,49 +66,11 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-// LocalBusiness structured data. The rating block below is derived from the
-// verified Google reviews in lib/site.ts — keep that list in sync with the
-// live profile so these numbers stay honest.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "@id": siteUrl,
-  name: site.name,
-  image: `${siteUrl}/og.png`,
-  url: siteUrl,
-  telephone: site.phoneE164,
-  email: site.email,
-  priceRange: "$$",
-  foundingDate: String(site.established),
-  areaServed: {
-    "@type": "City",
-    name: "Birmingham",
-    containedInPlace: { "@type": "State", name: "Alabama" },
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Birmingham",
-    addressRegion: "AL",
-    addressCountry: "US",
-  },
-  openingHours: "Mo-Sa 07:00-19:00",
-  makesOffer: ["Pressure Washing", "Soft Washing", "Roof Cleaning", "Window Cleaning", "Gutter Cleaning"].map(
-    (s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })
-  ),
-  ...(testimonials.length > 0 && {
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: String(testimonials.length),
-    },
-    review: testimonials.map((t) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: t.name },
-      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-      reviewBody: t.quote,
-    })),
-  }),
-};
+// Site-wide entity graph: the business and the website it publishes. Individual
+// pages add their own WebPage/BreadcrumbList/Service/FAQ nodes that reference
+// these by @id. Reviews/ratings are derived from the verified Google reviews in
+// lib/site.ts — keep that list in sync with the live profile so numbers stay honest.
+const siteGraph = graph([businessNode(siteUrl), webSiteNode(siteUrl)]);
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -116,11 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <MobileCallBar />
-        <script
-          type="application/ld+json"
-          // Escape "<" so review text can never terminate the script tag early.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
+        <JsonLd data={siteGraph} />
       </body>
     </html>
   );

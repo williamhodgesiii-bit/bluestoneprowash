@@ -1,21 +1,39 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { QuoteForm } from "@/components/sections/QuoteForm";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { Faq } from "@/components/sections/Faq";
 import { Icon } from "@/components/ui/Icon";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { getSiteUrl } from "@/lib/url";
 
-export const metadata: Metadata = {
+const description =
+  "Request a free, no-obligation pressure washing quote in Greater Birmingham. Call, text, or fill out the form and we'll send a clear, upfront price, usually the same day.";
+
+export const metadata = pageMetadata({
   title: "Get a Free Quote",
-  description:
-    "Request a free, no-obligation pressure washing quote in Greater Birmingham. Call, text, or fill out the form and we'll send a clear, upfront price, usually the same day.",
-  alternates: { canonical: "/contact" },
-};
+  description,
+  path: "/contact",
+});
+
+const base = getSiteUrl();
+const contactGraph = graph([
+  webPageNode(base, {
+    path: "/contact",
+    name: "Get a Free Quote",
+    description,
+    type: "ContactPage",
+    hasBreadcrumb: true,
+  }),
+  breadcrumbNode(base, "/contact", [{ name: "Contact", path: "/contact" }]),
+]);
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactGraph} />
       <PageHero
         kicker="Free quote"
         title="Let's get your place cleaned up"
