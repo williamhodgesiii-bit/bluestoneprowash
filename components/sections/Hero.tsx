@@ -42,7 +42,7 @@ export function Hero() {
                 fill
                 sizes="(max-width: 1024px) 92vw, 46vw"
                 priority
-                className="object-cover"
+                className="scale-[1.2] object-cover object-[50%_35%]"
               />
             </figure>
 
