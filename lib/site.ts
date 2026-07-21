@@ -29,11 +29,13 @@ export const site = {
   hours: "Mon to Sat · 7am to 7pm",
   // Web3Forms public access key for the quote form — free, unlimited form→email.
   // This key is meant to live in client code (it only lets a submission be sent
-  // to the inbox tied to it), so it's safe to commit. Get one in ~60s at
-  // https://web3forms.com using birminghamprowash@gmail.com. Prefer setting
-  // NEXT_PUBLIC_WEB3FORMS_KEY in the host; the literal fallback also works.
-  // While empty, the form gracefully opens a prefilled email instead.
-  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
+  // to the inbox tied to it), so it's safe to commit. NOTE: this is a temporary
+  // TEST key — submissions currently land in williamhodgesiii@gmail.com. Before
+  // launch, swap in a key registered to birminghamprowash@gmail.com (the address
+  // shown publicly on the site). Prefer setting NEXT_PUBLIC_WEB3FORMS_KEY in the
+  // host; the literal fallback also works. While empty, the form gracefully opens
+  // a prefilled email instead.
+  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "60a8445f-9870-4f6d-a6bf-473ccdc93fec",
 } as const;
 
 // Empty entries are hidden automatically (footer + schema sameAs).
