@@ -101,11 +101,19 @@ export function QuoteForm() {
                 </span>
                 <h3 className="mt-5 text-2xl font-extrabold text-ink">Thanks!</h3>
                 <p className="mt-3 max-w-sm text-ink-soft">
-                  A team member will contact you shortly. Need us sooner?
+                  A team member will contact you shortly. You can also reach us at{" "}
+                  <a href={site.phoneHref} className="font-semibold text-brand-700 hover:text-brand-600">
+                    {site.phoneDisplay}
+                  </a>{" "}
+                  or{" "}
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="font-semibold text-brand-700 hover:text-brand-600"
+                  >
+                    {site.email}
+                  </a>
+                  .
                 </p>
-                <Button href={site.phoneHref} className="mt-6" iconLeft="Phone">
-                  Call {site.phoneDisplay}
-                </Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
