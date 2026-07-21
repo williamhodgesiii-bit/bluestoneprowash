@@ -99,9 +99,9 @@ export function QuoteForm() {
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
                   <Icon name="BadgeCheck" className="h-8 w-8" />
                 </span>
-                <h3 className="mt-5 text-2xl font-extrabold text-ink">Got it, thanks!</h3>
+                <h3 className="mt-5 text-2xl font-extrabold text-ink">Thanks!</h3>
                 <p className="mt-3 max-w-sm text-ink-soft">
-                  We&apos;ll be in touch shortly with your free quote. Need us sooner?
+                  A team member will contact you shortly. Need us sooner?
                 </p>
                 <Button href={site.phoneHref} className="mt-6" iconLeft="Phone">
                   Call {site.phoneDisplay}
