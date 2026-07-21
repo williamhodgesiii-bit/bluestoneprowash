@@ -5,8 +5,6 @@ import { Icon } from "../ui/Icon";
 import { Reveal } from "../motion/Reveal";
 import { site } from "@/lib/site";
 
-const chips = ["Satisfaction guaranteed", "Free quotes", "Locally owned", "Soft-wash safe"];
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-steel-50">
@@ -31,30 +29,20 @@ export function Hero() {
                 {site.phoneDisplay}
               </Button>
             </div>
-
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-              {chips.map((c) => (
-                <li key={c} className="flex items-center gap-2 text-sm font-semibold text-ink-soft">
-                  <Icon name="Check" className="h-4 w-4 text-brand-600" strokeWidth={3} />
-                  {c}
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </div>
 
-        {/* Logo */}
+        {/* Crew */}
         <div className="lg:col-span-6 lg:flex lg:items-center">
           <Reveal delay={0.08} className="relative w-full">
-            <figure className="relative flex aspect-[6/5] w-full items-center justify-center overflow-hidden rounded-2xl border border-steel-200 bg-white shadow-lift">
+            <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-steel-200 bg-white shadow-lift">
               <Image
-                src="/brand/logo.png"
-                alt="Bluestone Pro Wash logo"
-                width={763}
-                height={640}
-                sizes="(max-width: 1024px) 84vw, 40vw"
+                src="/images/team-trailer.jpg"
+                alt="The Bluestone Pro Wash crew in Birmingham"
+                fill
+                sizes="(max-width: 1024px) 92vw, 46vw"
                 priority
-                className="h-auto w-[82%] max-w-[430px]"
+                className="object-cover"
               />
             </figure>
 
