@@ -1,4 +1,4 @@
-import { services, serviceAreas, site, socials, testimonials, type Faq } from "./site";
+import { services, serviceAreas, site, socials, testimonials, type Faq, type Service } from "./site";
 
 /**
  * JSON-LD builders for the site's entity graph.
@@ -149,18 +149,28 @@ export function breadcrumbNode(base: string, path: string, crumbs: CrumbInput[])
   };
 }
 
-/** One Service node per offering, provided by the business across its areas. */
-export function serviceNodes(base: string): JsonLdNode[] {
-  return services.map((s) => ({
+/**
+ * A single Service, provided by the business across its areas. The @id points
+ * at the service's own page so the overview list and the individual page
+ * describe one entity, not two.
+ */
+export function serviceNode(base: string, s: Service): JsonLdNode {
+  return {
     "@type": "Service",
-    "@id": `${base}/services#${s.id}`,
+    "@id": `${base}/services/${s.id}#service`,
+    url: `${base}/services/${s.id}`,
     name: s.name,
     description: s.blurb,
     serviceType: s.name,
     category: "Exterior cleaning",
     provider: { "@id": BUSINESS_ID(base) },
     areaServed: serviceAreas.map((city) => ({ "@type": "City", name: city })),
-  }));
+  };
+}
+
+/** One Service node per offering, provided by the business across its areas. */
+export function serviceNodes(base: string): JsonLdNode[] {
+  return services.map((s) => serviceNode(base, s));
 }
 
 /** FAQPage built from the real, on-page FAQ (rendered as crawlable <details>). */
