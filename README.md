@@ -66,6 +66,41 @@ NEXT_PUBLIC_QUOTE_ENDPOINT="https://formspree.io/f/xxxxxxx"
 
 ---
 
+## Analytics
+
+Google Analytics 4 is wired up with Next.js's official
+[`@next/third-parties`](https://nextjs.org/docs/app/guides/third-party-libraries#google-analytics)
+integration (`components/analytics/Analytics.tsx`, rendered from `app/layout.tsx`).
+It loads `gtag.js` efficiently and auto-tracks page views across client-side
+navigations — no extra analytics library needed.
+
+Tracking loads **only in production builds and only when a Measurement ID is
+set**, so `npm run dev` never sends hits to the live property.
+
+### Turn it on
+
+1. In [Google Analytics](https://analytics.google.com) create a GA4 property (or
+   use an existing one) and copy its **Measurement ID** from
+   **Admin → Data Streams → your web stream** — it looks like `G-XXXXXXXXXX`.
+2. In **Vercel → Project → Settings → Environment Variables**, add:
+
+   | Key | Value | Environment |
+   | --- | --- | --- |
+   | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | **Production** |
+
+3. **Redeploy.** `NEXT_PUBLIC_*` values are baked in at build time, so a new
+   deployment is required for the ID to take effect.
+
+Locally you can preview the tag with a production build and a Measurement ID:
+
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX" npm run build && npm run start
+```
+
+See `.env.example` for the full list of environment variables the site reads.
+
+---
+
 ## Images
 
 Optimized assets live in `public/images` and `public/brand`. They were generated from the originals
@@ -93,6 +128,7 @@ SRC_DIR="/path/to/originals" node scripts/process-images.mjs
 3. (Optional) set environment variables:
    - `NEXT_PUBLIC_SITE_URL` — the production domain, `https://bluestoneprowash.com` (used for canonical URLs, sitemap, and social share images). If unset, the site falls back to the same domain hard-coded in `lib/site.ts`, so SEO output is correct either way.
    - `NEXT_PUBLIC_QUOTE_ENDPOINT` — form submission endpoint (see above).
+   - `NEXT_PUBLIC_GA_MEASUREMENT_ID` — Google Analytics 4 Measurement ID (see [Analytics](#analytics) below).
 4. Deploy.
 
 ## Custom domain: bluestoneprowash.com

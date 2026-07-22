@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
 import { businessNode, graph, webSiteNode } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@/components/analytics/Analytics";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { MobileCallBar } from "@/components/sections/MobileCallBar";
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <MobileCallBar />
         <JsonLd data={siteGraph} />
+        <Analytics />
       </body>
     </html>
   );
