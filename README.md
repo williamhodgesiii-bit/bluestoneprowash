@@ -74,28 +74,30 @@ integration (`components/analytics/Analytics.tsx`, rendered from `app/layout.tsx
 It loads `gtag.js` efficiently and auto-tracks page views across client-side
 navigations — no extra analytics library needed.
 
-Tracking loads **only in production builds and only when a Measurement ID is
-set**, so `npm run dev` never sends hits to the live property.
+The live property's Measurement ID (`G-RFR5MEWBSX`) is committed as the default,
+so tracking works on the production site with no extra setup. It runs **only on
+the production deployment** — `npm run dev` and Vercel Preview deploys never send
+hits, so the GA property stays clean.
 
-### Turn it on
+### Pointing at a different GA property (optional)
 
-1. In [Google Analytics](https://analytics.google.com) create a GA4 property (or
-   use an existing one) and copy its **Measurement ID** from
-   **Admin → Data Streams → your web stream** — it looks like `G-XXXXXXXXXX`.
-2. In **Vercel → Project → Settings → Environment Variables**, add:
+The ID is read from `NEXT_PUBLIC_GA_MEASUREMENT_ID` first and only falls back to
+the committed default. To send data to a different property, set that variable in
+**Vercel → Project → Settings → Environment Variables** (Production) and redeploy
+(`NEXT_PUBLIC_*` values are baked in at build time).
 
-   | Key | Value | Environment |
-   | --- | --- | --- |
-   | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` | **Production** |
-
-3. **Redeploy.** `NEXT_PUBLIC_*` values are baked in at build time, so a new
-   deployment is required for the ID to take effect.
-
-Locally you can preview the tag with a production build and a Measurement ID:
+Preview the tag locally with a production build:
 
 ```bash
-NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX" npm run build && npm run start
+npm run build && npm run start   # http://localhost:3000 — view source for gtag/js
 ```
+
+### Verify it's live
+
+After deploying, open **[GA4 → Reports → Realtime](https://analytics.google.com)**
+and load `https://www.bluestoneprowash.com` in another tab — you should appear as
+an active user within a few seconds. Or check the page source for a
+`googletagmanager.com/gtag/js?id=G-RFR5MEWBSX` script tag.
 
 See `.env.example` for the full list of environment variables the site reads.
 
