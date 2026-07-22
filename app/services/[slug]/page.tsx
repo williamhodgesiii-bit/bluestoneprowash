@@ -74,14 +74,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="bg-white py-10 sm:py-16">
         <Container>
           {/*
-           * Copy on the left, crew photo on the right. Vertical centering keeps
-           * the shorter copy balanced against the taller portrait photo instead
-           * of leaving a big gap beneath it. Services without a photo just let
-           * the copy span the row at a comfortable reading width. On mobile the
-           * two stack, and the photo is capped so it stays a modest support shot.
+           * Copy on the left, crew photo on the right. The photo is a modest
+           * support shot — capped narrow so it never towers over the copy and
+           * leaves a gap beside the text. Vertical centering keeps the two
+           * balanced. Services without a photo let the copy span the row at a
+           * comfortable reading width. On mobile the two stack.
            */}
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
-            <div className={service.image ? "lg:col-span-7" : "lg:col-span-12 lg:max-w-3xl"}>
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-10">
+            <div className={service.image ? "lg:col-span-8" : "lg:col-span-12 lg:max-w-3xl"}>
               <h2 className="text-2xl font-extrabold tracking-tight text-ink sm:text-[1.7rem]">
                 {service.name} done right
               </h2>
@@ -104,13 +104,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </div>
 
             {service.image && (
-              <figure className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl shadow-lift ring-1 ring-black/5 lg:col-span-5 lg:mx-0 lg:max-w-none">
+              <figure className="mx-auto w-full max-w-[17rem] overflow-hidden rounded-2xl shadow-lift ring-1 ring-black/5 lg:col-span-4 lg:mx-0 lg:ml-auto">
                 <div className="relative aspect-[4/5]">
                   <Image
                     src={service.image.src}
                     alt={service.image.alt}
                     fill
-                    sizes="(max-width: 1023px) 384px, 40vw"
+                    sizes="(max-width: 1023px) 272px, 272px"
                     className="object-cover"
                   />
                 </div>

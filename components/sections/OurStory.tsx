@@ -15,7 +15,7 @@ export function OurStory() {
     <section className="bg-white py-8 sm:py-10">
       <Container>
         <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-10">
-          {/* Photo + stamp */}
+          {/* Photos + stamp */}
           <div className="lg:col-span-6">
             <Reveal className="relative">
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-lift">
@@ -27,7 +27,16 @@ export function OurStory() {
                   className="object-cover"
                 />
               </div>
-              <div className="stamp absolute -bottom-4 -right-3 rotate-[-4deg] bg-white px-4 py-2 text-center text-brand-700 shadow-card sm:-right-5">
+              <div className="relative mt-3 aspect-[21/9] overflow-hidden rounded-2xl shadow-lift sm:mt-4">
+                <Image
+                  src="/images/truck-night.jpg"
+                  alt="The Bluestone Pro Wash truck and equipment trailer parked for an after-hours commercial wash in Birmingham"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 48vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="stamp absolute -bottom-4 right-3 rotate-[-4deg] bg-white px-4 py-2 text-center text-brand-700 shadow-card sm:-right-5">
                 <div className="text-lg leading-none">EST. 2022</div>
                 <div className="mt-1 text-[0.6rem] tracking-[0.2em] text-ink-soft">BIRMINGHAM, AL</div>
               </div>
