@@ -20,11 +20,17 @@ export function BeforeAfter({
   after,
   alt,
   priority = false,
+  aspectClassName = "aspect-[3/4]",
+  sizes = "(max-width: 1023px) 92vw, 440px",
 }: {
   before: string;
   after: string;
   alt: string;
   priority?: boolean;
+  /** Frame aspect ratio. Defaults to portrait 3:4 to match the phone photos. */
+  aspectClassName?: string;
+  /** Responsive source-size hint for next/image. */
+  sizes?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const beforeRef = useRef<HTMLDivElement>(null);
@@ -87,7 +93,7 @@ export function BeforeAfter({
     <div
       ref={containerRef}
       style={{ ["--pos" as string]: "52%" } as React.CSSProperties}
-      className="group relative aspect-[1200/820] w-full touch-pan-y select-none overflow-hidden rounded-[1.25rem] bg-night-900 shadow-lift ring-1 ring-black/5"
+      className={`group relative ${aspectClassName} w-full touch-pan-y select-none overflow-hidden rounded-[1.25rem] bg-night-900 shadow-lift ring-1 ring-black/5`}
       onPointerDown={(e) => {
         startX.current = e.clientX;
         startY.current = e.clientY;
@@ -140,7 +146,7 @@ export function BeforeAfter({
         src={after}
         alt={`${alt}, after cleaning`}
         fill
-        sizes="(max-width: 768px) 100vw, 70vw"
+        sizes={sizes}
         priority={priority}
         className="pointer-events-none object-cover"
         draggable={false}
@@ -152,7 +158,7 @@ export function BeforeAfter({
           src={before}
           alt={`${alt}, before cleaning`}
           fill
-          sizes="(max-width: 768px) 100vw, 70vw"
+          sizes={sizes}
           priority={priority}
           className="object-cover"
           draggable={false}

@@ -6,10 +6,10 @@ import { Reveal } from "../motion/Reveal";
 const shots = [
   { src: "/images/house-showcase.jpg", alt: "Freshly cleaned Birmingham home exterior", tag: "House Washing", ratio: "aspect-[16/10]" },
   { src: "/images/action-window-door.jpg", alt: "Streak-free window and glass-door cleaning", tag: "Window Cleaning", ratio: "aspect-[4/5]" },
-  { src: "/images/ba/roof-after.jpg", alt: "Algae-free roof after a soft wash", tag: "Roof Washing", ratio: "aspect-[3/2]" },
+  { src: "/images/ba/siding-after.jpg", alt: "Algae-free vinyl siding after a soft wash", tag: "Soft Washing", ratio: "aspect-[4/5]" },
   { src: "/images/action-waterfed-pole.jpg", alt: "Water-fed pole reaching second-story windows", tag: "Pure-Water System", ratio: "aspect-[3/2]" },
-  { src: "/images/ba/driveway-after.jpg", alt: "Restored concrete driveway", tag: "Pressure Washing", ratio: "aspect-[4/5]" },
-  { src: "/images/ba/sunroom-after.jpg", alt: "Crystal-clear sunroom glass", tag: "Glass Detailing", ratio: "aspect-[16/10]" },
+  { src: "/images/ba/driveway-after.jpg", alt: "Restored concrete driveway", tag: "Pressure Washing", ratio: "aspect-[3/4]" },
+  { src: "/images/ba/gutters-after.jpg", alt: "Brightened gutters and clean fascia", tag: "Gutter Cleaning", ratio: "aspect-[4/5]" },
 ];
 
 export function Gallery() {

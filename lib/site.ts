@@ -118,46 +118,111 @@ export const services: Service[] = [
 ];
 
 export type Transformation = {
-  id: string;
-  label: string;
   title: string;
   caption: string;
   before: string;
   after: string;
 };
 
-export const transformations: Transformation[] = [
+export type TransformationCategory = {
+  id: string;
+  label: string;
+  items: Transformation[];
+};
+
+/**
+ * Before/after results, grouped by service so the tabs read as the real
+ * categories. Each category holds one or more matched pairs; the section lets
+ * you page through the pairs inside the active category. Order the items with
+ * the strongest, best-aligned pair first — that's the one shown by default.
+ * Image files come from `scripts/process-before-after.mjs`.
+ */
+export const transformationCategories: TransformationCategory[] = [
   {
-    id: "driveway",
-    label: "Driveway",
-    title: "Concrete driveway restoration",
-    caption: "Years of embedded dirt, tire marks, and organic staining, lifted in a single visit.",
-    before: "/images/ba/driveway-before.jpg",
-    after: "/images/ba/driveway-after.jpg",
+    id: "pressure-washing",
+    label: "Pressure Washing",
+    items: [
+      {
+        title: "Sloped driveway restoration",
+        caption:
+          "A steep concrete drive stripped of algae, dirt, and tire staining from the garage all the way down.",
+        before: "/images/ba/driveway-before.jpg",
+        after: "/images/ba/driveway-after.jpg",
+      },
+      {
+        title: "Concrete pad deep clean",
+        caption:
+          "Rust and years of organic staining pulled out of a wide concrete pad with a surface cleaner.",
+        before: "/images/ba/concrete-before.jpg",
+        after: "/images/ba/concrete-after.jpg",
+      },
+    ],
   },
   {
-    id: "roof",
-    label: "Roof",
-    title: "Soft-wash roof cleaning",
-    caption: "Black algae streaks safely removed without ever stepping on a brittle shingle.",
-    before: "/images/ba/roof-before.jpg",
-    after: "/images/ba/roof-after.jpg",
+    id: "soft-washing",
+    label: "Soft Washing",
+    items: [
+      {
+        title: "Algae-stained siding",
+        caption:
+          "Green algae and mildew rinsed off delicate siding with a gentle, low-pressure soft wash.",
+        before: "/images/ba/siding-before.jpg",
+        after: "/images/ba/siding-after.jpg",
+      },
+      {
+        title: "Fence and siding refresh",
+        caption:
+          "A weathered wood fence and the house behind it brought back to life, grime and gray washed away.",
+        before: "/images/ba/fence-before.jpg",
+        after: "/images/ba/fence-after.jpg",
+      },
+    ],
   },
   {
-    id: "aerial",
-    label: "Rooftop",
-    title: "Full roof algae treatment",
-    caption: "An overhead look at a complete Gloeocapsa algae treatment, edge to edge.",
-    before: "/images/ba/aerial-before.jpg",
-    after: "/images/ba/aerial-after.jpg",
+    id: "roof-washing",
+    label: "Roof Washing",
+    items: [
+      {
+        title: "Full roof soft wash",
+        caption:
+          "An aerial look at a complete roof treatment — black Gloeocapsa algae lifted and the shingles brightened edge to edge.",
+        before: "/images/ba/roof-before.jpg",
+        after: "/images/ba/roof-after.jpg",
+      },
+    ],
   },
   {
-    id: "sunroom",
-    label: "Glass",
-    title: "Sunroom and glass detailing",
-    caption: "Hard-water film and grime cleared for true spot-free clarity.",
-    before: "/images/ba/sunroom-before.jpg",
-    after: "/images/ba/sunroom-after.jpg",
+    id: "window-cleaning",
+    label: "Window Cleaning",
+    items: [
+      {
+        title: "Sunroom glass detailing",
+        caption:
+          "Cloudy, filmed-over sunroom glass brought back to crystal clarity, inside and out.",
+        before: "/images/ba/sunroom-before.jpg",
+        after: "/images/ba/sunroom-after.jpg",
+      },
+      {
+        title: "Window and glass cleaning",
+        caption:
+          "Streaks, dust, and hard-water film cleared for spot-free, see-through panes.",
+        before: "/images/ba/windows-before.jpg",
+        after: "/images/ba/windows-after.jpg",
+      },
+    ],
+  },
+  {
+    id: "gutter-cleaning",
+    label: "Gutter Cleaning",
+    items: [
+      {
+        title: "Gutter face brightening",
+        caption:
+          "Black streaks and grime scrubbed off the gutter face and fascia until the trim looks new again.",
+        before: "/images/ba/gutters-before.jpg",
+        after: "/images/ba/gutters-after.jpg",
+      },
+    ],
   },
 ];
 
