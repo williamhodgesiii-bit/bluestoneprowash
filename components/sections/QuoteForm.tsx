@@ -15,6 +15,11 @@ const contactMethods: { icon: IconName; label: string; value: string; href?: str
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+// The online form isn't wired up for submissions yet, so we frost it over and
+// point people to call/email in the meantime. Flip this to `false` (once the
+// Web3Forms key is confirmed working) to switch the live form back on.
+const FORM_COMING_SOON: boolean = true;
+
 export function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
 
@@ -96,7 +101,7 @@ export function QuoteForm() {
           </div>
 
           {/* Right: the form */}
-          <div className="bg-white p-6 text-ink sm:p-10 lg:col-span-7">
+          <div className="relative bg-white p-6 text-ink sm:p-10 lg:col-span-7">
             {status === "sent" ? (
               <div className="flex h-full min-h-[420px] flex-col items-center justify-center text-center">
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
@@ -119,7 +124,15 @@ export function QuoteForm() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <>
+                {/* The real form, frosted + made inert while it's coming soon. */}
+                <div
+                  className={
+                    FORM_COMING_SOON ? "pointer-events-none select-none opacity-50 blur-[3px]" : undefined
+                  }
+                  inert={FORM_COMING_SOON}
+                >
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 {/* Spam honeypot — hidden from people, tempting to bots. */}
                 <input
                   type="checkbox"
@@ -185,7 +198,39 @@ export function QuoteForm() {
                 <p className="text-center text-xs text-ink-soft">
                   We only use your details to prepare your quote. No spam, ever.
                 </p>
-              </form>
+                  </form>
+                </div>
+
+                {FORM_COMING_SOON && (
+                  <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-8">
+                    <div className="w-full max-w-sm rounded-2xl border border-steel-200 bg-white/95 p-5 text-center shadow-lift backdrop-blur sm:p-7">
+                      <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-brand-50 text-brand-600">
+                        <Icon name="Clock" className="h-6 w-6" />
+                      </span>
+                      <h3 className="mt-4 text-xl font-extrabold text-ink">Quote form coming soon</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                        Our online form is almost ready. For now, reach us directly and we&apos;ll
+                        send a fast, free quote.
+                      </p>
+                      <div className="mt-5 flex flex-col gap-2.5">
+                        <a
+                          href={site.phoneHref}
+                          className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 font-bold text-white transition-colors hover:bg-brand-700"
+                        >
+                          <Icon name="Phone" className="h-4 w-4 shrink-0" /> {site.phoneDisplay}
+                        </a>
+                        <a
+                          href={`mailto:${site.email}`}
+                          className="inline-flex items-center justify-center gap-2 rounded-lg border border-steel-300 bg-white px-3 py-3 text-[0.8rem] font-bold text-ink transition-colors hover:border-brand-300 hover:text-brand-700 sm:text-sm"
+                        >
+                          <Icon name="Mail" className="h-4 w-4 shrink-0 text-brand-600" />
+                          <span className="break-all">{site.email}</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
