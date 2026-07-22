@@ -55,13 +55,23 @@ export function Transformations() {
                   onClick={() => selectCategory(i)}
                   aria-pressed={i === catIdx}
                   className={cn(
-                    "rounded-lg border px-4 py-2 text-sm font-bold transition-colors",
+                    "flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-bold transition-colors",
                     i === catIdx
                       ? "border-brand-500 bg-brand-600 text-white"
                       : "border-white/15 bg-white/5 text-white/70 hover:border-white/35 hover:text-white"
                   )}
                 >
                   {c.label}
+                  {c.items.length > 1 && (
+                    <span
+                      className={cn(
+                        "rounded-full px-1.5 py-0.5 text-[0.65rem] font-bold leading-none tabular-nums",
+                        i === catIdx ? "bg-white/25 text-white" : "bg-brand-500/25 text-brand-200"
+                      )}
+                    >
+                      {c.items.length}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
@@ -88,40 +98,46 @@ export function Transformations() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Page between pairs — only when a category has more than one */}
+              {/* Page between examples — spelled out so it's obvious a category
+                  holds more than one before/after. Hidden for single-example ones. */}
               {multi && (
-                <div className="mt-4 flex items-center justify-center gap-4">
-                  <button
-                    type="button"
-                    onClick={() => step(-1)}
-                    aria-label="Previous result"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-colors hover:border-white/35 hover:text-white"
-                  >
-                    <Icon name="ChevronLeft" className="h-5 w-5" />
-                  </button>
-                  <div className="flex items-center gap-2">
-                    {category.items.map((_, j) => (
-                      <button
-                        key={j}
-                        type="button"
-                        onClick={() => setItemIdx(j)}
-                        aria-label={`Show result ${j + 1} of ${count}`}
-                        aria-current={j === itemIdx}
-                        className={cn(
-                          "h-2 rounded-full transition-all",
-                          j === itemIdx ? "w-6 bg-brand-400" : "w-2 bg-white/30 hover:bg-white/50"
-                        )}
-                      />
-                    ))}
+                <div className="mt-5 flex flex-col items-center gap-2.5">
+                  <div className="flex items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => step(-1)}
+                      aria-label="Previous example"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/85 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
+                    >
+                      <Icon name="ChevronLeft" className="h-5 w-5" />
+                    </button>
+                    <div className="flex items-center gap-2.5">
+                      {category.items.map((_, j) => (
+                        <button
+                          key={j}
+                          type="button"
+                          onClick={() => setItemIdx(j)}
+                          aria-label={`Show example ${j + 1} of ${count}`}
+                          aria-current={j === itemIdx}
+                          className={cn(
+                            "h-2.5 rounded-full transition-all",
+                            j === itemIdx ? "w-7 bg-brand-400" : "w-2.5 bg-white/35 hover:bg-white/60"
+                          )}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => step(1)}
+                      aria-label="Next example"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/85 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
+                    >
+                      <Icon name="ChevronRight" className="h-5 w-5" />
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => step(1)}
-                    aria-label="Next result"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-colors hover:border-white/35 hover:text-white"
-                  >
-                    <Icon name="ChevronRight" className="h-5 w-5" />
-                  </button>
+                  <p className="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-white/65">
+                    Example {itemIdx + 1} of {count} · tap the arrows for more
+                  </p>
                 </div>
               )}
             </div>

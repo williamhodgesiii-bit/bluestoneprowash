@@ -171,6 +171,19 @@ export const transformationCategories: TransformationCategory[] = [
     ],
   },
   {
+    id: "roof-washing",
+    label: "Roof Washing",
+    items: [
+      {
+        title: "Full roof soft wash",
+        caption:
+          "An aerial look at a complete roof treatment — black Gloeocapsa algae lifted and the shingles brightened edge to edge.",
+        before: "/images/ba/roof-before.jpg",
+        after: "/images/ba/roof-after.jpg",
+      },
+    ],
+  },
+  {
     id: "soft-washing",
     label: "Soft Washing",
     items: [
@@ -187,19 +200,6 @@ export const transformationCategories: TransformationCategory[] = [
           "A weathered wood fence and the house behind it brought back to life, grime and gray washed away.",
         before: "/images/ba/fence-before.jpg",
         after: "/images/ba/fence-after.jpg",
-      },
-    ],
-  },
-  {
-    id: "roof-washing",
-    label: "Roof Washing",
-    items: [
-      {
-        title: "Full roof soft wash",
-        caption:
-          "An aerial look at a complete roof treatment — black Gloeocapsa algae lifted and the shingles brightened edge to edge.",
-        before: "/images/ba/roof-before.jpg",
-        after: "/images/ba/roof-after.jpg",
       },
     ],
   },
