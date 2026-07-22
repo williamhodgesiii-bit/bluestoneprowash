@@ -14,8 +14,8 @@ export const site = {
   tagline: "Pressure Washing & Exterior Cleaning in Greater Birmingham",
   description:
     "Pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned and careful with every surface.",
-  // Production domain — buy + point DNS at the deploy, then (optionally) set
-  // NEXT_PUBLIC_SITE_URL to it. Until purchased this is the intended target.
+  // Production domain (registered via Cloudflare Registrar, served by Vercel).
+  // NEXT_PUBLIC_SITE_URL can override this per-environment; see lib/url.ts.
   url: "https://bluestoneprowash.com",
   // Interim inbox during the rebrand; swap to a bluestoneprowash.com address later.
   email: "birminghamprowash@gmail.com",

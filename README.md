@@ -91,17 +91,38 @@ SRC_DIR="/path/to/originals" node scripts/process-images.mjs
 1. Push this repo to GitHub.
 2. In Vercel: **New Project → Import** the repo. Framework preset auto-detects **Next.js** — no config needed.
 3. (Optional) set environment variables:
-   - `NEXT_PUBLIC_SITE_URL` — your final domain, e.g. `https://bluestoneprowash.com` (used for canonical URLs, sitemap, and social share images).
+   - `NEXT_PUBLIC_SITE_URL` — the production domain, `https://bluestoneprowash.com` (used for canonical URLs, sitemap, and social share images). If unset, the site falls back to the same domain hard-coded in `lib/site.ts`, so SEO output is correct either way.
    - `NEXT_PUBLIC_QUOTE_ENDPOINT` — form submission endpoint (see above).
 4. Deploy.
 
-Until `NEXT_PUBLIC_SITE_URL` is set, metadata falls back to the live Vercel URL automatically, so
-previews share correctly.
+## Custom domain: bluestoneprowash.com
 
-### Switching to the `.com` later
+The domain is registered with **Cloudflare Registrar** and served by **Vercel**.
+All SEO output (canonicals, sitemap, robots, Open Graph, JSON-LD) already points at
+`https://bluestoneprowash.com` via `lib/site.ts` → `lib/url.ts`.
 
-Add the custom domain in **Vercel → Project → Settings → Domains**, then set
-`NEXT_PUBLIC_SITE_URL` to that domain and redeploy. Nothing else needs to change.
+### One-time DNS setup
+
+1. **Vercel** → Project → **Settings → Domains** → add `bluestoneprowash.com` **and**
+   `www.bluestoneprowash.com`. Keep the apex as the primary; Vercel then 308-redirects
+   `www` → apex automatically. Vercel will display the exact DNS records it wants —
+   use those values if they differ from the typical ones below.
+2. **Cloudflare** → dash.cloudflare.com → `bluestoneprowash.com` → **DNS → Records**:
+
+   | Type | Name | Content | Proxy status |
+   | --- | --- | --- | --- |
+   | A | `@` | `76.76.21.21` | **DNS only** (gray cloud) |
+   | CNAME | `www` | `cname.vercel-dns.com` | **DNS only** (gray cloud) |
+
+   > ⚠️ **Proxy status must be "DNS only" (gray cloud), not "Proxied" (orange).**
+   > Proxying through Cloudflare in front of Vercel causes SSL errors / redirect
+   > loops and blocks Vercel from issuing its certificate. Delete any conflicting
+   > A/AAAA/CNAME records Cloudflare auto-created for `@` or `www`.
+3. Back in Vercel's Domains screen, wait for both domains to show **Valid
+   Configuration** (usually minutes; propagation can take up to an hour). Vercel
+   provisions the SSL certificate automatically.
+4. Verify: `https://bluestoneprowash.com` loads, and `https://www.bluestoneprowash.com`
+   redirects to it.
 
 ---
 
