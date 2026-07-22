@@ -104,15 +104,20 @@ All SEO output (canonicals, sitemap, robots, Open Graph, JSON-LD) already points
 ### One-time DNS setup
 
 1. **Vercel** → Project → **Settings → Domains** → add `bluestoneprowash.com` **and**
-   `www.bluestoneprowash.com`. Keep the apex as the primary; Vercel then 308-redirects
-   `www` → apex automatically. Vercel will display the exact DNS records it wants —
-   use those values if they differ from the typical ones below.
+   `www.bluestoneprowash.com`. `www` is the primary; Vercel 308-redirects the apex
+   `bluestoneprowash.com` → `www` automatically (this matches the canonical host in
+   `lib/site.ts`). Vercel will display the exact DNS records it wants — use those
+   values if they differ from the typical ones below.
 2. **Cloudflare** → dash.cloudflare.com → `bluestoneprowash.com` → **DNS → Records**:
 
    | Type | Name | Content | Proxy status |
    | --- | --- | --- | --- |
    | A | `@` | `76.76.21.21` | **DNS only** (gray cloud) |
-   | CNAME | `www` | `cname.vercel-dns.com` | **DNS only** (gray cloud) |
+   | CNAME | `www` | *(use the exact per-project target Vercel shows, e.g. `xxxx.vercel-dns-0NN.com`)* | **DNS only** (gray cloud) |
+
+   > Vercel now issues a unique per-project CNAME target (shown in the Domains
+   > screen) instead of the generic `cname.vercel-dns.com`; the legacy value and
+   > apex IP `76.76.21.21` still work. Copy whatever Vercel displays.
 
    > ⚠️ **Proxy status must be "DNS only" (gray cloud), not "Proxied" (orange).**
    > Proxying through Cloudflare in front of Vercel causes SSL errors / redirect
@@ -121,7 +126,7 @@ All SEO output (canonicals, sitemap, robots, Open Graph, JSON-LD) already points
 3. Back in Vercel's Domains screen, wait for both domains to show **Valid
    Configuration** (usually minutes; propagation can take up to an hour). Vercel
    provisions the SSL certificate automatically.
-4. Verify: `https://bluestoneprowash.com` loads, and `https://www.bluestoneprowash.com`
+4. Verify: `https://www.bluestoneprowash.com` loads, and `https://bluestoneprowash.com`
    redirects to it.
 
 ---

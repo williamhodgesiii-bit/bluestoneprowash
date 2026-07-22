@@ -15,8 +15,10 @@ export const site = {
   description:
     "Pressure washing, soft washing, roof cleaning, window and gutter cleaning across Greater Birmingham. Locally owned and careful with every surface.",
   // Production domain (registered via Cloudflare Registrar, served by Vercel).
+  // This is the canonical, primary host: the apex bluestoneprowash.com 308-
+  // redirects to www, so www is what we declare everywhere for SEO consistency.
   // NEXT_PUBLIC_SITE_URL can override this per-environment; see lib/url.ts.
-  url: "https://bluestoneprowash.com",
+  url: "https://www.bluestoneprowash.com",
   // Interim inbox during the rebrand; swap to a bluestoneprowash.com address later.
   email: "birminghamprowash@gmail.com",
   phoneDisplay: "(205) 547-1941",
