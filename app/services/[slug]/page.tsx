@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { QuoteBand } from "@/components/sections/QuoteBand";
 import { Container } from "@/components/ui/Container";
@@ -95,6 +96,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
 
           <aside className="lg:col-span-5">
+            {service.image && (
+              <figure className="relative mb-6 aspect-[4/5] overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5">
+                <Image
+                  src={service.image.src}
+                  alt={service.image.alt}
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 440px"
+                  className="object-cover"
+                />
+              </figure>
+            )}
             <div className="rounded-2xl border border-steel-200 bg-steel-50 p-6">
               <h2 className="text-lg font-extrabold text-ink">Other services</h2>
               <ul className="mt-4 flex flex-col gap-1">

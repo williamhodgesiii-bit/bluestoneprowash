@@ -64,6 +64,8 @@ export type Service = {
   points: string[];
   surfaces: string;
   featured?: boolean;
+  // Optional crew-in-action photo shown on the service's own page.
+  image?: { src: string; alt: string };
 };
 
 export const services: Service[] = [
@@ -86,6 +88,10 @@ export const services: Service[] = [
     points: ["House siding & stucco", "Vinyl, wood & Hardie", "Fences & outdoor structures"],
     surfaces: "Siding · Stucco · Painted wood",
     featured: true,
+    image: {
+      src: "/images/service-soft-washing.jpg",
+      alt: "Bluestone Pro Wash crew soft washing a covered porch",
+    },
   },
   {
     id: "roof-washing",
@@ -105,6 +111,10 @@ export const services: Service[] = [
       "Streak-free, spot-free glass using a purified water-fed pole system — every window dries crystal clear, inside and out.",
     points: ["Interior & exterior", "Screens & tracks", "Spot-free pure water"],
     surfaces: "Windows · Glass doors · Sunrooms",
+    image: {
+      src: "/images/service-window-cleaning.jpg",
+      alt: "Bluestone Pro Wash crew cleaning an arched window with a water-fed pole",
+    },
   },
   {
     id: "gutter-cleaning",
