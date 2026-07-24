@@ -122,6 +122,19 @@ export function Footer() {
             <Icon name="MapPin" className="h-4 w-4 text-brand-400" /> Locally owned in Birmingham
           </p>
         </div>
+
+        {/* Design credit */}
+        <div className="mt-5 flex flex-col items-center justify-center gap-2.5 sm:flex-row lg:mt-6">
+          <span className="text-[0.8rem] text-white/40 sm:text-sm">Website designed by</span>
+          <a
+            href="https://builtbyhodges.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-1.5 text-[0.8rem] font-semibold text-white/75 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white sm:text-sm"
+          >
+            Built By Hodges
+          </a>
+        </div>
       </Container>
     </footer>
   );
