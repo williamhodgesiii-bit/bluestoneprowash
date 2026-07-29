@@ -121,13 +121,14 @@ export function QuoteForm() {
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
                   <Icon name="BadgeCheck" className="h-8 w-8" />
                 </span>
-                <h3 className="mt-5 text-2xl font-extrabold text-ink">Thanks!</h3>
+                <h3 className="mt-5 text-2xl font-extrabold text-ink">Thanks — we&apos;ve got it!</h3>
                 <p className="mt-3 max-w-sm text-ink-soft">
-                  A team member will contact you shortly. You can also reach us at{" "}
+                  We&apos;ll get back to you with a free quote, usually the same day. Need us sooner?
+                  Call or text{" "}
                   <a href={site.phoneHref} className="font-semibold text-brand-700 hover:text-brand-600">
                     {site.phoneDisplay}
                   </a>{" "}
-                  or{" "}
+                  or email{" "}
                   <a
                     href={`mailto:${site.email}`}
                     className="font-semibold text-brand-700 hover:text-brand-600"
