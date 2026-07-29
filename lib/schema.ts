@@ -1,4 +1,13 @@
-import { services, serviceAreas, site, socials, testimonials, type Faq, type Service } from "./site";
+import {
+  services,
+  serviceAreas,
+  site,
+  socials,
+  testimonials,
+  contentUpdated,
+  type Faq,
+  type Service,
+} from "./site";
 
 /**
  * JSON-LD builders for the site's entity graph.
@@ -49,18 +58,45 @@ export function businessNode(base: string): JsonLdNode {
     image: `${base}/og.png`,
     logo: `${base}/brand/logo.png`,
     priceRange: "$$",
+    currenciesAccepted: "USD",
+    slogan: site.tagline,
     foundingDate: String(site.established),
+    knowsAbout: [
+      "Exterior cleaning",
+      "Pressure washing",
+      "Soft washing",
+      "Roof cleaning and algae removal",
+      "House washing",
+      "Window cleaning",
+      "Gutter cleaning",
+    ],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Birmingham",
       addressRegion: "AL",
       addressCountry: "US",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    },
+    // The metro this mobile crew covers — a named-city list for exact matches
+    // like "Hoover", plus a radius for everything in between.
     areaServed: serviceAreas.map((city) => ({
       "@type": "City",
       name: city,
       containedInPlace: { "@type": "State", name: "Alabama" },
     })),
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: site.geo.latitude,
+        longitude: site.geo.longitude,
+      },
+      geoRadius: site.geo.serviceRadiusKm * 1000,
+    },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -69,10 +105,22 @@ export function businessNode(base: string): JsonLdNode {
         closes: "19:00",
       },
     ],
-    makesOffer: services.map((s) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: s.name, description: s.blurb },
-    })),
+    // A linked catalog (not a bare list) so AI/search can enumerate the services
+    // and follow each to its own page.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Exterior cleaning services",
+      itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${base}/services/${s.id}#service`,
+          name: s.name,
+          description: s.blurb,
+          url: `${base}/services/${s.id}`,
+        },
+      })),
+    },
     ...(sameAs.length > 0 && { sameAs }),
     // Ratings/reviews are the real 5-star Google reviews rendered on the site.
     // Keep this list in sync with the live profile so the numbers stay honest.
@@ -128,6 +176,7 @@ export function webPageNode(
     inLanguage: "en-US",
     isPartOf: { "@id": WEBSITE_ID(base) },
     about: { "@id": BUSINESS_ID(base) },
+    dateModified: contentUpdated,
     primaryImageOfPage: `${base}/og.png`,
     ...(opts.hasBreadcrumb && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
   };

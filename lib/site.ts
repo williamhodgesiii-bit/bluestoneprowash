@@ -27,6 +27,10 @@ export const site = {
   smsHref: `sms:${phone}`,
   googleReviewsUrl: "https://www.google.com/search?q=birmingham+pro+wash",
   region: "Greater Birmingham, Alabama",
+  // Approximate center of the service area (Birmingham) and how far we travel,
+  // for LocalBusiness geo + service-area structured data. Coarse by design —
+  // this is a mobile service that comes to you, not a walk-in storefront.
+  geo: { latitude: 33.5186, longitude: -86.8104, serviceRadiusKm: 64 },
   established: 2022,
   hours: "Mon to Sat · 7am to 7pm",
   // Web3Forms public access key for the quote form — free, unlimited form→email.
@@ -396,6 +400,18 @@ export const faqs: Faq[] = [
   {
     q: "How often should I have my home cleaned?",
     a: "For most Birmingham homes, an annual exterior soft wash keeps mold and algae in check, and driveways benefit from a wash every 1 to 2 years. Roofs typically need treatment every 2 to 4 years depending on tree cover and shade.",
+  },
+  {
+    q: "What areas around Birmingham do you serve?",
+    a: "We're based in Birmingham and cover the Greater Birmingham metro — including Hoover, Vestavia Hills, Mountain Brook, Homewood, Pelham, Helena, Chelsea, Alabaster, Greystone, Inverness, Trussville, Gardendale, and Calera. If you're nearby and don't see your town listed, just ask.",
+  },
+  {
+    q: "How fast can I get a quote?",
+    a: "Most quotes are same-day. Call or text us, or send the quick form on our contact page, and we'll reply with a clear, upfront price — no obligation.",
+  },
+  {
+    q: "Are you locally owned?",
+    a: "Yes. Bluestone Pro Wash is locally owned and operated in Birmingham and has been running since 2022. The people who answer the phone are the same crew who show up and do the work.",
   },
 ];
 
