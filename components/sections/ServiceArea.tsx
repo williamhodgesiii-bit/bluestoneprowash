@@ -1,25 +1,28 @@
+import Link from "next/link";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Reveal } from "../motion/Reveal";
-import { serviceAreas } from "@/lib/site";
+import { locations } from "@/lib/site";
 
 function Track({ reverse = false }: { reverse?: boolean }) {
-  const row = [...serviceAreas, ...serviceAreas];
+  const row = [...locations, ...locations];
   return (
     <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]">
       <div
         className="flex shrink-0 items-center gap-3 pr-3 [animation:marquee_42s_linear_infinite] [will-change:transform]"
         style={reverse ? { animationDirection: "reverse" } : undefined}
       >
-        {row.map((city, i) => (
-          <span
+        {row.map((loc, i) => (
+          <Link
             key={i}
-            className="flex items-center gap-2 whitespace-nowrap rounded-lg border border-steel-300 bg-white px-4 py-2 text-sm font-bold uppercase tracking-wide text-ink shadow-card"
+            href={`/service-areas/${loc.slug}`}
+            prefetch={false}
+            className="flex items-center gap-2 whitespace-nowrap rounded-lg border border-steel-300 bg-white px-4 py-2 text-sm font-bold uppercase tracking-wide text-ink shadow-card transition-colors hover:border-brand-300 hover:text-brand-700"
           >
             <Icon name="MapPin" className="h-4 w-4 text-brand-600" />
-            {city}
-          </span>
+            {loc.name}
+          </Link>
         ))}
       </div>
     </div>

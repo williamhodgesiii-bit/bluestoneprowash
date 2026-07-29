@@ -74,6 +74,7 @@ export type NavLink = { label: string; href: string };
 
 export const navLinks: NavLink[] = [
   { label: "Services", href: "/services" },
+  { label: "Service Areas", href: "/service-areas" },
   { label: "Our Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -361,22 +362,217 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export const serviceAreas: string[] = [
-  "Birmingham",
-  "Hoover",
-  "Vestavia Hills",
-  "Mountain Brook",
-  "Homewood",
-  "Pelham",
-  "Helena",
-  "Chelsea",
-  "Alabaster",
-  "Greystone",
-  "Inverness",
-  "Trussville",
-  "Gardendale",
-  "Calera",
+export type Location = {
+  slug: string; // /service-areas/<slug>
+  name: string;
+  county: string;
+  region: string; // grouping label, e.g. "Over the Mountain"
+  zips: string[];
+  neighborhoods: string[];
+  adjacent: string[]; // slugs of nearby towns, for cross-linking
+  lat: number;
+  lng: number;
+  intro: string; // unique 2–3 sentence lead for the town's page
+};
+
+/**
+ * Towns we serve, each with its own /service-areas/<slug> page. The data here is
+ * real and specific per town (county, ZIPs, neighborhoods, nearby areas). That
+ * genuine local detail is what keeps each page useful instead of a thin,
+ * near-duplicate "doorway" page. Add a town by adding an entry — the nav
+ * dropdown, footer, sitemap, and llms.txt all read from this list.
+ *
+ * NOTE: neighborhood/ZIP data is a best-knowledge draft; spot-check before you
+ * lean on it in ads.
+ */
+export const locations: Location[] = [
+  {
+    slug: "birmingham",
+    name: "Birmingham",
+    county: "Jefferson County",
+    region: "Jefferson County",
+    zips: ["35203", "35205", "35209", "35222"],
+    neighborhoods: ["Forest Park", "Highland Park", "Avondale", "Crestwood"],
+    adjacent: ["homewood", "mountain-brook", "vestavia-hills", "gardendale"],
+    lat: 33.5186,
+    lng: -86.8104,
+    intro:
+      "Birmingham's older neighborhoods — the historic homes of Forest Park and Highland Park, the bungalows of Avondale and Crestwood — carry decades of grime, algae, and oxidation. We pressure-wash city driveways, sidewalks, and brick, and soft-wash siding and roofs across the Magic City without stripping original materials.",
+  },
+  {
+    slug: "hoover",
+    name: "Hoover",
+    county: "Jefferson & Shelby County",
+    region: "Over the Mountain",
+    zips: ["35226", "35244", "35242", "35216"],
+    neighborhoods: ["Bluff Park", "Green Valley", "Ross Bridge", "Trace Crossings"],
+    adjacent: ["vestavia-hills", "homewood", "pelham", "birmingham"],
+    lat: 33.4054,
+    lng: -86.8114,
+    intro:
+      "Hoover's shaded Over-the-Mountain lots and its mix of brick, Hardie, and vinyl homes green up fast in Alabama humidity. We soft-wash roofs and siding from Bluff Park to Ross Bridge and Trace Crossings, and pressure-wash the long, sloped driveways these hillside properties are known for.",
+  },
+  {
+    slug: "vestavia-hills",
+    name: "Vestavia Hills",
+    county: "Jefferson County",
+    region: "Over the Mountain",
+    zips: ["35216", "35243", "35242"],
+    neighborhoods: ["Cahaba Heights", "Liberty Park", "Rocky Ridge"],
+    adjacent: ["mountain-brook", "homewood", "hoover", "birmingham"],
+    lat: 33.4488,
+    lng: -86.7877,
+    intro:
+      "Vestavia Hills sits under heavy tree cover on Shades Mountain, so roofs and north-facing siding pick up black streaking and moss quickly. We soft-wash shingles and exterior walls across Cahaba Heights and Rocky Ridge, and brighten the concrete drives and pool decks these established homes are built around.",
+  },
+  {
+    slug: "mountain-brook",
+    name: "Mountain Brook",
+    county: "Jefferson County",
+    region: "Over the Mountain",
+    zips: ["35223", "35213", "35253"],
+    neighborhoods: ["Crestline", "English Village", "Mountain Brook Village", "Cherokee Bend"],
+    adjacent: ["homewood", "vestavia-hills", "birmingham"],
+    lat: 33.5007,
+    lng: -86.7522,
+    intro:
+      "Mountain Brook's brick Tudors and stone homes under a dense canopy are exactly the surfaces that need a gentle touch. We soft-wash roofs, brick, and painted trim across Crestline, English Village, and Cherokee Bend — low pressure only — and carefully clean stone and aggregate walkways.",
+  },
+  {
+    slug: "homewood",
+    name: "Homewood",
+    county: "Jefferson County",
+    region: "Over the Mountain",
+    zips: ["35209", "35229"],
+    neighborhoods: ["Edgewood", "West Homewood", "Hollywood"],
+    adjacent: ["mountain-brook", "vestavia-hills", "birmingham"],
+    lat: 33.4718,
+    lng: -86.8003,
+    intro:
+      "Homewood's close-set bungalows in Edgewood and Hollywood share driveways, fences, and siding that show mildew fast in the shade. We soft-wash siding and roofs and pressure-wash the narrow drives and sidewalks that define these walkable Over-the-Mountain streets.",
+  },
+  {
+    slug: "pelham",
+    name: "Pelham",
+    county: "Shelby County",
+    region: "Shelby County",
+    zips: ["35124"],
+    neighborhoods: ["Ballantrae", "Chandalar", "Oak Mountain"],
+    adjacent: ["hoover", "helena", "alabaster"],
+    lat: 33.2857,
+    lng: -86.81,
+    intro:
+      "Pelham homes backing up to Oak Mountain and the Cahaba get plenty of shade, pollen, and organic staining. We soft-wash siding and roofs in Ballantrae and Chandalar and pressure-wash driveways, patios, and pool decks across this Shelby County city.",
+  },
+  {
+    slug: "helena",
+    name: "Helena",
+    county: "Shelby County",
+    region: "Shelby County",
+    zips: ["35080"],
+    neighborhoods: ["Old Town Helena", "Hillsboro", "Ballantrae"],
+    adjacent: ["pelham", "alabaster", "hoover"],
+    lat: 33.2887,
+    lng: -86.8436,
+    intro:
+      "Helena's newer subdivisions and its historic Old Town sit along Buck Creek, where humidity keeps siding and roofs prone to green algae. We soft-wash homes in Hillsboro and Ballantrae and pressure-wash the wide driveways and sidewalks common in this growing Shelby County city.",
+  },
+  {
+    slug: "chelsea",
+    name: "Chelsea",
+    county: "Shelby County",
+    region: "Highway 280 · Shelby",
+    zips: ["35043"],
+    neighborhoods: ["Chelsea Park", "Foothills"],
+    adjacent: ["greystone", "inverness", "hoover"],
+    lat: 33.3395,
+    lng: -86.6383,
+    intro:
+      "Chelsea's larger lots and newer construction along Highway 280 mean big roofs, long driveways, and plenty of Hardie and brick to keep clean. We soft-wash roofs and siding in Chelsea Park and the Foothills and pressure-wash the expansive concrete these properties are known for.",
+  },
+  {
+    slug: "alabaster",
+    name: "Alabaster",
+    county: "Shelby County",
+    region: "Shelby County",
+    zips: ["35007", "35114"],
+    neighborhoods: ["Kentwood", "Weatherly", "Meadowbrook"],
+    adjacent: ["pelham", "helena", "calera"],
+    lat: 33.2443,
+    lng: -86.8164,
+    intro:
+      "Alabaster's established neighborhoods like Kentwood and Weatherly and its newer builds all face the same Alabama algae and mildew. We soft-wash siding and roofs and pressure-wash driveways, walkways, and patios across this Shelby County city.",
+  },
+  {
+    slug: "greystone",
+    name: "Greystone",
+    county: "Shelby County",
+    region: "Highway 280 · Shelby",
+    zips: ["35242"],
+    neighborhoods: ["Greystone Legacy", "Greystone Farms"],
+    adjacent: ["inverness", "hoover", "chelsea"],
+    lat: 33.4176,
+    lng: -86.6961,
+    intro:
+      "The Greystone community off Highway 280 is full of large custom homes with big roofs, stone, and stucco that call for a careful, low-pressure wash. We soft-wash roofs and delicate exteriors across Greystone Legacy and Greystone Farms and brighten the long drives and aggregate walkways these estates feature.",
+  },
+  {
+    slug: "inverness",
+    name: "Inverness",
+    county: "Shelby County",
+    region: "Highway 280 · Shelby",
+    zips: ["35242", "35243"],
+    neighborhoods: ["Inverness", "Lake Heather"],
+    adjacent: ["greystone", "hoover", "vestavia-hills"],
+    lat: 33.4176,
+    lng: -86.7139,
+    intro:
+      "The Inverness area along US-280 mixes lakeside homes and wooded lots where roofs and siding streak with algae under heavy shade. We soft-wash shingles and exteriors around Lake Heather and pressure-wash the driveways and patios common throughout this 280-corridor community.",
+  },
+  {
+    slug: "trussville",
+    name: "Trussville",
+    county: "Jefferson & St. Clair County",
+    region: "North Jefferson",
+    zips: ["35173", "35235"],
+    neighborhoods: ["Cahaba Project", "Trussville Springs"],
+    adjacent: ["birmingham", "gardendale"],
+    lat: 33.6198,
+    lng: -86.6088,
+    intro:
+      "Trussville's historic Cahaba Project homes and the newer builds in Trussville Springs weather the same North Jefferson humidity and pollen. We soft-wash roofs and siding and pressure-wash the driveways, sidewalks, and patios that keep this Cahaba River community looking sharp.",
+  },
+  {
+    slug: "gardendale",
+    name: "Gardendale",
+    county: "Jefferson County",
+    region: "North Jefferson",
+    zips: ["35071", "35073"],
+    neighborhoods: ["Mount Olive", "Fieldstown"],
+    adjacent: ["birmingham", "trussville"],
+    lat: 33.6598,
+    lng: -86.8114,
+    intro:
+      "Gardendale's brick ranches and newer homes north of Birmingham collect the usual algae, mildew, and driveway staining over time. We soft-wash siding and roofs around Mount Olive and Fieldstown and pressure-wash concrete drives, walkways, and patios throughout this North Jefferson city.",
+  },
+  {
+    slug: "calera",
+    name: "Calera",
+    county: "Shelby County",
+    region: "Shelby County",
+    zips: ["35040"],
+    neighborhoods: ["Camden Cove", "Timberline"],
+    adjacent: ["alabaster"],
+    lat: 33.1026,
+    lng: -86.7536,
+    intro:
+      "Calera's fast-growing subdivisions like Camden Cove and Timberline are full of new Hardie and vinyl homes that green up quickly in the Shelby County humidity. We soft-wash siding and roofs and pressure-wash the fresh concrete driveways and sidewalks these new-construction neighborhoods are built on.",
+  },
 ];
+
+// Names only — the shape every existing consumer (footer, schema areaServed,
+// service-page copy, llms.txt, FAQ) already expects. Derived so it never drifts.
+export const serviceAreas: string[] = locations.map((l) => l.name);
 
 export type Faq = { q: string; a: string };
 

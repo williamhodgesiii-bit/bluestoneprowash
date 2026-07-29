@@ -4,7 +4,7 @@ import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { SocialIcon } from "../ui/SocialIcon";
-import { navLinks, serviceAreas, services, site, socials } from "@/lib/site";
+import { locations, navLinks, services, site, socials } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -107,11 +107,22 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Areas strip */}
+        {/* Areas strip — links to each town's page (internal linking + crawl paths) */}
         <div className="mt-7 border-t border-white/10 pt-5 lg:mt-8 lg:pt-6">
           <p className="text-[0.8rem] leading-relaxed text-white/45 sm:text-sm">
-            <span className="font-semibold text-white/70">Service area: </span>
-            {`${serviceAreas.join(" · ")} & surrounding communities.`}
+            <span className="font-semibold text-white/70">Service areas: </span>
+            {locations.map((l, i) => (
+              <span key={l.slug}>
+                <Link
+                  href={`/service-areas/${l.slug}`}
+                  className="transition-colors hover:text-brand-300"
+                >
+                  {l.name}
+                </Link>
+                {i < locations.length - 1 ? " · " : ""}
+              </span>
+            ))}{" "}
+            &amp; surrounding communities.
           </p>
         </div>
 

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Brandmark } from "../ui/Brandmark";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { navLinks, services, site } from "@/lib/site";
+import { locations, navLinks, services, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -73,7 +73,9 @@ export function Header() {
               const active =
                 l.href === "/services"
                   ? pathname === "/services" || pathname.startsWith("/services/")
-                  : isActive(l.href);
+                  : l.href === "/service-areas"
+                    ? pathname === "/service-areas" || pathname.startsWith("/service-areas/")
+                    : isActive(l.href);
 
               // Services gets a hover/focus dropdown of the individual service pages.
               if (l.href === "/services") {
@@ -115,6 +117,54 @@ export function Header() {
                         >
                           <Icon name="ArrowRight" className="h-4 w-4 shrink-0" />
                           All services
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Service Areas gets the same hover/focus dropdown, listing the towns.
+              if (l.href === "/service-areas") {
+                return (
+                  <div key={l.href} className="group relative">
+                    <Link
+                      href={l.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "relative flex items-center gap-1 px-3.5 py-2 text-[0.95rem] font-semibold transition-colors",
+                        active ? "text-brand-700" : "text-ink-soft hover:text-ink"
+                      )}
+                    >
+                      {l.label}
+                      <Icon
+                        name="ChevronDown"
+                        className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180"
+                      />
+                      {active && (
+                        <span className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-brand-600" />
+                      )}
+                    </Link>
+                    <div className="invisible absolute left-0 top-full z-30 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      <div className="w-[30rem] rounded-xl border border-steel-200 bg-white p-2 shadow-lift">
+                        <div className="grid grid-cols-2 gap-0.5">
+                          {locations.map((loc) => (
+                            <Link
+                              key={loc.slug}
+                              href={`/service-areas/${loc.slug}`}
+                              className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-ink-soft transition-colors hover:bg-steel-50 hover:text-brand-700"
+                            >
+                              <Icon name="MapPin" className="h-4 w-4 shrink-0 text-brand-600" />
+                              {loc.name}
+                            </Link>
+                          ))}
+                        </div>
+                        <Link
+                          href="/service-areas"
+                          className="mt-1 flex items-center gap-2.5 rounded-lg border-t border-steel-100 px-3 py-2 text-sm font-bold text-brand-700 transition-colors hover:bg-steel-50"
+                        >
+                          <Icon name="ArrowRight" className="h-4 w-4 shrink-0" />
+                          All service areas
                         </Link>
                       </div>
                     </div>
@@ -220,6 +270,40 @@ export function Header() {
                       >
                         <Icon name={s.icon} className="h-4 w-4 shrink-0 text-brand-600" />
                         {s.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            if (l.href === "/service-areas") {
+              const active = pathname === "/service-areas" || pathname.startsWith("/service-areas/");
+              return (
+                <div key={l.href} className="border-b border-steel-100">
+                  <Link
+                    href={l.href}
+                    onClick={closeMenu}
+                    className={cn(
+                      "flex touch-manipulation items-center justify-between py-3.5 text-base font-semibold",
+                      active ? "text-brand-700" : "text-ink"
+                    )}
+                  >
+                    {l.label}
+                    <Icon name="ArrowRight" className="h-4 w-4 text-steel-400" />
+                  </Link>
+                  <div className="grid grid-cols-2 gap-0.5 pb-3">
+                    {locations.map((loc) => (
+                      <Link
+                        key={loc.slug}
+                        href={`/service-areas/${loc.slug}`}
+                        onClick={closeMenu}
+                        className={cn(
+                          "flex touch-manipulation items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium",
+                          pathname === `/service-areas/${loc.slug}` ? "text-brand-700" : "text-ink-soft"
+                        )}
+                      >
+                        <Icon name="MapPin" className="h-4 w-4 shrink-0 text-brand-600" />
+                        {loc.name}
                       </Link>
                     ))}
                   </div>

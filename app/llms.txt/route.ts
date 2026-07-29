@@ -1,4 +1,4 @@
-import { services, serviceAreas, faqs, story, site, contentUpdated } from "@/lib/site";
+import { services, locations, faqs, story, site, contentUpdated } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
 
 /**
@@ -38,9 +38,11 @@ Bluestone Pro Wash matches the right cleaning method to every surface. Each serv
 
 ${services.map((s) => `- [${s.name}](${base}/services/${s.id}): ${s.blurb} Surfaces: ${s.surfaces}.`).join("\n")}
 
-## Service area
+## Service areas
 
-Serving Greater Birmingham, Alabama and surrounding communities, including: ${serviceAreas.join(", ")}. This is a mobile service that travels to the customer.
+Serving Greater Birmingham, Alabama and surrounding communities — a mobile service that travels to the customer. Each town has its own page:
+
+${locations.map((l) => `- [${l.name}, AL](${base}/service-areas/${l.slug}) — ${l.county}`).join("\n")}
 
 ## Frequently asked questions
 

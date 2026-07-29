@@ -9,7 +9,7 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbNode, graph, serviceNode, webPageNode } from "@/lib/schema";
-import { serviceAreas, services, site } from "@/lib/site";
+import { locations, serviceAreas, services, site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
 
 // Only the five known services are valid slugs; anything else 404s.
@@ -98,8 +98,19 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 no roof-blasting, no split siding.
               </p>
               <p className="mt-3 leading-relaxed text-ink-soft">
-                {service.name} for homes across {serviceAreas.slice(0, 8).join(", ")}, and the rest of
-                Greater Birmingham.
+                {service.name} for homes across{" "}
+                {locations.slice(0, 8).map((l, i) => (
+                  <span key={l.slug}>
+                    <Link
+                      href={`/service-areas/${l.slug}`}
+                      className="font-semibold text-brand-700 hover:text-brand-600"
+                    >
+                      {l.name}
+                    </Link>
+                    {i < 7 ? ", " : ""}
+                  </span>
+                ))}
+                , and the rest of Greater Birmingham.
               </p>
             </div>
 

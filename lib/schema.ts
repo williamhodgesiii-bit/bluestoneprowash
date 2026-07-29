@@ -7,6 +7,7 @@ import {
   contentUpdated,
   type Faq,
   type Service,
+  type Location,
 } from "./site";
 
 /**
@@ -232,6 +233,56 @@ export function faqNode(base: string, path: string, faqs: Faq[]): JsonLdNode {
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+/** The City (with real coordinates) a location page is about. */
+function cityPlace(loc: Location): JsonLdNode {
+  return {
+    "@type": "City",
+    name: loc.name,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: loc.name,
+      addressRegion: "AL",
+      addressCountry: "US",
+    },
+    geo: { "@type": "GeoCoordinates", latitude: loc.lat, longitude: loc.lng },
+  };
+}
+
+/**
+ * The five services scoped to one town — each Service `areaServed` that specific
+ * City, so the page reads as "these services, provided here". The @ids are
+ * town-specific (they point back to the shared service page via `url`).
+ */
+export function locationServiceNodes(base: string, loc: Location): JsonLdNode[] {
+  const place = cityPlace(loc);
+  return services.map((s) => ({
+    "@type": "Service",
+    "@id": `${base}/service-areas/${loc.slug}#${s.id}`,
+    name: `${s.name} in ${loc.name}, AL`,
+    description: s.blurb,
+    serviceType: s.name,
+    category: "Exterior cleaning",
+    provider: { "@id": BUSINESS_ID(base) },
+    areaServed: place,
+    url: `${base}/services/${s.id}`,
+  }));
+}
+
+/** Directory ItemList for the Service Areas hub — links every town page. */
+export function areasItemListNode(base: string, locs: Location[]): JsonLdNode {
+  return {
+    "@type": "ItemList",
+    "@id": `${base}/service-areas#list`,
+    name: "Service areas",
+    itemListElement: locs.map((l, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: `${l.name}, AL`,
+      url: `${base}/service-areas/${l.slug}`,
     })),
   };
 }
