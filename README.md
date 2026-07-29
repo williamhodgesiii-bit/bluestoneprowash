@@ -54,15 +54,27 @@ Almost everything lives in **`lib/site.ts`** — one file:
 
 ## The quote form
 
-The form in the "Get Your Free Quote" section works with **zero backend** out of the box: if no
-endpoint is configured it opens the visitor's email app with the details pre-filled.
+The form in the "Get Your Free Quote" section posts to [Web3Forms](https://web3forms.com) —
+free, unlimited, and no backend to run.
 
-To collect submissions automatically, create a free [Formspree](https://formspree.io) form (or any
-endpoint that accepts a JSON `POST`) and set an environment variable:
+**Until an access key is configured the form stays in a "coming soon" state**, frosted and
+inert, with the phone number and `info@bluestoneprowash.com` shown in its place. It switches
+itself on the moment a key exists — there is no code change to remember.
 
-```bash
-NEXT_PUBLIC_QUOTE_ENDPOINT="https://formspree.io/f/xxxxxxx"
-```
+To turn it on:
+
+1. Go to [web3forms.com](https://web3forms.com) and create an access key **using
+   `info@bluestoneprowash.com`**. The key is emailed to that address.
+2. Set it in **Vercel → Project → Settings → Environment Variables** (Production):
+
+   ```bash
+   NEXT_PUBLIC_WEB3FORMS_KEY="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+   ```
+3. Redeploy (`NEXT_PUBLIC_*` values are baked in at build time).
+
+> ⚠️ **Web3Forms delivers to whichever address the key was registered to**, and that
+> recipient cannot be overridden from the form payload. Changing `site.email` alone does
+> **not** redirect submissions — the key itself has to belong to the destination inbox.
 
 ---
 
@@ -129,7 +141,7 @@ SRC_DIR="/path/to/originals" node scripts/process-images.mjs
 2. In Vercel: **New Project → Import** the repo. Framework preset auto-detects **Next.js** — no config needed.
 3. (Optional) set environment variables:
    - `NEXT_PUBLIC_SITE_URL` — the production domain, `https://bluestoneprowash.com` (used for canonical URLs, sitemap, and social share images). If unset, the site falls back to the same domain hard-coded in `lib/site.ts`, so SEO output is correct either way.
-   - `NEXT_PUBLIC_QUOTE_ENDPOINT` — form submission endpoint (see above).
+   - `NEXT_PUBLIC_WEB3FORMS_KEY` — quote form access key (see [The quote form](#the-quote-form)).
    - `NEXT_PUBLIC_GA_MEASUREMENT_ID` — Google Analytics 4 Measurement ID (see [Analytics](#analytics) below).
 4. Deploy.
 

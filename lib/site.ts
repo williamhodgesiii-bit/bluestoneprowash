@@ -19,8 +19,8 @@ export const site = {
   // redirects to www, so www is what we declare everywhere for SEO consistency.
   // NEXT_PUBLIC_SITE_URL can override this per-environment; see lib/url.ts.
   url: "https://www.bluestoneprowash.com",
-  // Interim inbox during the rebrand; swap to a bluestoneprowash.com address later.
-  email: "birminghamprowash@gmail.com",
+  // Google Workspace mailbox on the business domain (MX → smtp.google.com).
+  email: "info@bluestoneprowash.com",
   phoneDisplay: "(205) 547-1941",
   phoneE164: phone,
   phoneHref: `tel:${phone}`,
@@ -31,13 +31,17 @@ export const site = {
   hours: "Mon to Sat · 7am to 7pm",
   // Web3Forms public access key for the quote form — free, unlimited form→email.
   // This key is meant to live in client code (it only lets a submission be sent
-  // to the inbox tied to it), so it's safe to commit. NOTE: this is a temporary
-  // TEST key — submissions currently land in williamhodgesiii@gmail.com. Before
-  // launch, swap in a key registered to birminghamprowash@gmail.com (the address
-  // shown publicly on the site). Prefer setting NEXT_PUBLIC_WEB3FORMS_KEY in the
-  // host; the literal fallback also works. While empty, the form gracefully opens
-  // a prefilled email instead.
-  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "60a8445f-9870-4f6d-a6bf-473ccdc93fec",
+  // to the inbox tied to it), so it is safe to expose.
+  //
+  // Web3Forms delivers to the address the key was REGISTERED to; the recipient
+  // cannot be overridden from the payload. So the key set here must be one
+  // created at web3forms.com using info@bluestoneprowash.com — otherwise leads
+  // land in someone else's inbox no matter what `email` above says.
+  //
+  // Set NEXT_PUBLIC_WEB3FORMS_KEY in Vercel (Production). While it is unset the
+  // quote form stays in its "coming soon" state and visitors are pointed at the
+  // phone number and info@ instead, so a lead is never silently misrouted.
+  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
 } as const;
 
 // Empty entries are hidden automatically (footer + schema sameAs).

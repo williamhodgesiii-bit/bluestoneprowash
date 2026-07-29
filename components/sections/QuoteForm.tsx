@@ -15,10 +15,12 @@ const contactMethods: { icon: IconName; label: string; value: string; href?: str
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-// The online form isn't wired up for submissions yet, so we frost it over and
-// point people to call/email in the meantime. Flip this to `false` (once the
-// Web3Forms key is confirmed working) to switch the live form back on.
-const FORM_COMING_SOON: boolean = true;
+// The form goes live on its own as soon as a Web3Forms key is configured (see
+// `web3formsKey` in lib/site.ts). Until then we frost it over and point people
+// at the phone number and info@ so a lead is never lost to a dead form — and so
+// nothing can be submitted to an inbox that isn't the one shown on the site.
+// Setting NEXT_PUBLIC_WEB3FORMS_KEY in Vercel and redeploying is all it takes.
+const FORM_COMING_SOON: boolean = !site.web3formsKey;
 
 export function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
