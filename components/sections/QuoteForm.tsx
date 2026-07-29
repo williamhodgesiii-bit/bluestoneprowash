@@ -41,8 +41,20 @@ export function QuoteForm() {
           body: JSON.stringify({
             access_key: site.web3formsKey,
             subject: `New quote request${data.service ? ` — ${data.service}` : ""} · ${data.name || "Website"}`,
-            from_name: `${site.name} website`,
-            ...data,
+            from_name: `${site.name} Website`,
+            // Reply-To → the customer, so hitting reply in the inbox answers them
+            // directly instead of the website.
+            replyto: data.email,
+            // Clean, human-labeled lines so the email reads as a tidy Bluestone
+            // Pro Wash lead summary rather than raw form-field names.
+            Name: data.name,
+            Phone: data.phone,
+            Email: data.email,
+            Service: data.service || "Not specified",
+            Address: data.address || "Not provided",
+            Details: data.message || "—",
+            // Keep the spam honeypot (only present when a bot ticks the hidden box).
+            botcheck: data.botcheck,
           }),
         });
         const json = await res.json();
