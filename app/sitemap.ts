@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/url";
-import { services } from "@/lib/site";
+import { services, contentUpdated } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
-  const now = new Date();
+  // Stable, accurate date (see lib/site.ts) rather than build-time "now", so
+  // <lastmod> stays a signal Google trusts instead of churning on every deploy.
+  const lastModified = new Date(contentUpdated);
   const routes: { path: string; priority: number }[] = [
     { path: "/", priority: 1 },
     { path: "/services", priority: 0.9 },
@@ -15,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return routes.map((r) => ({
     url: `${base}${r.path === "/" ? "" : r.path}`,
-    lastModified: now,
+    lastModified,
     changeFrequency: "monthly",
     priority: r.priority,
   }));

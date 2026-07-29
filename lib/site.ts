@@ -44,6 +44,18 @@ export const site = {
   web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
 } as const;
 
+/**
+ * Date the public content last meaningfully changed (new services, fresh
+ * before/after sets, rewritten copy). Feeds the sitemap's <lastmod>.
+ *
+ * Bump this whenever you edit the content in this file. Google only honors
+ * <lastmod> when it's verifiably accurate, so we set a real date here instead of
+ * wiring it to the build clock — a build-time "now" would claim every page
+ * changed on every deploy and train search engines to ignore the signal.
+ * Format: YYYY-MM-DD.
+ */
+export const contentUpdated = "2026-07-29";
+
 // Empty entries are hidden automatically (footer + schema sameAs).
 // `icon` keys come from components/ui/SocialIcon.tsx, not the lucide registry.
 export const socials: { label: string; icon: string; href: string }[] = [
