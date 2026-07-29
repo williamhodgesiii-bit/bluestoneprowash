@@ -79,6 +79,38 @@ To rotate the key or point a deployment at a different inbox:
 > recipient cannot be overridden from the form payload. Changing `site.email` alone does
 > **not** redirect submissions — the key itself has to belong to the destination inbox.
 
+### Keeping leads out of spam
+
+Web3Forms sends each lead from **`noreply@web3forms.com`**, not from our own domain. That
+matters, because mail arriving at `info@bluestoneprowash.com` that *looks* like it came
+from Bluestone Pro Wash but was sent by an outside server is precisely the pattern Google
+Workspace treats as domain spoofing — early test submissions were filed as spam for that
+reason.
+
+Two halves keep the inbox clean:
+
+**1. The payload (already done, in `QuoteForm.tsx`).** Nothing in the email claims to be
+the business. `from_name` and `replyto` are both the customer who filled in the form, so
+the From and Reply-To headers agree, and the subject is plain ASCII (`Quote request: Jane
+Smith - Roof Cleaning`) rather than sales phrasing with typographic dashes. Keep it that
+way — setting `from_name` back to a variant of "Bluestone Pro Wash" re-creates the spoof
+signal and re-buries the leads.
+
+**2. The mailbox (one-time, and worth doing).** Filters beat heuristics, so tell Google
+that this sender is wanted:
+
+- In Gmail for `info@bluestoneprowash.com`: **Settings → Filters and Blocked Addresses →
+  Create a new filter**, `From: noreply@web3forms.com`, then tick **Never send it to
+  Spam** (and **Always mark it as important** / apply a `Leads` label if useful).
+- Google Workspace admins can do the same account-wide under **Admin console → Apps →
+  Google Workspace → Gmail → Spam, Phishing and Malware → Email allowlist / Spam
+  bypass**, adding `noreply@web3forms.com`.
+- If a lead has already landed in spam, open it and hit **Not spam** — that trains the
+  mailbox too.
+
+After a code change here, submit one live test and confirm it arrives in the inbox rather
+than spam before considering the form done.
+
 ---
 
 ## Analytics

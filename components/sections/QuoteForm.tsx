@@ -33,26 +33,42 @@ export function QuoteForm() {
 
     try {
       if (site.web3formsKey) {
-        // Web3Forms: free, unlimited form→email. The `botcheck` honeypot is only
-        // present when a bot ticks the hidden box, so real leads pass through.
+        const name = data.name?.trim();
+        const service = data.service?.trim();
+
+        // Web3Forms: free, unlimited form→email.
+        //
+        // Deliverability — the shape of this payload is load-bearing. Web3Forms
+        // sends the lead from its own domain (noreply@web3forms.com), so a
+        // payload that makes the mail *claim* to come from Bluestone Pro Wash
+        // reads to Google Workspace as our own domain being spoofed by an
+        // outside sender, and quote requests land in spam. To stay out of it:
+        //   • from_name is the person who filled in the form, never the
+        //     business — nothing pretends to be us.
+        //   • replyto is that same person, so From and Reply-To agree instead
+        //     of looking like forged brand mail pointing at a stranger.
+        //   • the subject stays plain ASCII and reads like an ordinary enquiry
+        //     (non-ASCII forces MIME encoded-word subjects, and "free quote"
+        //     sales phrasing both count against the message).
         const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
             access_key: site.web3formsKey,
-            subject: `New quote request${data.service ? ` — ${data.service}` : ""} · ${data.name || "Website"}`,
-            from_name: `${site.name} Website`,
+            subject: `Quote request: ${name || "website visitor"}${service ? ` - ${service}` : ""}`,
+            from_name: name || "Website visitor",
             // Reply-To → the customer, so hitting reply in the inbox answers them
             // directly instead of the website.
             replyto: data.email,
-            // Clean, human-labeled lines so the email reads as a tidy Bluestone
-            // Pro Wash lead summary rather than raw form-field names.
-            Name: data.name,
+            // Clean, human-labeled lines so the email reads as a tidy lead
+            // summary rather than raw form-field names.
+            Name: name || "Not provided",
             Phone: data.phone,
             Email: data.email,
-            Service: data.service || "Not specified",
-            Address: data.address || "Not provided",
-            Details: data.message || "—",
+            Service: service || "Not specified",
+            Address: data.address?.trim() || "Not provided",
+            Details: data.message?.trim() || "None given",
+            "Sent from": site.url,
             // Keep the spam honeypot (only present when a bot ticks the hidden box).
             botcheck: data.botcheck,
           }),
