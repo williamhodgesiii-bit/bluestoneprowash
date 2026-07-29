@@ -57,15 +57,18 @@ Almost everything lives in **`lib/site.ts`** — one file:
 The form in the "Get Your Free Quote" section posts to [Web3Forms](https://web3forms.com) —
 free, unlimited, and no backend to run.
 
-**Until an access key is configured the form stays in a "coming soon" state**, frosted and
-inert, with the phone number and `info@bluestoneprowash.com` shown in its place. It switches
-itself on the moment a key exists — there is no code change to remember.
+**The form is live.** Its access key — registered to `info@bluestoneprowash.com` — is
+committed as the default in `lib/site.ts`, so submissions email that mailbox in production
+with no extra setup. The form frosts into a "coming soon" state (phone + `info@` shown in
+its place) only when the key is empty; it switches itself on the moment a key exists, with
+no code change to remember.
 
-To turn it on:
+To rotate the key or point a deployment at a different inbox:
 
 1. Go to [web3forms.com](https://web3forms.com) and create an access key **using
    `info@bluestoneprowash.com`**. The key is emailed to that address.
-2. Set it in **Vercel → Project → Settings → Environment Variables** (Production):
+2. Either replace the default in `lib/site.ts`, or set it in **Vercel → Project → Settings →
+   Environment Variables** (Production) to override without a code change:
 
    ```bash
    NEXT_PUBLIC_WEB3FORMS_KEY="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"

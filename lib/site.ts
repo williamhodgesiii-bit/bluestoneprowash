@@ -31,17 +31,18 @@ export const site = {
   hours: "Mon to Sat · 7am to 7pm",
   // Web3Forms public access key for the quote form — free, unlimited form→email.
   // This key is meant to live in client code (it only lets a submission be sent
-  // to the inbox tied to it), so it is safe to expose.
+  // to the inbox tied to it), so it is safe to commit — like the GA ID above.
   //
   // Web3Forms delivers to the address the key was REGISTERED to; the recipient
-  // cannot be overridden from the payload. So the key set here must be one
-  // created at web3forms.com using info@bluestoneprowash.com — otherwise leads
-  // land in someone else's inbox no matter what `email` above says.
+  // cannot be overridden from the payload. This key is registered to
+  // info@bluestoneprowash.com, so that mailbox receives every lead. If you ever
+  // rotate it, create the new key under that SAME address — otherwise leads land
+  // somewhere else no matter what `email` above says. You can also override this
+  // per-environment with NEXT_PUBLIC_WEB3FORMS_KEY in Vercel (no code change).
   //
-  // Set NEXT_PUBLIC_WEB3FORMS_KEY in Vercel (Production). While it is unset the
-  // quote form stays in its "coming soon" state and visitors are pointed at the
-  // phone number and info@ instead, so a lead is never silently misrouted.
-  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
+  // A non-empty key here is also what takes the form live: while it is empty the
+  // quote form frosts into its "coming soon" state (see QuoteForm.tsx).
+  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "60a8445f-9870-4f6d-a6bf-473ccdc93fec",
 } as const;
 
 /**
