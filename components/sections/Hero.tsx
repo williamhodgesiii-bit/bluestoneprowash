@@ -37,12 +37,12 @@ export function Hero() {
           <Reveal delay={0.08} className="relative w-full">
             <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-steel-200 bg-white shadow-lift">
               <Image
-                src="/images/team-trailer.jpg"
-                alt="The Bluestone Pro Wash crew in Birmingham"
+                src="/images/team-truck.jpg"
+                alt="The Bluestone Pro Wash crew with the branded company truck at a home in Birmingham"
                 fill
                 sizes="(max-width: 1024px) 92vw, 46vw"
                 priority
-                className="scale-[1.2] object-cover object-[50%_35%]"
+                className="object-cover object-[50%_42%]"
               />
             </figure>
 
