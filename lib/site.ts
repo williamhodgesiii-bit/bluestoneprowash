@@ -59,7 +59,7 @@ export const site = {
  * changed on every deploy and train search engines to ignore the signal.
  * Format: YYYY-MM-DD.
  */
-export const contentUpdated = "2026-07-29";
+export const contentUpdated = "2026-08-08";
 
 // Empty entries are hidden automatically (footer + schema sameAs).
 // `icon` keys come from components/ui/SocialIcon.tsx, not the lucide registry.
