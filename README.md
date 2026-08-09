@@ -231,6 +231,6 @@ components/
   motion/            Reveal / Stagger animation primitives
   BeforeAfter.tsx    draggable before/after slider
 lib/                 site.ts (content), url.ts, utils.ts
-public/              brand assets, optimized images, og.png
+public/              brand assets, optimized images, og-truck.jpg
 scripts/             image pipeline
 ```

@@ -55,7 +55,7 @@ export function businessNode(base: string): JsonLdNode {
     url: base,
     telephone: site.phoneE164,
     email: site.email,
-    image: `${base}/og.png`,
+    image: `${base}/og-truck.jpg`,
     logo: `${base}/brand/logo.png`,
     priceRange: "$$",
     currenciesAccepted: "USD",
@@ -177,7 +177,7 @@ export function webPageNode(
     isPartOf: { "@id": WEBSITE_ID(base) },
     about: { "@id": BUSINESS_ID(base) },
     dateModified: contentUpdated,
-    primaryImageOfPage: `${base}/og.png`,
+    primaryImageOfPage: `${base}/og-truck.jpg`,
     ...(opts.hasBreadcrumb && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
   };
 }
