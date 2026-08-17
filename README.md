@@ -82,28 +82,52 @@ To rotate the key or point a deployment at a different inbox:
 ### Verifying where leads actually go
 
 The destination is **not** in this repo — it lives in the Web3Forms account, bound to the
-access key. So the code can never prove it; you have to check it on their side. Three ways,
-cheapest first:
+access key, so no code change can prove or redirect it.
 
-1. **Search the mailbox for the key.** Web3Forms emails a new access key to the address it
-   was created under. Search `info@bluestoneprowash.com` (including Spam and All Mail) for
-   `web3forms` or for the key's first block, `60a8445f`. Finding that setup email in *this*
-   mailbox is proof the key belongs to it.
-2. **Log in to the dashboard.** Sign in to [`app.web3forms.com`](https://app.web3forms.com)
-   **as `info@bluestoneprowash.com`** (the account is the mailbox — signing in is itself part
-   of the proof). If the key ending `…93fec` is listed once you're in, it is registered to
-   that mailbox. If it is missing, the key belongs to some other address.
-3. **Submit one live test.** Fill in the real form at
-   [`/contact`](https://www.bluestoneprowash.com/contact) and watch `info@` for it. Web3Forms
-   **does not store submissions** (their GDPR position — they process and forward, then
-   discard), so the inbox is the only record that a lead ever existed. Check Spam and Gmail's
-   Promotions/Updates tabs before concluding it failed.
+**Verified 2026-08-17** in the Web3Forms dashboard: **Email Configuration → Recipient Emails**
+lists `info@bluestoneprowash.com`, and nothing else (`1/1`). Leads reach that mailbox. To
+re-check later, sign in at [`app.web3forms.com`](https://app.web3forms.com) as that address
+and read the same field. (Web3Forms **stores no submissions** — their GDPR position is that
+they process and forward, then discard — so there is no submission history screen and the
+inbox is the only record a lead ever existed.)
 
-Note that the key must be tested from a **browser on the real site** — Web3Forms rejects
+### Dashboard fields that must stay empty
+
+Three fields on **Email Configuration** duplicate values this app already sends per
+submission, and Web3Forms does **not** document which wins. Leave all three blank so the
+payload in `QuoteForm.tsx` stays the single source of truth:
+
+| Field | Leave blank because |
+| --- | --- |
+| **Sender Name** | The payload sets `from_name` to the *customer*. Typing a variant of "Bluestone Pro Wash" here re-creates the domain-spoofing signal described below and re-buries leads in spam. This is the costliest field to fill in. |
+| **Email Subject** | The payload sets a per-lead subject (`Quote request: Jane Smith - Roof Cleaning`). A fixed dashboard subject would flatten every lead to the same line. |
+| **Redirect URL** | Submission is AJAX; the form renders its own "Thanks — we've got it!" state in place. A redirect here fights that. |
+
+Greyed text in those boxes is placeholder, not a saved value — Web3Forms' documented default
+sender name is literally `Notifications`, which is what the placeholder shows.
+
+On **Security Settings**, leave **Captcha Protection** on `None`: this form's only bot defense
+is the honeypot `botcheck` field, and switching the dashboard to hCaptcha/reCaptcha without
+also rendering that widget in the form makes every real submission start failing. Keep
+**Spam Protection Level** at `Basic` too — that filter decides whether Web3Forms forwards a
+lead *at all*, so a stricter setting can silently eat genuine quote requests.
+
+Note the key can only be tested from a **browser on the real site** — Web3Forms rejects
 server-side calls on the free plan (`This method is not allowed. Use our API in client
 side`), so `curl` cannot verify it.
 
 ### Keeping leads out of spam
+
+Two independent filters sit between a submitted form and a read email, and only the first is
+a Web3Forms setting:
+
+1. **Web3Forms' own spam filter** (dashboard → **Security Settings**) decides whether they
+   forward the lead at all. Covered above: leave it at `Basic`.
+2. **Google's spam filter on the `info@` mailbox** decides whether a *delivered* email lands
+   in the inbox or in Spam. **Nothing in the Web3Forms dashboard can influence this** — it is
+   fixed in Gmail, and it is the half that actually buries leads.
+
+The rest of this section is about #2.
 
 Web3Forms sends each lead from its own domain, not from ours — the notification arrives
 from **`notify@web3forms.com`**, and in practice from the per-key subaddress
