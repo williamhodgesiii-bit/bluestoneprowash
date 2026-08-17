@@ -89,10 +89,10 @@ cheapest first:
    was created under. Search `info@bluestoneprowash.com` (including Spam and All Mail) for
    `web3forms` or for the key's first block, `60a8445f`. Finding that setup email in *this*
    mailbox is proof the key belongs to it.
-2. **Log in to the dashboard.** [`app.web3forms.com`](https://app.web3forms.com) signs you
-   in by emailed login link, so access itself is the proof: request the link **as
-   `info@bluestoneprowash.com`**, and if the key ending `…93fec` is listed once you're in,
-   it is registered to that mailbox. If the key is missing, it belongs to some other address.
+2. **Log in to the dashboard.** Sign in to [`app.web3forms.com`](https://app.web3forms.com)
+   **as `info@bluestoneprowash.com`** (the account is the mailbox — signing in is itself part
+   of the proof). If the key ending `…93fec` is listed once you're in, it is registered to
+   that mailbox. If it is missing, the key belongs to some other address.
 3. **Submit one live test.** Fill in the real form at
    [`/contact`](https://www.bluestoneprowash.com/contact) and watch `info@` for it. Web3Forms
    **does not store submissions** (their GDPR position — they process and forward, then
