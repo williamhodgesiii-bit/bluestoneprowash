@@ -39,7 +39,7 @@ export function QuoteForm() {
         // Web3Forms: free, unlimited form→email.
         //
         // Deliverability — the shape of this payload is load-bearing. Web3Forms
-        // sends the lead from its own domain (noreply@web3forms.com), so a
+        // sends the lead from its own domain (notify+{hash}@web3forms.com), so a
         // payload that makes the mail *claim* to come from Bluestone Pro Wash
         // reads to Google Workspace as our own domain being spoofed by an
         // outside sender, and quote requests land in spam. To stay out of it:

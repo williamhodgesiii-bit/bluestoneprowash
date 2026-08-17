@@ -79,13 +79,43 @@ To rotate the key or point a deployment at a different inbox:
 > recipient cannot be overridden from the form payload. Changing `site.email` alone does
 > **not** redirect submissions — the key itself has to belong to the destination inbox.
 
+### Verifying where leads actually go
+
+The destination is **not** in this repo — it lives in the Web3Forms account, bound to the
+access key. So the code can never prove it; you have to check it on their side. Three ways,
+cheapest first:
+
+1. **Search the mailbox for the key.** Web3Forms emails a new access key to the address it
+   was created under. Search `info@bluestoneprowash.com` (including Spam and All Mail) for
+   `web3forms` or for the key's first block, `60a8445f`. Finding that setup email in *this*
+   mailbox is proof the key belongs to it.
+2. **Log in to the dashboard.** [`app.web3forms.com`](https://app.web3forms.com) signs you
+   in by emailed login link, so access itself is the proof: request the link **as
+   `info@bluestoneprowash.com`**, and if the key ending `…93fec` is listed once you're in,
+   it is registered to that mailbox. If the key is missing, it belongs to some other address.
+3. **Submit one live test.** Fill in the real form at
+   [`/contact`](https://www.bluestoneprowash.com/contact) and watch `info@` for it. Web3Forms
+   **does not store submissions** (their GDPR position — they process and forward, then
+   discard), so the inbox is the only record that a lead ever existed. Check Spam and Gmail's
+   Promotions/Updates tabs before concluding it failed.
+
+Note that the key must be tested from a **browser on the real site** — Web3Forms rejects
+server-side calls on the free plan (`This method is not allowed. Use our API in client
+side`), so `curl` cannot verify it.
+
 ### Keeping leads out of spam
 
-Web3Forms sends each lead from **`noreply@web3forms.com`**, not from our own domain. That
-matters, because mail arriving at `info@bluestoneprowash.com` that *looks* like it came
-from Bluestone Pro Wash but was sent by an outside server is precisely the pattern Google
-Workspace treats as domain spoofing — early test submissions were filed as spam for that
-reason.
+Web3Forms sends each lead from its own domain, not from ours — the notification arrives
+from **`notify@web3forms.com`**, and in practice from the per-key subaddress
+**`notify+{hash}@web3forms.com`**. That matters, because mail arriving at
+`info@bluestoneprowash.com` that *looks* like it came from Bluestone Pro Wash but was sent
+by an outside server is precisely the pattern Google Workspace treats as domain spoofing —
+early test submissions were filed as spam for that reason.
+
+> ⚠️ Filter on the **domain** `web3forms.com`, not on a full address. Because the real
+> sender carries a `+{hash}` suffix that differs per access key, a filter pinned to a bare
+> `notify@web3forms.com` can silently fail to match. Web3Forms' own guidance is to allowlist
+> the domain.
 
 Two halves keep the inbox clean:
 
@@ -99,12 +129,13 @@ signal and re-buries the leads.
 **2. The mailbox (one-time, and worth doing).** Filters beat heuristics, so tell Google
 that this sender is wanted:
 
-- In Gmail for `info@bluestoneprowash.com`: **Settings → Filters and Blocked Addresses →
-  Create a new filter**, `From: noreply@web3forms.com`, then tick **Never send it to
-  Spam** (and **Always mark it as important** / apply a `Leads` label if useful).
+- In Gmail for `info@bluestoneprowash.com`: **Settings → See all settings → Filters and
+  Blocked Addresses → Create a new filter**, put `web3forms.com` in the **From** box, then
+  **Create filter** and tick **Never send it to Spam** (and **Always mark it as important**
+  / apply a `Leads` label if useful).
 - Google Workspace admins can do the same account-wide under **Admin console → Apps →
   Google Workspace → Gmail → Spam, Phishing and Malware → Email allowlist / Spam
-  bypass**, adding `noreply@web3forms.com`.
+  bypass**, adding `web3forms.com`.
 - If a lead has already landed in spam, open it and hit **Not spam** — that trains the
   mailbox too.
 
