@@ -11,9 +11,13 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "browser",
     background_color: "#ffffff",
     theme_color: "#0561bb",
+    // White mark on the brand blue — the same tile as the favicon, so the
+    // installed icon matches the browser tab. "maskable" carries extra padding
+    // because Android crops launcher icons to its own shape.
     icons: [
-      { src: "/brand/icon.png", sizes: "256x256", type: "image/png", purpose: "any" },
-      { src: "/brand/logo-square.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/brand/app-icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/brand/app-icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/brand/app-icon-maskable.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }

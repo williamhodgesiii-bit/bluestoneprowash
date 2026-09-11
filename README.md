@@ -168,6 +168,19 @@ To regenerate from a folder of source images:
 SRC_DIR="/path/to/originals" node scripts/process-images.mjs
 ```
 
+### Web icons
+
+The favicon, iOS home-screen icon and installed-app icons are all the **white mark on the
+brand blue** (`#0561bb`) — never a transparent PNG of the blue mark, which vanishes on a
+white tab strip and reads as a dark smudge on a dark one. They are derived from
+`public/brand/logo.png` by **`scripts/make-icons.mjs`**, which writes `app/favicon.ico`,
+`app/icon.png`, `app/apple-icon.png` and `public/brand/app-icon-*.png` (referenced by
+`app/manifest.ts`). Re-run it after any change to the logo art:
+
+```bash
+node scripts/make-icons.mjs
+```
+
 ---
 
 ## Deploy to Vercel
