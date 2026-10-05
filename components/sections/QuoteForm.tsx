@@ -272,33 +272,18 @@ export function QuoteForm() {
   );
 }
 
-// Fire-and-forget copy of the lead to the CRM. It never blocks or fails the
-// visitor's submission — the Web3Forms email stays the source of truth.
-//
-// `no-cors` keeps this a "simple" cross-origin request: no CORS preflight, so it
-// reaches the worker whatever headers it sends back (we never read the reply).
-// The trade-off is the body goes out as text/plain, so the worker should read it
-// with `await request.json()` (or `JSON.parse(await request.text())`), not by
-// Content-Type. `keepalive` lets it finish even if the page navigates away.
+// Fire-and-forget copy of the lead to the CRM, via our own /api/lead route
+// (which forwards it server-side). It never blocks or fails the visitor's
+// submission — the Web3Forms email stays the source of truth. `keepalive` lets
+// it finish even if the page navigates away.
 function sendLeadToCrm(data: Record<string, string>) {
-  if (!site.crmWebhookUrl || data.botcheck) return;
-  const lead = {
-    name: data.name?.trim() || "",
-    phone: data.phone?.trim() || "",
-    email: data.email?.trim() || "",
-    service: data.service?.trim() || "",
-    address: data.address?.trim() || "",
-    message: data.message?.trim() || "",
-    source: "website-quote-form",
-    page: typeof window !== "undefined" ? window.location.href : site.url,
-    submittedAt: new Date().toISOString(),
-  };
+  if (data.botcheck) return;
   try {
-    fetch(site.crmWebhookUrl, {
+    fetch("/api/lead", {
       method: "POST",
-      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
       keepalive: true,
-      body: JSON.stringify(lead),
+      body: JSON.stringify({ ...data, page: window.location.href }),
     }).catch(() => {});
   } catch {
     // Never let the CRM copy break the form.

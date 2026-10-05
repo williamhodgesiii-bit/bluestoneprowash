@@ -47,11 +47,6 @@ export const site = {
   // A non-empty key here is also what takes the form live: while it is empty the
   // quote form frosts into its "coming soon" state (see QuoteForm.tsx).
   web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "60a8445f-9870-4f6d-a6bf-473ccdc93fec",
-  // CRM lead intake: every quote-form submission is also POSTed here as JSON,
-  // alongside the Web3Forms email. Override with NEXT_PUBLIC_CRM_WEBHOOK_URL in
-  // Vercel, or set that to an empty string to switch the CRM copy off.
-  crmWebhookUrl:
-    process.env.NEXT_PUBLIC_CRM_WEBHOOK_URL ?? "https://bluestone-leadrec.andersononeal05.workers.dev/",
 } as const;
 
 /**
