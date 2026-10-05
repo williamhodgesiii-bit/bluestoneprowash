@@ -31,6 +31,8 @@ export function QuoteForm() {
     const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
     setStatus("sending");
 
+    sendLeadToCrm(data);
+
     try {
       if (site.web3formsKey) {
         const name = data.name?.trim();
@@ -268,6 +270,39 @@ export function QuoteForm() {
       </Container>
     </section>
   );
+}
+
+// Fire-and-forget copy of the lead to the CRM. It never blocks or fails the
+// visitor's submission — the Web3Forms email stays the source of truth.
+//
+// `no-cors` keeps this a "simple" cross-origin request: no CORS preflight, so it
+// reaches the worker whatever headers it sends back (we never read the reply).
+// The trade-off is the body goes out as text/plain, so the worker should read it
+// with `await request.json()` (or `JSON.parse(await request.text())`), not by
+// Content-Type. `keepalive` lets it finish even if the page navigates away.
+function sendLeadToCrm(data: Record<string, string>) {
+  if (!site.crmWebhookUrl || data.botcheck) return;
+  const lead = {
+    name: data.name?.trim() || "",
+    phone: data.phone?.trim() || "",
+    email: data.email?.trim() || "",
+    service: data.service?.trim() || "",
+    address: data.address?.trim() || "",
+    message: data.message?.trim() || "",
+    source: "website-quote-form",
+    page: typeof window !== "undefined" ? window.location.href : site.url,
+    submittedAt: new Date().toISOString(),
+  };
+  try {
+    fetch(site.crmWebhookUrl, {
+      method: "POST",
+      mode: "no-cors",
+      keepalive: true,
+      body: JSON.stringify(lead),
+    }).catch(() => {});
+  } catch {
+    // Never let the CRM copy break the form.
+  }
 }
 
 function Field({
