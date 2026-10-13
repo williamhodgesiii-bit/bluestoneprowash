@@ -215,8 +215,8 @@ export const services: Service[] = [
     name: "Window Cleaning",
     icon: "PanelsTopLeft",
     blurb:
-      "Streak-free, spot-free glass using a purified water-fed pole system — every window dries crystal clear, inside and out.",
-    points: ["Interior & exterior", "Screens & tracks", "Spot-free pure water"],
+      "Streak-free, spot-free exterior glass using a purified water-fed pole system — every window dries crystal clear.",
+    points: ["Exterior windows & glass doors", "Service plans available", "Spot-free pure water"],
     surfaces: "Windows · Glass doors · Sunrooms",
     image: {
       src: "/images/service-window-cleaning.jpg",
@@ -228,12 +228,12 @@ export const services: Service[] = [
         a: "It's a long pole with a brush on the end that sprays purified water. The water has had all the minerals filtered out, so there's nothing left behind to spot or streak when it dries. It also lets us clean second-story windows safely from the ground.",
       },
       {
-        q: "Do you clean the inside of the windows too?",
-        a: "Yes, we clean inside and out. Inside, we do it by hand and take care around your floors, sills, and furniture.",
+        q: "Do you clean the inside of the windows?",
+        a: "Not right now. We focus on the outside, since that's where the pollen, dirt, and hard water build up. The inside of most windows just doesn't get dirty the same way.",
       },
       {
-        q: "Are screens and tracks included?",
-        a: "Yes. We clean the screens and wipe out the tracks as part of the job, so the whole window looks finished, not just the glass.",
+        q: "Do you clean screens?",
+        a: "We can. Screen cleaning is priced separately, so just let us know if you'd like it and we'll add it to your quote.",
       },
       {
         q: "Why do my windows streak when I clean them myself?",
@@ -245,7 +245,11 @@ export const services: Service[] = [
       },
       {
         q: "How often should I have my windows cleaned?",
-        a: "Once or twice a year works for most homes. Plenty of people around here book right after pollen season, since that yellow dust ends up on everything.",
+        a: "We recommend two to four times a year. Between pollen season, storms, and hard water, windows around here get dirty faster than most people expect.",
+      },
+      {
+        q: "Do you offer window cleaning service plans?",
+        a: "Yes. If you want your windows to stay clean all year, we can set you up on a service plan so you're not having to remember to call us. Ask when you get your quote and we'll put one together for your home.",
       },
     ],
   },
@@ -363,7 +367,7 @@ export const transformationCategories: TransformationCategory[] = [
       {
         title: "Sunroom glass detailing",
         caption:
-          "Cloudy, filmed-over sunroom glass brought back to crystal clarity, inside and out.",
+          "Cloudy, filmed-over sunroom glass brought back to crystal clarity.",
         before: "/images/ba/sunroom-before.jpg",
         after: "/images/ba/sunroom-after.jpg",
       },
