@@ -25,7 +25,7 @@ export const site = {
   phoneE164: phone,
   phoneHref: `tel:${phone}`,
   smsHref: `sms:${phone}`,
-  googleReviewsUrl: "https://www.google.com/search?q=birmingham+pro+wash",
+  googleReviewsUrl: "https://www.google.com/search?q=bluestone+pro+wash+birmingham+al",
   region: "Greater Birmingham, Alabama",
   // Approximate center of the service area (Birmingham) and how far we travel,
   // for LocalBusiness geo + service-area structured data. Coarse by design —
@@ -64,8 +64,10 @@ export const contentUpdated = "2026-08-08";
 // Empty entries are hidden automatically (footer + schema sameAs).
 // `icon` keys come from components/ui/SocialIcon.tsx, not the lucide registry.
 export const socials: { label: string; icon: string; href: string }[] = [
-  { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/BirminghamProWash" },
+  { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/BluestoneProWash" },
   { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/bluestoneprowash" },
+  // TODO(client): paste the Bluestone Pro Wash LLC LinkedIn company page URL.
+  { label: "LinkedIn", icon: "linkedin", href: "" },
   // TODO(client): paste the Google Business Profile review link when live.
   { label: "Leave a Google review", icon: "google", href: "" },
 ];
