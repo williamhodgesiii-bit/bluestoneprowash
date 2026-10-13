@@ -25,7 +25,7 @@ export const site = {
   phoneE164: phone,
   phoneHref: `tel:${phone}`,
   smsHref: `sms:${phone}`,
-  googleReviewsUrl: "https://www.google.com/search?q=bluestone+pro+wash+birmingham+al",
+  googleReviewsUrl: "https://maps.app.goo.gl/HAa1yaTWTmxESdw29",
   region: "Greater Birmingham, Alabama",
   // Approximate center of the service area (Birmingham) and how far we travel,
   // for LocalBusiness geo + service-area structured data. Coarse by design —
@@ -66,8 +66,7 @@ export const contentUpdated = "2026-08-08";
 export const socials: { label: string; icon: string; href: string }[] = [
   { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/BluestoneProWash" },
   { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/bluestoneprowash" },
-  // TODO(client): paste the Bluestone Pro Wash LLC LinkedIn company page URL.
-  { label: "LinkedIn", icon: "linkedin", href: "" },
+  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/bluestone-pro-wash-llc/" },
   // TODO(client): paste the Google Business Profile review link when live.
   { label: "Leave a Google review", icon: "google", href: "" },
 ];
