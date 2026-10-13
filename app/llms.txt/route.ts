@@ -42,7 +42,13 @@ ${services.map((s) => `- [${s.name}](${base}/services/${s.id}): ${s.blurb} Surfa
 
 Serving Greater Birmingham, Alabama and surrounding communities, including: ${serviceAreas.join(", ")}. This is a mobile service that travels to the customer.
 
-## Frequently asked questions
+## Service FAQs
+
+${services
+  .map((s) => `### ${s.name}\n\n${s.faqs.map((f) => `**${f.q}**\n${f.a}`).join("\n\n")}`)
+  .join("\n\n")}
+
+## General questions
 
 ${faqs.map((f) => `### ${f.q}\n${f.a}`).join("\n\n")}
 

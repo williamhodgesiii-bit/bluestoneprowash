@@ -3,12 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { QuoteBand } from "@/components/sections/QuoteBand";
+import { Faq } from "@/components/sections/Faq";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata } from "@/lib/seo";
-import { breadcrumbNode, graph, serviceNode, webPageNode } from "@/lib/schema";
+import { breadcrumbNode, faqNode, graph, serviceNode, webPageNode } from "@/lib/schema";
 import { serviceAreas, services, site } from "@/lib/site";
 import { getSiteUrl } from "@/lib/url";
 
@@ -55,6 +56,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       { name: service.name, path },
     ]),
     serviceNode(base, service),
+    faqNode(base, path, service.faqs),
   ]);
 
   return (
@@ -146,6 +148,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
         </Container>
       </section>
+
+      <Faq
+        id="faq"
+        bg="steel"
+        items={service.faqs}
+        kicker="Good to know"
+        title={`${service.name} questions`}
+        intro="Straight answers to what people ask us before booking. Don't see yours? Call or text and we'll help."
+      />
 
       <QuoteBand />
     </>

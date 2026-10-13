@@ -59,7 +59,7 @@ export const site = {
  * changed on every deploy and train search engines to ignore the signal.
  * Format: YYYY-MM-DD.
  */
-export const contentUpdated = "2026-08-08";
+export const contentUpdated = "2026-10-13";
 
 // Empty entries are hidden automatically (footer + schema sameAs).
 // `icon` keys come from components/ui/SocialIcon.tsx, not the lucide registry.
@@ -80,6 +80,8 @@ export const navLinks: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+export type Faq = { q: string; a: string };
+
 export type Service = {
   id: string;
   name: string;
@@ -90,6 +92,9 @@ export type Service = {
   featured?: boolean;
   // Optional crew-in-action photo shown on the service's own page.
   image?: { src: string; alt: string };
+  // Service-specific questions, shown on the service's own page and emitted as
+  // FAQPage structured data + in /llms.txt. Keep answers plain and specific.
+  faqs: Faq[];
 };
 
 export const services: Service[] = [
@@ -102,6 +107,32 @@ export const services: Service[] = [
     points: ["Driveways & sidewalks", "Patios & pool decks", "Brick & retaining walls"],
     surfaces: "Concrete · Pavers · Brick · Stone",
     featured: true,
+    faqs: [
+      {
+        q: "Will pressure washing damage my concrete?",
+        a: "Not when it's done right. On driveways and sidewalks we use a surface cleaner, which spins the water in an even circle so you don't end up with the stripes and etched lines you get from holding a wand too close. Pavers, older brick, and softer stone get turned down to a lower pressure.",
+      },
+      {
+        q: "Can you get oil stains and rust off my driveway?",
+        a: "Most of the time we can make a big difference. Fresh oil drips and most rust spots come out well with the right pre-treatment. Stains that have soaked in for years may lighten instead of disappearing completely, and we'll tell you that before we start so there are no surprises.",
+      },
+      {
+        q: "How long does it take?",
+        a: "A typical two-car driveway takes one to two hours. Add the sidewalk, a patio, or a pool deck and most homes still get finished in a single visit.",
+      },
+      {
+        q: "Will it hurt my grass or plants?",
+        a: "No. On concrete we're mostly using water, and anything we use around the yard gets rinsed off. We also wet down nearby plants before we start and rinse them again when we're done.",
+      },
+      {
+        q: "How often should I pressure wash my driveway?",
+        a: "Every one to two years for most Birmingham homes. Driveways under big trees or on the shady side of the house turn green faster and may need it every year.",
+      },
+      {
+        q: "Do you clean pavers and stamped concrete?",
+        a: "Yes. We use lower pressure so we don't blow out the joint sand or wear down the finish. If the joints look low once everything's clean, we'll point it out so you know.",
+      },
+    ],
   },
   {
     id: "soft-washing",
@@ -116,6 +147,32 @@ export const services: Service[] = [
       src: "/images/service-soft-washing.jpg",
       alt: "Bluestone Pro Wash crew soft washing a covered porch",
     },
+    faqs: [
+      {
+        q: "What is soft washing?",
+        a: "It's how we clean the outside of a house. Instead of high pressure, we apply a cleaning solution at about the pressure of a garden hose, let it kill the mold, mildew, and algae, and then rinse it all off. Because the growth is actually killed and not just knocked loose, your siding stays clean a lot longer.",
+      },
+      {
+        q: "Is it safe for vinyl, Hardie board, and stucco?",
+        a: "Yes, that's what it's made for. High pressure can force water behind vinyl siding, chip paint off Hardie board, and crack stucco. A soft wash cleans all three without putting that kind of force on them.",
+      },
+      {
+        q: "What's the green stuff on the side of my house?",
+        a: "Almost always algae or mildew. Birmingham's humidity and all the shade from our trees give it the perfect place to grow, which is why it usually shows up first on the north side of a house where the sun hits least.",
+      },
+      {
+        q: "Is it safe for my plants and pets?",
+        a: "Yes. We wet down your plants before we start and rinse them again after. We just ask that pets stay inside until we're finished and everything's been rinsed.",
+      },
+      {
+        q: "How long will my house stay clean?",
+        a: "Most homes look good for a year or more. Houses with heavy shade or a lot of trees close by can start to show growth sooner, which is why most people book a soft wash once a year.",
+      },
+      {
+        q: "Do I need to be home?",
+        a: "Not usually. We just need the windows and doors closed and access to an outdoor water spigot. We'll let you know when we get there and when we're done.",
+      },
+    ],
   },
   {
     id: "roof-washing",
@@ -126,6 +183,32 @@ export const services: Service[] = [
     points: ["Asphalt shingle safe", "Kills algae & moss", "Extends roof lifespan"],
     surfaces: "Shingle · Tile · Metal",
     featured: true,
+    faqs: [
+      {
+        q: "What are the black streaks on my roof?",
+        a: "It's a type of algae called Gloeocapsa magma. It feeds on the limestone filler in asphalt shingles and spreads across the roof over time. It's extremely common here because of our heat and humidity.",
+      },
+      {
+        q: "Do you pressure wash roofs?",
+        a: "Never. High pressure strips the protective granules off shingles, shortens the life of the roof, and can void the manufacturer's warranty. We soft wash roofs with low pressure and a cleaning solution that kills the algae instead of blasting it.",
+      },
+      {
+        q: "Will the moss come off the same day?",
+        a: "The black streaks usually clean up the same day. Thick moss is different. We kill it during the wash, and it dries out and loosens over the next few weeks until the rain washes it off.",
+      },
+      {
+        q: "How long does a roof wash last?",
+        a: "Usually two to four years. Roofs under heavy tree cover or in a lot of shade tend to be on the shorter end of that.",
+      },
+      {
+        q: "Do you clean metal and tile roofs?",
+        a: "Yes. We clean asphalt shingle, tile, and metal roofs, and we adjust the method to the material.",
+      },
+      {
+        q: "Will you walk on my roof?",
+        a: "Only when it's safe to. We don't walk on brittle or worn shingles, and on a lot of roofs we can do most of the work from a ladder or the ground.",
+      },
+    ],
   },
   {
     id: "window-cleaning",
@@ -139,6 +222,32 @@ export const services: Service[] = [
       src: "/images/service-window-cleaning.jpg",
       alt: "Bluestone Pro Wash crew cleaning an arched window with a water-fed pole",
     },
+    faqs: [
+      {
+        q: "What is a water-fed pole?",
+        a: "It's a long pole with a brush on the end that sprays purified water. The water has had all the minerals filtered out, so there's nothing left behind to spot or streak when it dries. It also lets us clean second-story windows safely from the ground.",
+      },
+      {
+        q: "Do you clean the inside of the windows too?",
+        a: "Yes, we clean inside and out. Inside, we do it by hand and take care around your floors, sills, and furniture.",
+      },
+      {
+        q: "Are screens and tracks included?",
+        a: "Yes. We clean the screens and wipe out the tracks as part of the job, so the whole window looks finished, not just the glass.",
+      },
+      {
+        q: "Why do my windows streak when I clean them myself?",
+        a: "Tap water has minerals in it, and most cleaners leave a little soap behind. When the glass dries, both of those show up as streaks and spots. Purified water doesn't leave anything behind.",
+      },
+      {
+        q: "Can you remove hard water spots?",
+        a: "Light spots and film usually come right off. Heavy mineral buildup that's etched into the glass may not come out all the way, and we'll be upfront about that before we start.",
+      },
+      {
+        q: "How often should I have my windows cleaned?",
+        a: "Once or twice a year works for most homes. Plenty of people around here book right after pollen season, since that yellow dust ends up on everything.",
+      },
+    ],
   },
   {
     id: "gutter-cleaning",
@@ -148,6 +257,28 @@ export const services: Service[] = [
       "Full debris removal plus an exterior gutter-face brightening so your drainage works and your fascia looks new again.",
     points: ["Debris flush & clear", "Downspout check", "Gutter-face whitening"],
     surfaces: "Gutters · Downspouts · Fascia",
+    faqs: [
+      {
+        q: "What's included in a gutter cleaning?",
+        a: "We clear the leaves and debris out of every gutter, flush the downspouts to make sure water runs through, and clean up the mess on the ground before we leave.",
+      },
+      {
+        q: "How often should gutters be cleaned?",
+        a: "Twice a year for most homes: once in late spring after the pollen and oak tassels come down, and once in late fall after the leaves drop. If you have a lot of pine trees close to the house, you may need it more often.",
+      },
+      {
+        q: "What is gutter face brightening?",
+        a: "It's cleaning the outside of the gutters. Over time they pick up black streaks people call \"tiger stripes\" that a regular wash won't take off. We clean the gutter faces by hand so they match the rest of the house again.",
+      },
+      {
+        q: "How can I tell if my gutters are clogged?",
+        a: "Water spilling over the edge during a rain is the most obvious sign. Others are gutters that sag or pull away from the house, stains on the siding underneath, and plants growing out of the gutter.",
+      },
+      {
+        q: "What if my downspout is clogged underground?",
+        a: "We'll flush it and let you know if it still won't drain. If the clog is in the underground pipe, we'll tell you what we found so you know what needs to happen next.",
+      },
+    ],
   },
 ];
 
@@ -378,8 +509,6 @@ export const serviceAreas: string[] = [
   "Gardendale",
   "Calera",
 ];
-
-export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {

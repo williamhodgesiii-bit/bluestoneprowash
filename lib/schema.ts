@@ -19,7 +19,7 @@ import {
  *        ▲                                          ▲
  *        │ about                                    │ isPartOf
  *     WebPage (<url>#webpage) ──breadcrumb──▶ BreadcrumbList (<url>#breadcrumb)
- *        │ (services page also emits) Service nodes + FAQPage
+ *        │ (services + each service page also emit) Service nodes + FAQPage
  *
  * Everything here is derived from lib/site.ts — the single source of truth —
  * so structured data always matches the visible content. No invented data.

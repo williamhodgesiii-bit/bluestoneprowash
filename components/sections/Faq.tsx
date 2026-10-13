@@ -2,18 +2,28 @@ import { Container } from "../ui/Container";
 import { Icon } from "../ui/Icon";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../motion/Reveal";
-import { site, faqs } from "@/lib/site";
+import { site, faqs as generalFaqs, type Faq as FaqItem } from "@/lib/site";
 
-export function Faq({ bg = "white" }: { bg?: "white" | "steel" }) {
+export function Faq({
+  bg = "white",
+  items = generalFaqs,
+  kicker = "Good to know",
+  title = "Questions, answered",
+  intro = "A few things folks ask before booking. Still curious? Just give us a call.",
+  id,
+}: {
+  bg?: "white" | "steel";
+  items?: FaqItem[];
+  kicker?: string;
+  title?: React.ReactNode;
+  intro?: React.ReactNode;
+  id?: string;
+}) {
   return (
-    <section className={`py-8 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
+    <section id={id} className={`scroll-mt-24 py-8 sm:py-14 ${bg === "steel" ? "bg-steel-50" : "bg-white"}`}>
       <Container className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
-          <SectionHeading
-            kicker="Good to know"
-            title="Questions, answered"
-            intro="A few things folks ask before booking. Still curious? Just give us a call."
-          />
+          <SectionHeading kicker={kicker} title={title} intro={intro} />
           <a
             href={site.phoneHref}
             className="mt-4 inline-flex items-center gap-2 text-lg font-bold text-brand-700 hover:text-brand-600 sm:mt-6"
@@ -24,7 +34,7 @@ export function Faq({ bg = "white" }: { bg?: "white" | "steel" }) {
 
         <div className="lg:col-span-8">
           <div className="flex flex-col gap-3">
-            {faqs.map((f, i) => (
+            {items.map((f, i) => (
               <Reveal key={f.q} delay={i * 0.04}>
                 <details className="group rounded-xl border border-steel-200 bg-white px-5 open:border-brand-300">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[0.97rem] font-bold text-ink sm:text-[1.05rem] [&::-webkit-details-marker]:hidden">
